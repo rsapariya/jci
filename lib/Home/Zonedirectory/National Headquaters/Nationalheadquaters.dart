@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jci/Fifth.dart';
-import 'package:jci/Forth.dart';
-import 'package:jci/Six.dart';
+import 'package:jci/Home/Zonedirectory/National%20Headquaters/second.dart';
+import 'package:jci/Home/Zonedirectory/National%20Headquaters/third.dart';
 
-import 'package:jci/colour.dart';
-import 'package:jci/first.dart';
-import 'package:jci/second.dart';
-import 'package:jci/third.dart';
+import '../../../units/colour.dart';
+import 'Fifth.dart';
+import 'Forth.dart';
+import 'Six.dart';
+import 'first.dart';
 
 class Nationalheadquaters extends StatefulWidget {
   const Nationalheadquaters({Key? key}) : super(key: key);
@@ -135,7 +135,8 @@ class _NationalheadquatersState extends State<Nationalheadquaters>
         children: [
           Container(
             decoration: BoxDecoration(
-                border: Border(bottom:BorderSide(color:Appbarcolour,width:1.5))),
+                border: Border(
+                    bottom: BorderSide(color: Appbarcolour, width: 1.5))),
             child: Padding(
               padding: EdgeInsets.symmetric(
                   vertical: Get.height / 80, horizontal: 10),

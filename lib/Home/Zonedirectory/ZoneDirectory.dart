@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jci/colour.dart';
+import 'package:jci/Home/Zonedirectory/Lom.dart';
+import 'package:jci/Home/Zonedirectory/Past%20Zone%20President.dart';
+import 'package:jci/Home/Zonedirectory/PastnationalPresident.dart';
 
-import 'Nationalheadquaters.dart';
-import 'currentzgb.dart';
+import '../../units/colour.dart';
+import 'Current ZGB/currentzgb.dart';
+import 'National Headquaters/Nationalheadquaters.dart';
+import 'Trainers/Nationaltrainers.dart';
 
 class Zonedirectory extends StatefulWidget {
   const Zonedirectory({Key? key}) : super(key: key);
@@ -50,42 +54,42 @@ class _ZonedirectoryState extends State<Zonedirectory> {
             ),
             container(
                 onTap: () {
-                  Get.to(() =>const CurrentZGB());
+                  Get.to(() => const CurrentZGB());
                 },
                 text: "CURRENT ZGB"),
             container(
                 onTap: () {
-                  Get.to(() =>const Nationalheadquaters());
+                  Get.to(() => const Nationalheadquaters());
                 },
                 text: "NATIONAL HEADQUARTERS"),
-            container(onTap: () {}, text: "PAST ZONE PRESIDENT"),
-            container(onTap: () {}, text: "PAST NATIONAL PRESIDENT"),
-            container(onTap: () {}, text: "NATIONAL TRAINERS"),
-            container(onTap: () {}, text: "LOM"),
-            InkWell(
-              onTap: () {},
-              child: Padding(
-                padding: EdgeInsets.only(left: Get.width / 30),
-                child: Row(
-                  children: [
-                    Text(
-                      "Download Directory PDF",
-                      style: GoogleFonts.poppins(
-                          fontSize: 18,
-                          color: Appbarcolour,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            container(
+                onTap: () {
+                  Get.to(() => const PastPresident());
+                },
+                text: "PAST ZONE PRESIDENT"),
+            container(
+                onTap: () {
+                  Get.to(() => const PastnationalPresident());
+                },
+                text: "PAST NATIONAL PRESIDENT"),
+            container(
+                onTap: () {
+                  Get.to(() => const Nationaltrainers());
+                },
+                text: "NATIONAL TRAINERS"),
+            container(
+                onTap: () {
+                  Get.to(() => Lomlist());
+                },
+                text: "LOM"),
+            container(icon: Icons.download, text: "Download Directory PDF"),
           ],
         ),
       ),
     );
   }
 
-  container({void Function()? onTap, required String text}) {
+  container({void Function()? onTap, required String text, IconData? icon}) {
     return InkWell(
       splashColor: Colors.transparent,
       onTap: onTap,
@@ -113,6 +117,14 @@ class _ZonedirectoryState extends State<Zonedirectory> {
                     style: GoogleFonts.poppins(
                         fontSize: 18, fontWeight: FontWeight.w500),
                   ),
+                  const Spacer(),
+                  Icon(
+                    icon,
+                    color: Appbarcolour,
+                  ),
+                  SizedBox(
+                    width: Get.width / 30,
+                  )
                 ],
               ),
             ),

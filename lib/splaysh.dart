@@ -4,13 +4,11 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jci/units/api.dart';
+import 'Home/home.dart';
 
-import 'home.dart';
-
-var countryCode = [];
-var cat = [];
-var Users = <String>[];
-var Usersid = [];
+List sliderimage = [];
+String? url;
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -22,11 +20,15 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
+    youtubeapi();
+    SLiderapi();
     super.initState();
     Timer(
-        const Duration(seconds: 4),
-        () => Get.offAll(
-            () => Home("https://www.youtube.com/watch?v=0nO36W77ZaQ")));
+      const Duration(seconds: 4),
+      () => Get.offAll(
+        () => Home(url),
+      ),
+    );
   }
 
   @override
@@ -52,9 +54,40 @@ class _SplashScreenState extends State<SplashScreen> {
                         color: Colors.black,
                         fontSize: 20,
                         fontWeight: FontWeight.w500)),
-              )
+              ),
             ],
           ),
         ));
+  }
+
+  youtubeapi() {
+    ApiWrapper.dataGet(AppUrl.Youtube).then((val) {
+      if ((val != null) && (val.isNotEmpty)) {
+        setState(() {});
+        url = val['url'];
+        print("UUUURRRLLL");
+        print(url.toString());
+      } else {
+        setState(() {});
+        currentzgb.clear();
+        ApiWrapper.showToastMessage("Something Went Wrong!!");
+      }
+    });
+  }
+
+  SLiderapi() {
+    ApiWrapper.dataGet(AppUrl.slider).then((val) {
+      if ((val != null) && (val.isNotEmpty)) {
+        setState(() {});
+        val.forEach((e) {
+          sliderimage.add(e);
+          print("Slider_______>>>>>$e");
+        });
+      } else {
+        setState(() {});
+        // sliderimage.clear();
+        ApiWrapper.showToastMessage("Something Went Wrong!!");
+      }
+    });
   }
 }

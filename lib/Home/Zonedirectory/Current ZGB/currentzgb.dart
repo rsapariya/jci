@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jci/Details.dart';
-import 'package:jci/Storage.dart';
-import 'package:jci/colour.dart';
+import 'package:jci/Home/Zonedirectory/Current%20ZGB/Details.dart';
+import 'package:jci/Home/home.dart';
+
+import '../../../units/Storage.dart';
+import '../../../units/colour.dart';
+import '../Details.dart';
 
 class CurrentZGB extends StatefulWidget {
   const CurrentZGB({Key? key}) : super(key: key);
@@ -17,72 +20,6 @@ class CurrentZGB extends StatefulWidget {
 
 class _CurrentZGBState extends State<CurrentZGB> {
   @override
-  List dailog = [];
-  List<dynamic> Directory = [
-    {
-      "Name": "JC Anant Bharucha",
-      "Position": "Zone President",
-      "home": "JCI Surat Metro",
-      "call": "9857498742",
-      "email": "test@gmail.com",
-      "location": "Surat",
-      "image": "https://cdn-icons-png.flaticon.com/512/149/149071.png"
-    },
-    {
-      "Name": "JC Nirav Bharucha",
-      "Position": "Zone President",
-      "home": "JCI Surat Metro",
-      "call": "9857498742",
-      "email": "test@gmail.com",
-      "location": "Surat",
-      "image": "https://cdn-icons-png.flaticon.com/512/149/149071.png"
-    },
-    {
-      "Name": "JC Anant Patel",
-      "Position": "Zone President",
-      "home": "JCI Surat Metro",
-      "call": "9857498742",
-      "email": "test@gmail.com",
-      "location": "Surat",
-      "image": "https://cdn-icons-png.flaticon.com/512/149/149071.png"
-    },
-    {
-      "Name": "JC Anant chauhan",
-      "Position": "Zone President",
-      "home": "JCI Surat Metro",
-      "call": "9857498742",
-      "email": "test@gmail.com",
-      "location": "Surat",
-      "image": "https://cdn-icons-png.flaticon.com/512/149/149071.png"
-    },
-    {
-      "Name": "JC Anant Bharucha",
-      "Position": "Zone co President",
-      "home": "JCI Surat Metro",
-      "call": "48488755",
-      "email": "test@gmail.com",
-      "location": "Surat",
-      "image": "https://cdn-icons-png.flaticon.com/512/149/149071.png"
-    },
-    {
-      "Name": "JC Anant Bharucha",
-      "Position": "Zone President",
-      "home": "JCI Surat Metro",
-      "call": "9857498742",
-      "email": "test@gmail.com",
-      "location": "Surat",
-      "image": "https://cdn-icons-png.flaticon.com/512/149/149071.png"
-    },
-    {
-      "Name": "JC Anant Bharucha",
-      "Position": "Zone President",
-      "home": "JCI Surat Metro",
-      "call": "9857498742",
-      "email": "test@gmail.com",
-      "location": "Surat",
-      "image": "https://cdn-icons-png.flaticon.com/512/149/149071.png"
-    },
-  ];
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -93,8 +30,7 @@ class _CurrentZGBState extends State<CurrentZGB> {
         backgroundColor: Appbarcolour,
       ),
       body: ListView.builder(
-        // controller: controller,
-        itemCount: Directory.length,
+        itemCount: currentzgb.length,
         itemBuilder: (_, index) {
           return Padding(
             padding:
@@ -102,8 +38,8 @@ class _CurrentZGBState extends State<CurrentZGB> {
             child: InkWell(
               onTap: () {
                 setState(() {
-                  save('ZGB', Directory[index]);
-                  Get.to(() => Detailes());
+                  save('ZGB', currentzgb[index]);
+                  Get.to(() => currentDetails());
                 });
               },
               child: Container(
@@ -114,15 +50,18 @@ class _CurrentZGBState extends State<CurrentZGB> {
                     borderRadius: BorderRadius.circular(10)),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                      vertical: Get.height / 60, horizontal: Get.width / 30),
+                      vertical: Get.height / 100, horizontal: Get.width / 30),
                   child: Column(
                     children: [
                       Row(
                         children: [
                           CircleAvatar(
-                            backgroundImage: NetworkImage(
-                              Directory[index]['image'].toString(),
-                            ),
+                            backgroundColor: Appbarcolour.withOpacity(0.7),
+                            backgroundImage: currentzgb[index]['image'] != null
+                                ? NetworkImage(
+                                    currentzgb[index]['image'].toString(),
+                                  )
+                                : NetworkImage(backimage),
                           ),
                           SizedBox(
                             width: 10,
@@ -130,22 +69,27 @@ class _CurrentZGBState extends State<CurrentZGB> {
                           Column(
                             children: [
                               SizedBox(
-                                width: Get.width / 1.5,
+                                width: Get.width / 1.8,
                                 child: Text(
-                                  Directory[index]['Name'].toString(),
+                                  currentzgb[index]['name'].toString(),
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.poppins(fontSize: 16),
                                 ),
                               ),
                               SizedBox(
-                                width: Get.width / 1.5,
+                                width: Get.width / 1.8,
                                 child: Text(
-                                  Directory[index]['Position'].toString(),
+                                  currentzgb[index]['post'].toString(),
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.poppins(fontSize: 16),
                                 ),
                               ),
                             ],
+                          ),
+                          Spacer(),
+                          Icon(
+                            Icons.navigate_next_outlined,
+                            color: Appbarcolour,
                           )
                         ],
                       )

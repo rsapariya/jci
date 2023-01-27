@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 Color primeryColor = Colors.white;
 Color darkPrimeryColor = const Color(0xff2D2D3A);
-Color Appbarcolour = const Color(0xff018577);
+Color Appbarcolour = const Color(0xff27549c);
 
 Color darkColor = Colors.black;
 Color lightColor = Colors.white;

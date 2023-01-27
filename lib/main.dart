@@ -2,13 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:jci/splaysh.dart';
+import 'package:jci/units/notifire.dart';
 import 'package:provider/provider.dart';
-
-import 'notifire.dart';
 
 void main() async {
   await GetStorage.init();

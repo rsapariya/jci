@@ -1,40 +1,34 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jci/Details.dart';
-import 'package:jci/Storage.dart';
-import 'package:jci/colour.dart';
+import 'package:jci/Home/Zonedirectory/Trainers/Details.dart';
+import '../../../../units/Storage.dart';
+import '../../../../units/colour.dart';
+import '../../home.dart';
+import '../Details.dart';
 
-class First extends StatefulWidget {
-  const First({Key? key}) : super(key: key);
+class Nationaltrainers extends StatefulWidget {
+  const Nationaltrainers({Key? key}) : super(key: key);
 
   @override
-  State<First> createState() => _FirstState();
+  State<Nationaltrainers> createState() => _NationaltrainersState();
 }
 
-class _FirstState extends State<First> {
+class _NationaltrainersState extends State<Nationaltrainers> {
   @override
-  List dailog = [];
-  List<dynamic> Directory = [
-    {
-      "Name": "JC Anant Bharucha",
-      "Position": "Zone President",
-      "home": "JCI Surat Metro",
-      "call": "9857498742",
-      "email": "test@gmail.com",
-      "location": "Surat",
-      "image": "https://cdn-icons-png.flaticon.com/512/149/149071.png"
-    },
-  ];
   Widget build(BuildContext context) {
     return Scaffold(
-
+      appBar: AppBar(
+        title: Text(
+          'National Trainers',
+          style: GoogleFonts.poppins(),
+        ),
+        backgroundColor: Appbarcolour,
+      ),
       body: ListView.builder(
         // controller: controller,
-        itemCount: Directory.length,
+        itemCount: trainers.length,
         itemBuilder: (_, index) {
           return Padding(
             padding:
@@ -42,26 +36,29 @@ class _FirstState extends State<First> {
             child: InkWell(
               onTap: () {
                 setState(() {
-                  save('National', Directory[index]);
-                  Get.to(() => Detailes());
+                  save('TR', trainers[index]);
+                  Get.to(() => TrainersDetails());
                 });
               },
               child: Container(
+                // height: Get.height / 4,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     border: Border.all(width: 1, color: Appbarcolour),
                     borderRadius: BorderRadius.circular(10)),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                      vertical: Get.height / 60, horizontal: Get.width / 30),
+                      vertical: Get.height / 100, horizontal: Get.width / 30),
                   child: Column(
                     children: [
                       Row(
                         children: [
                           CircleAvatar(
-                            backgroundImage: NetworkImage(
-                              Directory[index]['image'].toString(),
-                            ),
+                            backgroundColor: Colors.white,
+                            backgroundImage: trainers[index]['image']!= null
+                                ? NetworkImage(
+                                trainers[index]['image'])
+                                : NetworkImage(backimage),
                           ),
                           SizedBox(
                             width: 10,
@@ -69,22 +66,27 @@ class _FirstState extends State<First> {
                           Column(
                             children: [
                               SizedBox(
-                                width: Get.width / 1.5,
+                                width: Get.width / 1.8,
                                 child: Text(
-                                  Directory[index]['Name'].toString(),
+                                  trainers[index]['name'].toString(),
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.poppins(fontSize: 16),
                                 ),
-                              ),
+                              ),trainers[index]['post']==null || trainers[index]['post'] == ""?SizedBox():
                               SizedBox(
-                                width: Get.width / 1.5,
+                                width: Get.width / 1.8,
                                 child: Text(
-                                  Directory[index]['Position'].toString(),
+                                  trainers[index]['post'].toString(),
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.poppins(fontSize: 16),
                                 ),
                               ),
                             ],
+                          ),
+                          Spacer(),
+                          Icon(
+                            Icons.navigate_next_outlined,
+                            color: Appbarcolour,
                           )
                         ],
                       )
