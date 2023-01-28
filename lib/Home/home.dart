@@ -2,13 +2,17 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jci/Home/Aboutapp.dart';
 import 'package:jci/Home/Events/Events.dart';
 import 'package:jci/Home/Lom%20Axctivitey/LOMDetailes.dart';
 import 'package:jci/splaysh.dart';
 import 'package:jci/units/Storage.dart';
+import 'package:launch_review/launch_review.dart';
+import 'package:share/share.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import '../units/api.dart';
 import '../units/colour.dart';
@@ -46,6 +50,7 @@ class _HomeState extends State<Home> {
   int currentindex = 0;
   @override
   void initState() {
+    Admob.requestTrackingAuthorization();
     NationalTrainerAPI();
     HeadAPI();
     HeadAPI1();
@@ -60,15 +65,17 @@ class _HomeState extends State<Home> {
     Pastnationalapi();
     Pastprapi();
     _controller = YoutubePlayerController(
-        initialVideoId:
-            YoutubePlayerController.convertUrlToId(widget.youtybeURL!)!,
-        params: const YoutubePlayerParams(
-            loop: true,
-            autoPlay: true,
-            desktopMode: false,
-            mute: true,
-            strictRelatedVideos: true,
-            showFullscreenButton: !kIsWeb));
+      initialVideoId:
+          YoutubePlayerController.convertUrlToId(widget.youtybeURL!)!,
+      params: const YoutubePlayerParams(
+        loop: true,
+        autoPlay: true,
+        desktopMode: false,
+        mute: true,
+        strictRelatedVideos: true,
+        showFullscreenButton: !kIsWeb,
+      ),
+    );
 
     super.initState();
   }
@@ -80,8 +87,36 @@ class _HomeState extends State<Home> {
         appBar: AppBar(
           backgroundColor: Appbarcolour,
           actions: [
-            IconButton(
-                onPressed: () {}, icon: const Icon(Icons.more_vert_outlined))
+            PopupMenuButton(
+              padding: EdgeInsets.zero,
+              itemBuilder: (context) => [
+                PopupMenuItem(
+                  value: "Share",
+                  child: Text(
+                    'Share',
+                    style: GoogleFonts.poppins(),
+                  ),
+                ),
+                PopupMenuItem(
+                  value: "App info",
+                  child: Text('App info', style: GoogleFonts.poppins()),
+                ),
+                PopupMenuItem(
+                  value: "Rate Us",
+                  child: Text('Rate Us', style: GoogleFonts.poppins()),
+                ),
+              ],
+              onSelected: (String menu) {
+                if (menu == "App info") {
+                  Get.to(() => Aboutinfo());
+                } else if (menu == "Share") {
+                  Share.share(
+                      'https://play.google.com/store/apps/details?id=com.jciindia.directory');
+                } else if (menu == "Rate Us") {
+                  LaunchReview.launch(androidAppId: "com.jciindiazone8.app");
+                }
+              },
+            )
           ],
           title: Text(
             'JCI India Zone VIII',
