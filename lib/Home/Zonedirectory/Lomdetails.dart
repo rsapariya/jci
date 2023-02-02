@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:jci/Home/Zonedirectory/Lom.dart';
 import 'package:jci/Home/home.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import '../../../splaysh.dart';
 import '../../units/Storage.dart';
 import '../../units/api.dart';
 import '../../units/colour.dart';
@@ -29,7 +29,7 @@ class _LomdetailsState extends State<Lomdetails> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Appbarcolour,
+        backgroundColor: Color(Appbarcolour.hashCode)!!,
         title: Text(
           lomname.toString() ?? 'Details',
           style: GoogleFonts.poppins(),
@@ -53,7 +53,7 @@ class _LomdetailsState extends State<Lomdetails> {
                                   blurRadius: 3,
                                   spreadRadius: 2)
                             ],
-                            color: Appbarcolour,
+                            color: Color(Appbarcolour.hashCode)!!,
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(5),
                                 topRight: Radius.circular(5))),
@@ -126,7 +126,7 @@ class _LomdetailsState extends State<Lomdetails> {
                                   blurRadius: 3,
                                   spreadRadius: 2)
                             ],
-                            // border:Border.all(color:Appbarcolour,width: 1.5),
+                            // border:Border.all(color:Color(Appbarcolour.hashCode)!!,width: 1.5),
                             color: Colors.white,
                             borderRadius: BorderRadius.only(
                                 bottomRight: Radius.circular(5),
@@ -146,7 +146,7 @@ class _LomdetailsState extends State<Lomdetails> {
                                       children: [
                                         Icon(
                                           Icons.home_filled,
-                                          color: Appbarcolour,
+                                          color: Color(Appbarcolour.hashCode)!!,
                                         ),
                                         SizedBox(
                                           width: 10,
@@ -177,7 +177,7 @@ class _LomdetailsState extends State<Lomdetails> {
                                         children: [
                                           Icon(
                                             Icons.call,
-                                            color: Appbarcolour,
+                                            color: Color(Appbarcolour.hashCode)!!,
                                           ),
                                           SizedBox(
                                             width: 10,
@@ -219,7 +219,7 @@ class _LomdetailsState extends State<Lomdetails> {
                                         children: [
                                           Icon(
                                             Icons.email,
-                                            color: Appbarcolour,
+                                            color: Color(Appbarcolour.hashCode)!!,
                                           ),
                                           SizedBox(
                                             width: 10,
@@ -255,7 +255,7 @@ class _LomdetailsState extends State<Lomdetails> {
                                       children: [
                                         Icon(
                                           Icons.location_on,
-                                          color: Appbarcolour,
+                                          color: Color(Appbarcolour.hashCode)!,
                                         ),
                                         SizedBox(
                                           width: 10,

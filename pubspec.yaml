@@ -60,8 +60,10 @@ dependencies:
   pinput: ^1.2.0
   youtube_player_iframe: ^2.2.2
   cloud_firestore: ^4.3.1
+  firebase_core: ^2.4.1
   share: any
   admob_flutter: ^3.0.0
+  dio: any
 
 dev_dependencies:
   flutter_test:

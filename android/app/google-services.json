@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "697318034908",
-    "project_id": "jci-8-7ff3c",
-    "storage_bucket": "jci-8-7ff3c.appspot.com"
+    "project_number": "724817375771",
+    "project_id": "jci-india-4fb5c",
+    "storage_bucket": "jci-india-4fb5c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:697318034908:android:a9dd0c2f3f14c8389f9319",
+        "mobilesdk_app_id": "1:724817375771:android:205df4a05df486d4cbfebe",
         "android_client_info": {
           "package_name": "com.jciindiazone8.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "697318034908-uvurrf6kj6ald9eaa49pdonqa448eagq.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.jciindiazone8.app",
-            "certificate_hash": "014aeee396dec321855b89f0e820fd86f807ee94"
-          }
-        },
-        {
-          "client_id": "697318034908-9h1of4rg0djren45pj9dafjsmnedsp5g.apps.googleusercontent.com",
+          "client_id": "724817375771-j2gr1tbkuj581q16si2nbk42tferlehi.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD5d1G6PH5aroa55Cs4MX7f82vQax0NRz8"
+          "current_key": "AIzaSyBlCIgfmr4YErsMu--mmrZ7osaw_8MjT2w"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "697318034908-9h1of4rg0djren45pj9dafjsmnedsp5g.apps.googleusercontent.com",
+              "client_id": "724817375771-j2gr1tbkuj581q16si2nbk42tferlehi.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

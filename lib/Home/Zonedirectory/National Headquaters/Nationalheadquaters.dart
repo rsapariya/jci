@@ -6,7 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jci/Home/Zonedirectory/National%20Headquaters/second.dart';
 import 'package:jci/Home/Zonedirectory/National%20Headquaters/third.dart';
-
+import '../../../splaysh.dart';
 import '../../../units/colour.dart';
 import 'Fifth.dart';
 import 'Forth.dart';
@@ -129,26 +129,26 @@ class _NationalheadquatersState extends State<Nationalheadquaters>
           'National Headquarters',
           style: GoogleFonts.poppins(),
         ),
-        backgroundColor: Appbarcolour,
+        backgroundColor: Color(Appbarcolour.hashCode)!!,
       ),
       body: Column(
         children: [
           Container(
             decoration: BoxDecoration(
                 border: Border(
-                    bottom: BorderSide(color: Appbarcolour, width: 1.5))),
+                    bottom: BorderSide(color: Color(Appbarcolour.hashCode)!!, width: 1.5))),
             child: Padding(
               padding: EdgeInsets.symmetric(
                   vertical: Get.height / 80, horizontal: 10),
               child: TabBar(
-                unselectedLabelColor: Appbarcolour,
-                indicatorColor: Appbarcolour,
+                unselectedLabelColor: Color(Appbarcolour.hashCode)!!,
+                indicatorColor: Color(Appbarcolour.hashCode)!!,
                 isScrollable: true,
                 labelPadding: EdgeInsets.all(10),
                 controller: _tabController,
                 // indicatorPadding: const EdgeInsets.all(30),
                 indicator: BoxDecoration(
-                    color: Appbarcolour,
+                    color: Color(Appbarcolour.hashCode)!!,
                     borderRadius: BorderRadius.circular(40)),
                 tabs: [
                   Text(

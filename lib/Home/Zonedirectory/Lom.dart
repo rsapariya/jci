@@ -7,7 +7,7 @@ import '../../../units/Storage.dart';
 import '../../../units/colour.dart';
 import '../home.dart';
 import 'Details.dart';
-
+import '../../../splaysh.dart';
 var lomid;
 var lomname;
 
@@ -28,7 +28,7 @@ class _LomlistState extends State<Lomlist> {
           'LOM',
           style: GoogleFonts.poppins(),
         ),
-        backgroundColor: Appbarcolour,
+        backgroundColor: Color(Appbarcolour.hashCode)!!,
       ),
       body: ListView.builder(
         itemCount: lomlist.length,
@@ -48,7 +48,7 @@ class _LomlistState extends State<Lomlist> {
                 // height: Get.height / 4,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    border: Border.all(width: 1, color: Appbarcolour),
+                    border: Border.all(width: 1, color: Color(Appbarcolour.hashCode)!!),
                     borderRadius: BorderRadius.circular(10)),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
@@ -72,7 +72,7 @@ class _LomlistState extends State<Lomlist> {
                           Spacer(),
                           Icon(
                             Icons.navigate_next_outlined,
-                            color: Appbarcolour,
+                            color: Color(Appbarcolour.hashCode)!!,
                           )
                         ],
                       )

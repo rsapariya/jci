@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jci/units/colour.dart';
+import '../../../splaysh.dart';
 
 class Aboutinfo extends StatefulWidget {
   const Aboutinfo({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class _AboutinfoState extends State<Aboutinfo> {
       appBar: AppBar(
         centerTitle: true,
         title: Text("App info", style: GoogleFonts.poppins()),
-        backgroundColor: Appbarcolour,
+        backgroundColor: Color(Appbarcolour.hashCode),
       ),
       body: Center(
         child: Column(
@@ -33,14 +34,14 @@ class _AboutinfoState extends State<Aboutinfo> {
               "Initiative by :- Zone President 2020 Divyang Natali",
               style: GoogleFonts.poppins(
                   textStyle: TextStyle(
-                color: Appbarcolour,
+                color: Color(Appbarcolour.hashCode),
               )),
             ),
             Text(
               "Devloped by :- Zresthine Technologies",
               style: GoogleFonts.poppins(
                   textStyle: TextStyle(
-                color: Appbarcolour,
+                color: Color(Appbarcolour.hashCode),
               )),
             ),
           ],

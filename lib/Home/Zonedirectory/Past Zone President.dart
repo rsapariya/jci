@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import '../../../splaysh.dart';
 import '../../../units/Storage.dart';
 import '../../../units/colour.dart';
 import '../home.dart';
@@ -27,7 +27,7 @@ class _PastPresidentState extends State<PastPresident> {
           'Past Zone President',
           style: GoogleFonts.poppins(),
         ),
-        backgroundColor: Appbarcolour,
+        backgroundColor: Color(Appbarcolour.hashCode)!,
       ),
       body: ListView.builder(
         // controller: controller,
@@ -47,7 +47,7 @@ class _PastPresidentState extends State<PastPresident> {
                 // height: Get.height / 4,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    border: Border.all(width: 1, color: Appbarcolour),
+                    border: Border.all(width: 1, color: Color(Appbarcolour.hashCode)!),
                     borderRadius: BorderRadius.circular(10)),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
@@ -57,7 +57,7 @@ class _PastPresidentState extends State<PastPresident> {
                       Row(
                         children: [
                           CircleAvatar(
-                            backgroundColor: Appbarcolour.withOpacity(0.7),
+                            backgroundColor: Color(Appbarcolour.hashCode)!.withOpacity(0.7),
                             backgroundImage: pastprlist[index]['image'] != null
                                 ? NetworkImage(
                                     pastprlist[index]['image'].toString(),
@@ -93,7 +93,7 @@ class _PastPresidentState extends State<PastPresident> {
                           Spacer(),
                           Icon(
                             Icons.navigate_next_outlined,
-                            color: Appbarcolour,
+                            color: Color(Appbarcolour.hashCode)!,
                           )
                         ],
                       )

@@ -85,7 +85,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Appbarcolour,
+          backgroundColor:Color(Appbarcolour.hashCode),
           actions: [
             PopupMenuButton(
               padding: EdgeInsets.zero,
@@ -225,7 +225,7 @@ class _HomeState extends State<Home> {
         height: Get.height / 5.5,
         decoration: BoxDecoration(
             color: Colors.white,
-            border: Border.all(color: Appbarcolour, width: 2),
+            border: Border.all(color:Color(Appbarcolour.hashCode), width: 2),
             boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.2), //New

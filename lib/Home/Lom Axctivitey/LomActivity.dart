@@ -26,7 +26,7 @@
 //           'LOM Activites',
 //           style: GoogleFonts.poppins(),
 //         ),
-//         backgroundColor: Appbarcolour,
+//         backgroundColor: Color(Appbarcolour)!,
 //       ),
 //       body: ListView.builder(
 //         // controller: controller,
@@ -46,7 +46,7 @@
 //                 // height: Get.height / 4,
 //                 decoration: BoxDecoration(
 //                     color: Colors.white,
-//                     border: Border.all(width: 1, color: Appbarcolour),
+//                     border: Border.all(width: 1, color: Color(Appbarcolour)!),
 //                     borderRadius: BorderRadius.circular(10)),
 //                 child: Padding(
 //                   padding: EdgeInsets.symmetric(
@@ -58,7 +58,7 @@
 //                           Stack(
 //                             children: [
 //                               CircleAvatar(
-//                                 // backgroundColor: Appbarcolour.withOpacity(0.7),
+//                                 // backgroundColor: Color(Appbarcolour)!.withOpacity(0.7),
 //                                 backgroundImage: NetworkImage(backimage),
 //                                 // radius: 30,
 //                               ),
@@ -101,7 +101,7 @@
 //                           Spacer(),
 //                           Icon(
 //                             Icons.navigate_next_outlined,
-//                             color: Appbarcolour,
+//                             color: Color(Appbarcolour)!,
 //                           )
 //                         ],
 //                       )

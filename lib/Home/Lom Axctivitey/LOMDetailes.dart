@@ -6,6 +6,8 @@ import 'package:jci/Home/home.dart';
 import 'package:jci/units/Storage.dart';
 import 'package:jci/units/colour.dart';
 
+import '../../splaysh.dart';
+
 class LomDeteils extends StatefulWidget {
   const LomDeteils({Key? key}) : super(key: key);
 
@@ -22,7 +24,7 @@ class _LomDeteilsState extends State<LomDeteils> {
             "LOM Activites",
             style: GoogleFonts.poppins(),
           ),
-          backgroundColor: Appbarcolour,
+          backgroundColor:Color(Appbarcolour.hashCode),
         ),
         body: ListView.builder(
           itemCount: lomactlist.length,
@@ -40,7 +42,7 @@ class _LomDeteilsState extends State<LomDeteils> {
                               blurRadius: 3,
                               spreadRadius: 2)
                         ],
-                        color: Appbarcolour,
+                        color: Color(Appbarcolour.hashCode)!,
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(5),
                             topRight: Radius.circular(5))),
@@ -52,7 +54,7 @@ class _LomDeteilsState extends State<LomDeteils> {
                           Stack(
                             children: [
                               CircleAvatar(
-                                // backgroundColor: Appbarcolour.withOpacity(0.7),
+                                // backgroundColor: Color(Appbarcolour)!!.withOpacity(0.7),
                                 backgroundImage: NetworkImage(backimage),
                                 radius: 30,
                               ),
@@ -127,7 +129,7 @@ class _LomDeteilsState extends State<LomDeteils> {
                                   "Objectives",
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.poppins(
-                                      color: Appbarcolour,
+                                      color: Color(Appbarcolour.hashCode)!,
                                       fontSize: 14,
                                       fontWeight: FontWeight.w500),
                                 ),
@@ -164,7 +166,7 @@ class _LomDeteilsState extends State<LomDeteils> {
                                       "Area : ",
                                       overflow: TextOverflow.ellipsis,
                                       style: GoogleFonts.poppins(
-                                          color: Appbarcolour,
+                                          color: Color(Appbarcolour.hashCode)!!,
                                           fontSize: 14,
                                           fontWeight: FontWeight.w500),
                                     ),
@@ -191,7 +193,7 @@ class _LomDeteilsState extends State<LomDeteils> {
                                       "Form : ",
                                       overflow: TextOverflow.ellipsis,
                                       style: GoogleFonts.poppins(
-                                          color: Appbarcolour,
+                                          color: Color(Appbarcolour.hashCode)!,
                                           fontSize: 14,
                                           fontWeight: FontWeight.w500),
                                     ),

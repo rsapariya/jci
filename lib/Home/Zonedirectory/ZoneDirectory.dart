@@ -5,11 +5,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:jci/Home/Zonedirectory/Lom.dart';
 import 'package:jci/Home/Zonedirectory/Past%20Zone%20President.dart';
 import 'package:jci/Home/Zonedirectory/PastnationalPresident.dart';
-
+import 'package:url_launcher/url_launcher.dart';
+import '../../../splaysh.dart';
 import '../../units/colour.dart';
 import 'Current ZGB/currentzgb.dart';
 import 'National Headquaters/Nationalheadquaters.dart';
 import 'Trainers/Nationaltrainers.dart';
+import 'download.dart';
 
 class Zonedirectory extends StatefulWidget {
   const Zonedirectory({Key? key}) : super(key: key);
@@ -23,7 +25,7 @@ class _ZonedirectoryState extends State<Zonedirectory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Appbarcolour,
+        backgroundColor: Color(Appbarcolour.hashCode)!,
         title: Text(
           "Zone Directory",
           style: GoogleFonts.poppins(),
@@ -33,57 +35,77 @@ class _ZonedirectoryState extends State<Zonedirectory> {
       body: Padding(
         padding: EdgeInsets.symmetric(
             horizontal: Get.width / 30, vertical: Get.height / 40),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Image.asset(
-                  'assets/images/splay.png',
-                  scale: 4,
-                ),
-                Image.asset(
-                  'assets/images/splay.png',
-                  scale: 4,
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            container(
-                onTap: () {
-                  Get.to(() => const CurrentZGB());
-                },
-                text: "CURRENT ZGB"),
-            container(
-                onTap: () {
-                  Get.to(() => const Nationalheadquaters());
-                },
-                text: "NATIONAL HEADQUARTERS"),
-            container(
-                onTap: () {
-                  Get.to(() => const PastPresident());
-                },
-                text: "PAST ZONE PRESIDENT"),
-            container(
-                onTap: () {
-                  Get.to(() => const PastnationalPresident());
-                },
-                text: "PAST NATIONAL PRESIDENT"),
-            container(
-                onTap: () {
-                  Get.to(() => const Nationaltrainers());
-                },
-                text: "NATIONAL TRAINERS"),
-            container(
-                onTap: () {
-                  Get.to(() => Lomlist());
-                },
-                text: "LOM"),
-            container(icon: Icons.download, text: "Download Directory PDF"),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    color: Colors.white,
+                    height: Get.height / 4,
+                    width: Get.width / 2.15,
+                    child: Image.network(
+                      im1.toString(),
+                    ),
+                  ),
+                  Container(
+                    color: Colors.white,
+                    height: Get.height / 4,
+                    width: Get.width / 2.15,
+                    child: Image.network(
+                      im2.toString(),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              container(
+                  onTap: () {
+                    Get.to(() => const CurrentZGB());
+                  },
+                  text: "CURRENT ZGB"),
+              container(
+                  onTap: () {
+                    Get.to(() => const Nationalheadquaters());
+                  },
+                  text: "NATIONAL HEADQUARTERS"),
+              container(
+                  onTap: () {
+                    Get.to(() => const PastPresident());
+                  },
+                  text: "PAST ZONE PRESIDENT"),
+              container(
+                  onTap: () {
+                    Get.to(() => const PastnationalPresident());
+                  },
+                  text: "PAST NATIONAL PRESIDENT"),
+              container(
+                  onTap: () {
+                    Get.to(() => const Nationaltrainers());
+                  },
+                  text: "NATIONAL TRAINERS"),
+              container(
+                  onTap: () {
+                    Get.to(() => Lomlist());
+                  },
+                  text: "LOM"),
+              container(
+                  icon: Icons.download,
+                  text: "Download Directory PDF",
+                  onTap: () {
+                    setState(() {});
+                    showDialog(
+                      context: context,
+                      builder: (context) => const DownloadingDialog(),
+                    );
+                  }),
+            ],
+          ),
         ),
       ),
     );
@@ -102,7 +124,7 @@ class _ZonedirectoryState extends State<Zonedirectory> {
           decoration: BoxDecoration(
               color: Colors.white,
               border: Border.all(
-                color: Appbarcolour,
+                color: Color(Appbarcolour.hashCode)!,
                 width: 1,
               ),
               borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -120,7 +142,7 @@ class _ZonedirectoryState extends State<Zonedirectory> {
                   const Spacer(),
                   Icon(
                     icon,
-                    color: Appbarcolour,
+                    color: Color(Appbarcolour.hashCode)!,
                   ),
                   SizedBox(
                     width: Get.width / 30,
@@ -132,5 +154,13 @@ class _ZonedirectoryState extends State<Zonedirectory> {
         ),
       ),
     );
+  }
+
+  launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url, forceWebView: true);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

@@ -1,14 +1,19 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jci/units/api.dart';
 import 'Home/home.dart';
 
+String? im1;
+String? im2;
+Color? Appbarcolour;
 List sliderimage = [];
 String? url;
+String? pdfurl;
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -17,12 +22,35 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
+final firebaseInstance = FirebaseFirestore.instance;
+
 class _SplashScreenState extends State<SplashScreen> {
+  Future<void> getDocs() async {
+    try {
+      var response = await firebaseInstance
+          .collection('dynamic')
+          .doc('Ja8uyFAnOzkVCTUOpbCA')
+          .get();
+      print(response['them'].toString());
+      setState(() {});
+      Appbarcolour = Color(response['them'].hashCode);
+      im1 = response['image1'];
+      im2 = response['imag2'];
+      pdfurl = response['pdf'];
+      print('===========================================================');
+      print(Appbarcolour);
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   void initState() {
     youtubeapi();
     SLiderapi();
     super.initState();
+    getDocs();
+    print('===========================================================');
     Timer(
       const Duration(seconds: 4),
       () => Get.offAll(

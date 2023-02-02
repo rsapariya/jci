@@ -1,5 +1,5 @@
 import 'dart:developer';
-
+import '../../../splaysh.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -25,7 +25,7 @@ class _PastnationalPresidentState extends State<PastnationalPresident> {
           'Past National President',
           style: GoogleFonts.poppins(),
         ),
-        backgroundColor: Appbarcolour,
+        backgroundColor: Color(Appbarcolour.hashCode)!,
       ),
       body: ListView.builder(
         // controller: controller,
@@ -45,7 +45,7 @@ class _PastnationalPresidentState extends State<PastnationalPresident> {
                 // height: Get.height / 4,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    border: Border.all(width: 1, color: Appbarcolour),
+                    border: Border.all(width: 1, color: Color(Appbarcolour.hashCode)!),
                     borderRadius: BorderRadius.circular(10)),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
@@ -55,7 +55,7 @@ class _PastnationalPresidentState extends State<PastnationalPresident> {
                       Row(
                         children: [
                           CircleAvatar(
-                            backgroundColor: Appbarcolour.withOpacity(0.7),
+                            backgroundColor: Color(Appbarcolour.hashCode)!.withOpacity(0.7),
                             backgroundImage:
                                 pastnational[index]['image'] != null
                                     ? NetworkImage(
@@ -93,7 +93,7 @@ class _PastnationalPresidentState extends State<PastnationalPresident> {
                           Spacer(),
                           Icon(
                             Icons.navigate_next_outlined,
-                            color: Appbarcolour,
+                            color: Color(Appbarcolour.hashCode)!,
                           )
                         ],
                       )

@@ -7,7 +7,7 @@ import '../../../../units/Storage.dart';
 import '../../../../units/colour.dart';
 import '../../home.dart';
 import '../Details.dart';
-
+import '../../../splaysh.dart';
 class Nationaltrainers extends StatefulWidget {
   const Nationaltrainers({Key? key}) : super(key: key);
 
@@ -24,7 +24,7 @@ class _NationaltrainersState extends State<Nationaltrainers> {
           'National Trainers',
           style: GoogleFonts.poppins(),
         ),
-        backgroundColor: Appbarcolour,
+        backgroundColor: Color(Appbarcolour.hashCode)!,
       ),
       body: ListView.builder(
         // controller: controller,
@@ -44,7 +44,7 @@ class _NationaltrainersState extends State<Nationaltrainers> {
                 // height: Get.height / 4,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    border: Border.all(width: 1, color: Appbarcolour),
+                    border: Border.all(width: 1, color: Color(Appbarcolour.hashCode)!),
                     borderRadius: BorderRadius.circular(10)),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
@@ -86,7 +86,7 @@ class _NationaltrainersState extends State<Nationaltrainers> {
                           Spacer(),
                           Icon(
                             Icons.navigate_next_outlined,
-                            color: Appbarcolour,
+                            color: Color(Appbarcolour.hashCode)!,
                           )
                         ],
                       )

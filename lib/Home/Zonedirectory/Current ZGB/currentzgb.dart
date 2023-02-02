@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:jci/Home/Zonedirectory/Current%20ZGB/Details.dart';
 import 'package:jci/Home/home.dart';
 
+import '../../../splaysh.dart';
 import '../../../units/Storage.dart';
 import '../../../units/colour.dart';
 import '../Details.dart';
@@ -27,7 +28,7 @@ class _CurrentZGBState extends State<CurrentZGB> {
           'Current ZGB',
           style: GoogleFonts.poppins(),
         ),
-        backgroundColor: Appbarcolour,
+        backgroundColor: Color(Appbarcolour.hashCode)!!,
       ),
       body: ListView.builder(
         itemCount: currentzgb.length,
@@ -46,7 +47,7 @@ class _CurrentZGBState extends State<CurrentZGB> {
                 // height: Get.height / 4,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    border: Border.all(width: 1, color: Appbarcolour),
+                    border: Border.all(width: 1, color: Color(Appbarcolour.hashCode)!!!),
                     borderRadius: BorderRadius.circular(10)),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
@@ -56,7 +57,7 @@ class _CurrentZGBState extends State<CurrentZGB> {
                       Row(
                         children: [
                           CircleAvatar(
-                            backgroundColor: Appbarcolour.withOpacity(0.7),
+                            backgroundColor: Color(Appbarcolour.hashCode)!.withOpacity(0.7),
                             backgroundImage: currentzgb[index]['image'] != null
                                 ? NetworkImage(
                                     currentzgb[index]['image'].toString(),
@@ -89,7 +90,7 @@ class _CurrentZGBState extends State<CurrentZGB> {
                           Spacer(),
                           Icon(
                             Icons.navigate_next_outlined,
-                            color: Appbarcolour,
+                            color: Color(Appbarcolour.hashCode)!!,
                           )
                         ],
                       )

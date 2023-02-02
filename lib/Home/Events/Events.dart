@@ -6,6 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jci/Home/home.dart';
 
+import '../../splaysh.dart';
 import '../../units/colour.dart';
 
 class Event extends StatefulWidget {
@@ -21,7 +22,7 @@ class _EventState extends State<Event> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          backgroundColor: Appbarcolour,
+          backgroundColor:Color(Appbarcolour.hashCode),
           title: Text(
             'Events',
             style: GoogleFonts.poppins(),
@@ -44,7 +45,7 @@ class _EventState extends State<Event> {
                               blurRadius: 3,
                               spreadRadius: 2)
                         ],
-                        color: Appbarcolour,
+                        color: Color(Appbarcolour.hashCode),
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(5),
                             topRight: Radius.circular(5))),
@@ -118,7 +119,7 @@ class _EventState extends State<Event> {
                             children: [
                               Icon(
                                 Icons.location_on,
-                                color: Appbarcolour,
+                                color: Color(Appbarcolour.hashCode),
                               ),
                               SizedBox(
                                 width: 5,
@@ -146,7 +147,7 @@ class _EventState extends State<Event> {
                               Text(
                                 " ₹ ",
                                 style: TextStyle(
-                                    color: Appbarcolour, fontSize: 20),
+                                    color: Color(Appbarcolour.hashCode)!!, fontSize: 20),
                               ),
                               SizedBox(
                                 width: 5,
@@ -173,7 +174,7 @@ class _EventState extends State<Event> {
                             children: [
                               Icon(
                                 Icons.calendar_month_sharp,
-                                color: Appbarcolour,
+                                color: Color(Appbarcolour.hashCode),
                               ),
                               SizedBox(
                                 width: 5,
@@ -200,7 +201,7 @@ class _EventState extends State<Event> {
                             children: [
                               Icon(
                                 Icons.access_time,
-                                color: Appbarcolour,
+                                color: Color(Appbarcolour.hashCode),
                               ),
                               SizedBox(
                                 width: 5,
@@ -231,7 +232,7 @@ class _EventState extends State<Event> {
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.poppins(
-                                    color: Appbarcolour,
+                                    color: Color(Appbarcolour.hashCode)!,
                                     fontSize: 14,
                                   ),
                                 ),
@@ -264,3 +265,4 @@ class _EventState extends State<Event> {
         ));
   }
 }
+

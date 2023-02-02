@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:jci/units/Storage.dart';
 
 Color primeryColor = Colors.white;
 Color darkPrimeryColor = const Color(0xff2D2D3A);
-Color Appbarcolour = const Color(0xff27549c);
+// Color Color(Appbarcolour)! = getdata.read('colour') as Color;
 
 Color darkColor = Colors.black;
 Color lightColor = Colors.white;

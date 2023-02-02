@@ -9,7 +9,7 @@ import '../../../units/Storage.dart';
 import '../../../units/colour.dart';
 import '../Details.dart';
 import 'headetails.dart';
-
+import '../../../splaysh.dart';
 class Second extends StatefulWidget {
   const Second({Key? key}) : super(key: key);
 
@@ -38,7 +38,7 @@ class _SecondState extends State<Second> {
               child: Container(
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    border: Border.all(width: 1, color: Appbarcolour),
+                    border: Border.all(width: 1, color: Color(Appbarcolour.hashCode.hashCode.hashCode.hashCode)!),
                     borderRadius: BorderRadius.circular(10)),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
@@ -70,7 +70,7 @@ class _SecondState extends State<Second> {
                           Spacer(),
                           Icon(
                             Icons.navigate_next_outlined,
-                            color: Appbarcolour,
+                            color: Color(Appbarcolour.hashCode.hashCode.hashCode.hashCode)!,
                           )
                         ],
                       )
