@@ -34,7 +34,7 @@ class _SixthState extends State<Sixth> {
               onTap: () {
                 setState(() {
                   save('ZGB', substaff[index]);
-                  Get.to(() =>const HeadDetailes());
+                  Get.to(() =>const HeadDetailes(),transition:Transition.rightToLeft);
                 });
               },
               child: Container(

@@ -28,7 +28,8 @@ class _CurrentZGBState extends State<CurrentZGB> {
           'Current ZGB',
           style: GoogleFonts.poppins(),
         ),
-        backgroundColor: Color(Appbarcolour.hashCode)!!,
+        backgroundColor:
+            Color(Appbarcolour.hashCode),
       ),
       body: ListView.builder(
         itemCount: currentzgb.length,
@@ -40,14 +41,16 @@ class _CurrentZGBState extends State<CurrentZGB> {
               onTap: () {
                 setState(() {
                   save('ZGB', currentzgb[index]);
-                  Get.to(() => currentDetails());
+                  Get.off(() => currentDetails(),transition:Transition.rightToLeft,);
                 });
               },
               child: Container(
                 // height: Get.height / 4,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    border: Border.all(width: 1, color: Color(Appbarcolour.hashCode)!!!),
+                    border: Border.all(
+                        width: 1,
+                        color: Color(Appbarcolour.hashCode)),
                     borderRadius: BorderRadius.circular(10)),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
@@ -57,7 +60,8 @@ class _CurrentZGBState extends State<CurrentZGB> {
                       Row(
                         children: [
                           CircleAvatar(
-                            backgroundColor: Color(Appbarcolour.hashCode)!.withOpacity(0.7),
+                            backgroundColor:
+                                Color(Appbarcolour.hashCode),
                             backgroundImage: currentzgb[index]['image'] != null
                                 ? NetworkImage(
                                     currentzgb[index]['image'].toString(),
@@ -90,7 +94,8 @@ class _CurrentZGBState extends State<CurrentZGB> {
                           Spacer(),
                           Icon(
                             Icons.navigate_next_outlined,
-                            color: Color(Appbarcolour.hashCode)!!,
+                            color:
+                                Color(Appbarcolour.hashCode),
                           )
                         ],
                       )
@@ -104,40 +109,4 @@ class _CurrentZGBState extends State<CurrentZGB> {
       ),
     );
   }
-
-  // Future<void> _showMyDialogg() async {
-  //   return showDialog<void>(
-  //     context: context,
-  //     barrierDismissible: false, // user must tap button!
-  //     builder: (BuildContext context) {
-  //       return AlertDialog(
-  //         title: Text(
-  //           getdata.read('ZGB')[0].toString(),
-  //           style: GoogleFonts.poppins(),
-  //         ),
-  //         actions: [
-  //           TextButton(
-  //               onPressed: () {
-  //                 setState(() {});
-  //                 Get.back();
-  //               },
-  //               child: Text(
-  //                 getdata.read('ZGB')["Name"].toString(),
-  //                 style: GoogleFonts.poppins(),
-  //               )),
-  //           TextButton(
-  //               onPressed: () {
-  //                 setState(() {
-  //                   Get.back();
-  //                 });
-  //               },
-  //               child: const Text(
-  //                 'Delete',
-  //                 style: TextStyle(color: Colors.red, fontFamily: "popins"),
-  //               )),
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
 }

@@ -8,6 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../splaysh.dart';
 import '../../../units/Storage.dart';
 import '../../../units/colour.dart';
+import 'currentzgb.dart';
 
 class currentDetails extends StatefulWidget {
   const currentDetails({Key? key}) : super(key: key);
@@ -21,6 +22,11 @@ class _currentDetailsState extends State<currentDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Get.off(() => CurrentZGB(), transition: Transition.leftToRight,duration:Duration(milliseconds:500));
+            },
+            icon: Icon(Icons.arrow_back)),
         centerTitle: true,
         backgroundColor: Color(Appbarcolour.hashCode)!!,
         title: Text(

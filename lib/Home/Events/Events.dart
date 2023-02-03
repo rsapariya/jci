@@ -147,7 +147,7 @@ class _EventState extends State<Event> {
                               Text(
                                 " ₹ ",
                                 style: TextStyle(
-                                    color: Color(Appbarcolour.hashCode)!!, fontSize: 20),
+                                    color: Color(Appbarcolour.hashCode), fontSize: 20),
                               ),
                               SizedBox(
                                 width: 5,

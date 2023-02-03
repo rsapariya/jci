@@ -136,7 +136,8 @@ class _NationalheadquatersState extends State<Nationalheadquaters>
           Container(
             decoration: BoxDecoration(
                 border: Border(
-                    bottom: BorderSide(color: Color(Appbarcolour.hashCode)!!, width: 1.5))),
+                    bottom: BorderSide(
+                        color: Color(Appbarcolour.hashCode)!!, width: 1.5))),
             child: Padding(
               padding: EdgeInsets.symmetric(
                   vertical: Get.height / 80, horizontal: 10),

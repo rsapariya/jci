@@ -11,6 +11,7 @@ import 'Home/home.dart';
 String? im1;
 String? im2;
 Color? Appbarcolour;
+String bgColor = "#03fc39";
 List sliderimage = [];
 String? url;
 String? pdfurl;
@@ -33,12 +34,13 @@ class _SplashScreenState extends State<SplashScreen> {
           .get();
       print(response['them'].toString());
       setState(() {});
-      Appbarcolour = Color(response['them'].hashCode);
+      bgColor = response['them'];
+      Appbarcolour = Color(int.parse(bgColor.replaceAll("#", "Oxff")));
       im1 = response['image1'];
       im2 = response['imag2'];
       pdfurl = response['pdf'];
       print('===========================================================');
-      print(Appbarcolour);
+      print(bgColor);
     } catch (e) {
       print(e);
     }

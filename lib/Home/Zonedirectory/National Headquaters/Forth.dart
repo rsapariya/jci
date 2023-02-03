@@ -32,13 +32,13 @@ class _ForthState extends State<Forth> {
               onTap: () {
                 setState(() {
                   save('ZGB', finance[index]);
-                  Get.to(() => HeadDetailes());
+                  Get.to(() => HeadDetailes(),transition:Transition.rightToLeft);
                 });
               },
               child: Container(
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    border: Border.all(width: 1, color: Color(Appbarcolour.hashCode)!!),
+                    border: Border.all(width: 1, color: Color(Appbarcolour.hashCode)),
                     borderRadius: BorderRadius.circular(10)),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
@@ -62,7 +62,7 @@ class _ForthState extends State<Forth> {
                           Spacer(),
                           Icon(
                             Icons.navigate_next_outlined,
-                            color: Color(Appbarcolour.hashCode)!!,
+                            color: Color(Appbarcolour.hashCode),
                           )
                         ],
                       )

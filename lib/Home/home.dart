@@ -85,7 +85,8 @@ class _HomeState extends State<Home> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor:Color(Appbarcolour.hashCode),
+          // backgroundColor:Color(int.parse(bgColor.replaceAll('#', '0xff'))),
+          backgroundColor: Color(Appbarcolour.hashCode),
           actions: [
             PopupMenuButton(
               padding: EdgeInsets.zero,
@@ -108,7 +109,7 @@ class _HomeState extends State<Home> {
               ],
               onSelected: (String menu) {
                 if (menu == "App info") {
-                  Get.to(() => Aboutinfo());
+                  Get.to(() => Aboutinfo(), transition: Transition.leftToRight);
                 } else if (menu == "Share") {
                   Share.share(
                       'https://play.google.com/store/apps/details?id=com.jciindia.directory');
@@ -145,7 +146,8 @@ class _HomeState extends State<Home> {
                     Expanded(
                         child: containe(
                             onTap: () {
-                              Get.to(() => const Zonedirectory());
+                              Get.to(() => Zonedirectory(),
+                                  transition: Transition.leftToRight);
                             },
                             text: "Zone Directory",
                             image: const AssetImage(
@@ -156,7 +158,8 @@ class _HomeState extends State<Home> {
                     Expanded(
                         child: containe(
                             onTap: () {
-                              Get.to(() => const Event());
+                              Get.to(() => const Event(),
+                                  transition: Transition.leftToRight);
                             },
                             text: "Events",
                             image: const AssetImage('assets/images/done.png'))),
@@ -173,7 +176,8 @@ class _HomeState extends State<Home> {
                     Expanded(
                         child: containe(
                             onTap: () {
-                              Get.to(() => const LomDeteils());
+                              Get.to(() => const LomDeteils(),
+                                  transition: Transition.leftToRight);
                             },
                             text: "Lom Activities",
                             image: const AssetImage('assets/images/pin.png'))),
@@ -225,7 +229,7 @@ class _HomeState extends State<Home> {
         height: Get.height / 5.5,
         decoration: BoxDecoration(
             color: Colors.white,
-            border: Border.all(color:Color(Appbarcolour.hashCode), width: 2),
+            border: Border.all(color: Color(Appbarcolour.hashCode), width: 2),
             boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.2), //New

@@ -202,41 +202,41 @@ class _HeadDetailesState extends State<HeadDetailes> {
                             },
                           ),
                     getdata.read('ZGB')['email'] == null ||
-                        getdata.read('ZGB')['email'] == ""
+                            getdata.read('ZGB')['email'] == ""
                         ? SizedBox()
                         : SizedBox(
-                      height: 5,
-                    ),
+                            height: 5,
+                          ),
                     getdata.read('ZGB')['email'] == null ||
-                        getdata.read('ZGB')['email'] == ""
+                            getdata.read('ZGB')['email'] == ""
                         ? SizedBox()
                         : InkWell(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Icon(
-                            Icons.email,
-                            color: Color(Appbarcolour.hashCode)!,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          SizedBox(
-                            width: Get.width / 1.5,
-                            child: Text(
-                              getdata.read('ZGB')['email'] ?? "",
-                              style: GoogleFonts.poppins(
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Icon(
+                                  Icons.email,
+                                  color: Color(Appbarcolour.hashCode)!,
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                SizedBox(
+                                  width: Get.width / 1.5,
+                                  child: Text(
+                                    getdata.read('ZGB')['email'] ?? "",
+                                    style: GoogleFonts.poppins(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                              ],
                             ),
+                            onTap: () {
+                              emaiollaunch2();
+                            },
                           ),
-                        ],
-                      ),
-                      onTap: () {
-                        emaiollaunch2();
-                      },
-                    ),
                   ],
                 ),
               ),
@@ -284,6 +284,7 @@ class _HeadDetailesState extends State<HeadDetailes> {
     String email = getdata.read('ZGB')['email2'].toString();
     launch('mailto:$email');
   }
+
   emaiollaunch2() async {
     String email = getdata.read('ZGB')['email'].toString();
     launch('mailto:$email');

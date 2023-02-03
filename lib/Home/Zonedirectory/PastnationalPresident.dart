@@ -55,7 +55,7 @@ class _PastnationalPresidentState extends State<PastnationalPresident> {
                       Row(
                         children: [
                           CircleAvatar(
-                            backgroundColor: Color(Appbarcolour.hashCode)!.withOpacity(0.7),
+                            backgroundColor: Color(Appbarcolour.hashCode),
                             backgroundImage:
                                 pastnational[index]['image'] != null
                                     ? NetworkImage(

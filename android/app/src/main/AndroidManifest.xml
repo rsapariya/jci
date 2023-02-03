@@ -12,9 +12,11 @@
             <data android:scheme="tel" />
         </intent>
     </queries>
-    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
-   <application
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <application
         android:label="JCI India Zone VIII"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">

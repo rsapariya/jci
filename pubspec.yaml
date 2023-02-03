@@ -50,6 +50,7 @@ dependencies:
   intl: ^0.17.0
   carousel_slider: ^4.2.1
   flutter_typeahead: ^4.1.1
+  permission_handler: ^10.2.0
   url_launcher: ^6.1.7
   qr_code_scanner: ^1.0.1
   image_picker: ^0.8.6
@@ -63,7 +64,13 @@ dependencies:
   firebase_core: ^2.4.1
   share: any
   admob_flutter: ^3.0.0
-  dio: any
+  flutter_downloader: ^1.10.1+2
+  dio: ^4.0.0
+  file_picker: ^5.2.5
+  path_provider: ^2.0.12
+  open_filex: ^4.3.2
+#  pspdfkit_flutter: ^3.3.0
+#  ext_storage:
 
 dev_dependencies:
   flutter_test:

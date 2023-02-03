@@ -282,10 +282,10 @@ class _LomdetailsState extends State<Lomdetails> {
                 );
               },
             )
-          : const Center(
+          :  Center(
               child: CircularProgressIndicator(
                 backgroundColor: Colors.transparent,
-                color: Color(0xff27549c),
+                color: Color(Appbarcolour.hashCode),
                 value: null,
                 strokeWidth: 3.0,
               ),

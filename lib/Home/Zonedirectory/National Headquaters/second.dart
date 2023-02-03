@@ -32,13 +32,13 @@ class _SecondState extends State<Second> {
               onTap: () {
                 setState(() {
                   save('ZGB', area[index]);
-                  Get.to(() => HeadDetailes());
+                  Get.to(() => HeadDetailes(),transition:Transition.rightToLeft);
                 });
               },
               child: Container(
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    border: Border.all(width: 1, color: Color(Appbarcolour.hashCode.hashCode.hashCode.hashCode)!),
+                    border: Border.all(width: 1, color: Color(Appbarcolour.hashCode)!),
                     borderRadius: BorderRadius.circular(10)),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
@@ -57,20 +57,12 @@ class _SecondState extends State<Second> {
                                   style: GoogleFonts.poppins(fontSize: 16),
                                 ),
                               ),
-                              // SizedBox(
-                              //   width: Get.width / 1.5,
-                              //   child: Text(
-                              //     "${area[index]['role']}",
-                              //     overflow: TextOverflow.ellipsis,
-                              //     style: GoogleFonts.poppins(fontSize: 16),
-                              //   ),
-                              // ),
                             ],
                           ),
                           Spacer(),
                           Icon(
                             Icons.navigate_next_outlined,
-                            color: Color(Appbarcolour.hashCode.hashCode.hashCode.hashCode)!,
+                            color: Color(Appbarcolour.hashCode)!,
                           )
                         ],
                       )

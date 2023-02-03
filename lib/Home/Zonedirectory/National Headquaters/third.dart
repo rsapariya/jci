@@ -35,7 +35,7 @@ class _ThirdState extends State<Third> {
               onTap: () {
                 setState(() {
                   save('ZGB', membership[index]);
-                  Get.to(() =>const HeadDetailes());
+                  Get.to(() =>const HeadDetailes(),transition:Transition.rightToLeft);
                 });
               },
               child: Container(

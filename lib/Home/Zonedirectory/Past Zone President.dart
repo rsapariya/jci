@@ -57,7 +57,7 @@ class _PastPresidentState extends State<PastPresident> {
                       Row(
                         children: [
                           CircleAvatar(
-                            backgroundColor: Color(Appbarcolour.hashCode)!.withOpacity(0.7),
+                            backgroundColor: Color(Appbarcolour.hashCode),
                             backgroundImage: pastprlist[index]['image'] != null
                                 ? NetworkImage(
                                     pastprlist[index]['image'].toString(),

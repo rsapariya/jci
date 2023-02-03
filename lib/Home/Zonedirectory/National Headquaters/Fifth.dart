@@ -36,7 +36,7 @@ class _FifthState extends State<Fifth> {
               onTap: () {
                 setState(() {
                   save('ZGB', po[index]);
-                  Get.to(() => HeadDetailes());
+                  Get.to(() => HeadDetailes(),transition:Transition.rightToLeft);
                 });
               },
               child: Container(

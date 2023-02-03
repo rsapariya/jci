@@ -8,7 +8,7 @@ import Foundation
 import cloud_firestore
 import firebase_analytics
 import firebase_core
-import path_provider_macos
+import path_provider_foundation
 import shared_preferences_foundation
 import url_launcher_macos
 
