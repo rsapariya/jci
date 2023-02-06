@@ -27,14 +27,6 @@ class _LomdetailsState extends State<Lomdetails> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Color(Appbarcolour.hashCode)!!,
-        title: Text(
-          lomname.toString() ?? 'Details',
-          style: GoogleFonts.poppins(),
-        ),
-      ),
       body: !Loding
           ? ListView.builder(
               // controller: controller,
@@ -177,7 +169,8 @@ class _LomdetailsState extends State<Lomdetails> {
                                         children: [
                                           Icon(
                                             Icons.call,
-                                            color: Color(Appbarcolour.hashCode)!!,
+                                            color:
+                                                Color(Appbarcolour.hashCode)!!,
                                           ),
                                           SizedBox(
                                             width: 10,
@@ -219,7 +212,8 @@ class _LomdetailsState extends State<Lomdetails> {
                                         children: [
                                           Icon(
                                             Icons.email,
-                                            color: Color(Appbarcolour.hashCode)!!,
+                                            color:
+                                                Color(Appbarcolour.hashCode)!!,
                                           ),
                                           SizedBox(
                                             width: 10,
@@ -273,6 +267,47 @@ class _LomdetailsState extends State<Lomdetails> {
                                         ),
                                       ],
                                     ),
+                              lomlistdetails[index]['contact_no'] == "" ||
+                                      lomlistdetails[index]['contact_no'] ==
+                                          null
+                                  ? SizedBox()
+                                  : InkWell(
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.whatsapp,
+                                            color:
+                                                Color(Appbarcolour.hashCode)!!,
+                                          ),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          SizedBox(
+                                            width: Get.width / 1.5,
+                                            child: Text(
+                                              "Whatsapp Contact",
+                                              // lomlistdetails[index]['contact_no'] ??
+                                              //     "",
+                                              style: GoogleFonts.poppins(
+                                                  color: Colors.black,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      onTap: () {
+                                        setState(() {
+                                          save(
+                                              "call",
+                                              lomlistdetails[index]
+                                                  ['contact_no']);
+                                          _wahtt();
+                                        });
+                                      },
+                                    )
                             ],
                           ),
                         ),
@@ -282,7 +317,7 @@ class _LomdetailsState extends State<Lomdetails> {
                 );
               },
             )
-          :  Center(
+          : Center(
               child: CircularProgressIndicator(
                 backgroundColor: Colors.transparent,
                 color: Color(Appbarcolour.hashCode),
@@ -335,7 +370,7 @@ class _LomdetailsState extends State<Lomdetails> {
   }
 
   _wahtt() async {
-    String number = getdata.read('details')['person_contact'].toString();
+    String number = getdata.read('call').toString();
 
     final Uri uri = number.toString().length == 10
         ? Uri.parse("whatsapp://send?phone=" + "91" + number)

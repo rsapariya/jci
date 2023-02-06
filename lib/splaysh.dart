@@ -52,7 +52,7 @@ class _SplashScreenState extends State<SplashScreen> {
     SLiderapi();
     super.initState();
     getDocs();
-    print('===========================================================');
+    print('=============1111111=============');
     Timer(
       const Duration(seconds: 4),
       () => Get.offAll(
@@ -71,8 +71,8 @@ class _SplashScreenState extends State<SplashScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset(
-                'assets/images/splay.png',
-                scale: 3,
+                'assets/images/VIII_Logo_2023_clipdrop-enhance.jpg',
+                scale: 7,
               ),
               SizedBox(
                 height: 10,

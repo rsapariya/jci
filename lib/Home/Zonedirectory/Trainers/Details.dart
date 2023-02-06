@@ -167,6 +167,39 @@ class _TrainersDetailsState extends State<TrainersDetails> {
                                 ),
                               ],
                             ),
+                          ),SizedBox(
+                      height: 5,
+                    ),
+                    getdata.read('TR')['phone'] == null ||
+                            getdata.read('TR')['phone'] == null
+                        ? SizedBox()
+                        : InkWell(
+                            onTap: () {
+                              _wahtt();
+                            },
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Icon(
+                                  Icons.whatsapp,
+                                  color: Color(Appbarcolour.hashCode)!,
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                SizedBox(
+                                  width: Get.width / 1.5,
+                                  child: Text(
+                                    "Whatsapp Contact",
+                                    // getdata.read('TR')['phone'] ?? "",
+                                    style: GoogleFonts.poppins(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                     SizedBox(
                       height: 5,
@@ -259,7 +292,7 @@ class _TrainersDetailsState extends State<TrainersDetails> {
   }
 
   _wahtt() async {
-    String number = getdata.read('details')['person_contact'].toString();
+    String number = getdata.read('TR')['phone'].toString();
 
     final Uri uri = number.toString().length == 10
         ? Uri.parse("whatsapp://send?phone=" + "91" + number)

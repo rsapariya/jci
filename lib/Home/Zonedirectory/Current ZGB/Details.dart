@@ -24,7 +24,9 @@ class _currentDetailsState extends State<currentDetails> {
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
-              Get.off(() => CurrentZGB(), transition: Transition.leftToRight,duration:Duration(milliseconds:500));
+              Get.off(() => CurrentZGB(),
+                  transition: Transition.leftToRight,
+                  duration: Duration(milliseconds: 500));
             },
             icon: Icon(Icons.arrow_back)),
         centerTitle: true,
@@ -237,6 +239,40 @@ class _currentDetailsState extends State<currentDetails> {
                               ),
                             ],
                           ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    getdata.read('ZGB')['mobile'] == null ||
+                            getdata.read('ZGB')['mobile'] == ""
+                        ? SizedBox()
+                        : InkWell(
+                            onTap: () {
+                              _wahtt();
+                            },
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.whatsapp,
+                                  color: Color(Appbarcolour.hashCode),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                SizedBox(
+                                  width: Get.width / 1.5,
+                                  child: Text(
+                                    "Whatsapp Contact",
+                                    // getdata.read('ZGB')['mobile'] ?? "",
+                                    style: GoogleFonts.poppins(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
                   ],
                 ),
               ),
@@ -267,7 +303,7 @@ class _currentDetailsState extends State<currentDetails> {
   }
 
   _wahtt() async {
-    String number = getdata.read('details')['person_contact'].toString();
+    String number = getdata.read('ZGB')['mobile'].toString();
 
     final Uri uri = number.toString().length == 10
         ? Uri.parse("whatsapp://send?phone=" + "91" + number)

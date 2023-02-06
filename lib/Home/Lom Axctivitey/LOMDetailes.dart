@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:jci/Home/home.dart';
 import 'package:jci/units/Storage.dart';
 import 'package:jci/units/colour.dart';
+import 'package:html/parser.dart' show parse;
 
 import '../../splaysh.dart';
 
@@ -89,8 +90,7 @@ class _LomDeteilsState extends State<LomDeteils> {
                               ),
                               SizedBox(
                                 width: Get.width / 1.5,
-                                child: Text(
-                                  lomactlist[index]['project_name'],
+                                child: Text("Date : ${lomactlist[index]['from_date']}" ,
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 2,
                                   style:
@@ -122,30 +122,30 @@ class _LomDeteilsState extends State<LomDeteils> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          lomactlist[index]['objectives'] == null ||
-                                  lomactlist[index]['objectives'] == ""
+                          lomactlist[index]['project_name'] == null ||
+                                  lomactlist[index]['project_name'] == ""
                               ? SizedBox()
                               : Text(
-                                  "Objectives",
+                                  "project Name",
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.poppins(
                                       color: Color(Appbarcolour.hashCode)!,
                                       fontSize: 14,
                                       fontWeight: FontWeight.w500),
                                 ),
-                          lomactlist[index]['objectives'] == null ||
-                                  lomactlist[index]['objectives'] == ""
+                          lomactlist[index]['project_name'] == null ||
+                                  lomactlist[index]['project_name'] == ""
                               ? SizedBox()
                               : SizedBox(
                                   height: 5,
                                 ),
-                          lomactlist[index]['objectives'] == null ||
-                                  lomactlist[index]['objectives'] == ""
+                          lomactlist[index]['project_name'] == null ||
+                                  lomactlist[index]['project_name'] == ""
                               ? SizedBox()
                               : SizedBox(
                                   width: Get.width / 1.2,
                                   child: Text(
-                                    lomactlist[index]['objectives'] ?? "",
+                                    lomactlist[index]['project_name'] ?? "",
                                     style: GoogleFonts.poppins(
                                         color: Colors.black,
                                         fontSize: 14,
@@ -155,64 +155,7 @@ class _LomDeteilsState extends State<LomDeteils> {
                           SizedBox(
                             height: 5,
                           ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              lomactlist[index]['area'] == "" ||
-                                      lomactlist[index]['area'] == null
-                                  ? SizedBox()
-                                  : Text(
-                                      "Area : ",
-                                      overflow: TextOverflow.ellipsis,
-                                      style: GoogleFonts.poppins(
-                                          color: Color(Appbarcolour.hashCode)!!,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                              lomactlist[index]['area'] == "" ||
-                                      lomactlist[index]['area'] == null
-                                  ? SizedBox()
-                                  : SizedBox(
-                                      width: Get.width / 3,
-                                      child: Text(
-                                        lomactlist[index]['area'] ?? "",
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: GoogleFonts.poppins(
-                                            color: Colors.black,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    ),
-                              // Spacer(),
-                              lomactlist[index]['from_date'] == "" ||
-                                      lomactlist[index]['from_date'] == null
-                                  ? SizedBox()
-                                  : Text(
-                                      "Form : ",
-                                      overflow: TextOverflow.ellipsis,
-                                      style: GoogleFonts.poppins(
-                                          color: Color(Appbarcolour.hashCode)!,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                              lomactlist[index]['from_date'] == "" ||
-                                      lomactlist[index]['from_date'] == null
-                                  ? SizedBox()
-                                  : SizedBox(
-                                      width: Get.width / 4,
-                                      child: Text(
-                                        lomactlist[index]['from_date'] ?? "",
-                                        overflow: TextOverflow.ellipsis,
-                                        style: GoogleFonts.poppins(
-                                            color: Colors.black,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    ),
-                            ],
-                          )
+
                         ],
                       ),
                     ),

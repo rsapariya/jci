@@ -4,28 +4,27 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jci/Home/Zonedirectory/National%20Headquaters/second.dart';
-import 'package:jci/Home/Zonedirectory/National%20Headquaters/third.dart';
-import '../../../splaysh.dart';
-import '../../../units/colour.dart';
-import 'Fifth.dart';
-import 'Forth.dart';
-import 'Six.dart';
-import 'first.dart';
 
-class Nationalheadquaters extends StatefulWidget {
-  const Nationalheadquaters({Key? key}) : super(key: key);
+import '../../../splaysh.dart';
+
+import '../home.dart';
+import 'Lgb.dart';
+import 'Lom.dart';
+import 'Lomdetails.dart';
+
+class lomtabes extends StatefulWidget {
+  const lomtabes({Key? key}) : super(key: key);
 
   @override
-  State<Nationalheadquaters> createState() => _NationalheadquatersState();
+  State<lomtabes> createState() => _lomtabesState();
 }
 
-class _NationalheadquatersState extends State<Nationalheadquaters>
+class _lomtabesState extends State<lomtabes>
     with SingleTickerProviderStateMixin {
   @override
   late TabController _tabController;
   void initState() {
-    _tabController = TabController(vsync: this, length: 6);
+    _tabController = TabController(vsync: this, length: 2);
     super.initState();
   }
 
@@ -33,7 +32,7 @@ class _NationalheadquatersState extends State<Nationalheadquaters>
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'National Headquarters',
+          lomname,
           style: GoogleFonts.poppins(),
         ),
         backgroundColor: Color(Appbarcolour.hashCode)!!,
@@ -41,6 +40,7 @@ class _NationalheadquatersState extends State<Nationalheadquaters>
       body: Column(
         children: [
           Container(
+            width: double.infinity,
             decoration: BoxDecoration(
                 border: Border(
                     bottom: BorderSide(
@@ -51,41 +51,20 @@ class _NationalheadquatersState extends State<Nationalheadquaters>
               child: TabBar(
                 unselectedLabelColor: Color(Appbarcolour.hashCode)!!,
                 indicatorColor: Color(Appbarcolour.hashCode)!!,
-                isScrollable: true,
+                // isScrollable: true,
                 labelPadding: EdgeInsets.all(10),
                 controller: _tabController,
-                // indicatorPadding: const EdgeInsets.all(30),
                 indicator: BoxDecoration(
                     color: Color(Appbarcolour.hashCode)!!,
                     borderRadius: BorderRadius.circular(40)),
                 tabs: [
                   Text(
-                    'Secratory',
+                    'Members',
                     style: GoogleFonts.poppins(
                         textStyle: TextStyle(fontWeight: FontWeight.w500)),
                   ),
                   Text(
-                    'Area Wise',
-                    style: GoogleFonts.poppins(
-                        textStyle: TextStyle(fontWeight: FontWeight.w500)),
-                  ),
-                  Text(
-                    'Membership',
-                    style: GoogleFonts.poppins(
-                        textStyle: TextStyle(fontWeight: FontWeight.w500)),
-                  ),
-                  Text(
-                    'Finance',
-                    style: GoogleFonts.poppins(
-                        textStyle: TextStyle(fontWeight: FontWeight.w500)),
-                  ),
-                  Text(
-                    '  PO  ',
-                    style: GoogleFonts.poppins(
-                        textStyle: TextStyle(fontWeight: FontWeight.w500)),
-                  ),
-                  Text(
-                    'SubStaff',
+                    'LGB',
                     style: GoogleFonts.poppins(
                         textStyle: TextStyle(fontWeight: FontWeight.w500)),
                   ),
@@ -96,14 +75,7 @@ class _NationalheadquatersState extends State<Nationalheadquaters>
           Expanded(
             child: TabBarView(
               controller: _tabController,
-              children: const [
-                First(),
-                Second(),
-                Third(),
-                Forth(),
-                Fifth(),
-                Sixth()
-              ],
+              children: const [Lomdetails(), Lgbinfo()],
             ),
           ),
         ],

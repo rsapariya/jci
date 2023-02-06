@@ -228,6 +228,41 @@ class _FirstState extends State<First> {
                               emaiollaunch2();
                             },
                           ),
+                    getdata.read('secretory')['phone'] == null ||
+                        getdata.read('secretory')['phone'] == ""
+                        ? SizedBox():SizedBox(
+                      height: 5,
+                    ),
+                    getdata.read('secretory')['phone'] == null ||
+                            getdata.read('secretory')['phone'] == null
+                        ? SizedBox()
+                        : InkWell(
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.whatsapp,
+                                  color: Color(Appbarcolour.hashCode)!,
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                SizedBox(
+                                  width: Get.width / 1.5,
+                                  child: Text(
+                                    getdata.read('secretory')['phone'] ?? "",
+                                    style: GoogleFonts.poppins(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            onTap: () {
+                              _wahtt();
+                            },
+                          ),
                   ],
                 ),
               ),
@@ -258,7 +293,7 @@ class _FirstState extends State<First> {
   }
 
   _wahtt() async {
-    String number = getdata.read('details')['person_contact'].toString();
+    String number = getdata.read('secretory')['phone'].toString();
 
     final Uri uri = number.toString().length == 10
         ? Uri.parse("whatsapp://send?phone=" + "91" + number)

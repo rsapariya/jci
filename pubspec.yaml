@@ -69,8 +69,10 @@ dependencies:
   file_picker: ^5.2.5
   path_provider: ^2.0.12
   open_filex: ^4.3.2
-#  pspdfkit_flutter: ^3.3.0
-#  ext_storage:
+  flutter_file_downloader: ^1.1.0+1
+  double_back_to_close_app: ^2.1.0
+  html: ^0.15.1
+
 
 dev_dependencies:
   flutter_test:

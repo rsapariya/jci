@@ -237,6 +237,36 @@ class _HeadDetailesState extends State<HeadDetailes> {
                               emaiollaunch2();
                             },
                           ),
+                    getdata.read('ZGB')['phone'] == null
+                        ? SizedBox()
+                        : InkWell(
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.call,
+                                  color: Color(Appbarcolour.hashCode)!,
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                SizedBox(
+                                  width: Get.width / 1.5,
+                                  child: Text(
+                                    "Whatsapp Contact",
+                                    // getdata.read('ZGB')['phone'] ?? "",
+                                    style: GoogleFonts.poppins(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            onTap: () {
+                              _wahtt();
+                            },
+                          )
                   ],
                 ),
               ),
@@ -267,7 +297,7 @@ class _HeadDetailesState extends State<HeadDetailes> {
   }
 
   _wahtt() async {
-    String number = getdata.read('details')['person_contact'].toString();
+    String number = getdata.read('ZGB')['phone'].toString();
 
     final Uri uri = number.toString().length == 10
         ? Uri.parse("whatsapp://send?phone=" + "91" + number)

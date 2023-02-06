@@ -96,4 +96,5 @@ class AppUrl {
   static const String Headquaters = baseurl + 'headquarter';
   static const String Youtube = baseurl + 'videos';
   static const String slider = baseurl + 'slider';
+  static const String Ads = baseurl + 'ads';
 }

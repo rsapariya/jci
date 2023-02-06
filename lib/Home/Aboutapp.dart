@@ -14,6 +14,7 @@ class _AboutinfoState extends State<Aboutinfo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         title: Text("App info", style: GoogleFonts.poppins()),
@@ -24,25 +25,19 @@ class _AboutinfoState extends State<Aboutinfo> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'assets/images/splay.png',
-              scale: 2.5,
+              'assets/images/VIII_Logo_2023_clipdrop-enhance.jpg',
+              scale: 7,
             ),
             SizedBox(
               height: 10,
             ),
             Text(
-              "Initiative by :- Zone President 2020 Divyang Natali",
+              "Developed by :- Zresthine Technologies",
               style: GoogleFonts.poppins(
+                  fontSize: 16,
                   textStyle: TextStyle(
-                color: Color(Appbarcolour.hashCode),
-              )),
-            ),
-            Text(
-              "Devloped by :- Zresthine Technologies",
-              style: GoogleFonts.poppins(
-                  textStyle: TextStyle(
-                color: Color(Appbarcolour.hashCode),
-              )),
+                    color: Color(Appbarcolour.hashCode),
+                  )),
             ),
           ],
         ),

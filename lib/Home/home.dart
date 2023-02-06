@@ -1,11 +1,16 @@
+import 'dart:async';
+import 'dart:math';
+
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:html/parser.dart';
 import 'package:jci/Home/Aboutapp.dart';
 import 'package:jci/Home/Events/Events.dart';
 import 'package:jci/Home/Lom%20Axctivitey/LOMDetailes.dart';
@@ -13,9 +18,11 @@ import 'package:jci/splaysh.dart';
 import 'package:jci/units/Storage.dart';
 import 'package:launch_review/launch_review.dart';
 import 'package:share/share.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import '../units/api.dart';
-import '../units/colour.dart';
+import 'package:html/parser.dart' show parse;
+
 import 'Zonedirectory/ZoneDirectory.dart';
 
 List currentzgb = [];
@@ -26,12 +33,15 @@ List eventlist = [];
 List pastnational = [];
 List pastprlist = [];
 List trainers = [];
+var cc;
 
 List<dynamic> area = [];
+List<dynamic> adsimage = [];
 List<dynamic> membership = [];
 List<dynamic> finance = [];
 List<dynamic> po = [];
 List<dynamic> substaff = [];
+var Adspic;
 
 String backimage =
     "https://t4.ftcdn.net/jpg/01/06/92/47/360_F_106924759_7qPPu6bZNN2O4al1ExdEWBdHUcpKMwuJ.jpg";
@@ -50,6 +60,9 @@ class _HomeState extends State<Home> {
   int currentindex = 0;
   @override
   void initState() {
+    Adsapi();
+    Timer(Duration(seconds: 20), () => _checkLastImageDisplayTime());
+
     Admob.requestTrackingAuthorization();
     NationalTrainerAPI();
     HeadAPI();
@@ -124,97 +137,102 @@ class _HomeState extends State<Home> {
             style: GoogleFonts.poppins(),
           ),
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                height: Get.height / 3.5,
-                child: YoutubePlayerControllerProvider(
-                  controller: _controller,
-                  child: YoutubePlayerIFrame(
+        body: DoubleBackToCloseApp(
+          snackBar: SnackBar(content: Text("Tap back again to Exit.")),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  height: Get.height / 3.5,
+                  child: YoutubePlayerControllerProvider(
                     controller: _controller,
+                    child: YoutubePlayerIFrame(
+                      controller: _controller,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: Get.width / 30),
-                child: Row(
-                  children: [
-                    Expanded(
-                        child: containe(
-                            onTap: () {
-                              Get.to(() => Zonedirectory(),
-                                  transition: Transition.leftToRight);
-                            },
-                            text: "Zone Directory",
-                            image: const AssetImage(
-                                'assets/images/directory.png'))),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    Expanded(
-                        child: containe(
-                            onTap: () {
-                              Get.to(() => const Event(),
-                                  transition: Transition.leftToRight);
-                            },
-                            text: "Events",
-                            image: const AssetImage('assets/images/done.png'))),
-                  ],
+                const SizedBox(
+                  height: 15,
                 ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: Get.width / 30),
-                child: Row(
-                  children: [
-                    Expanded(
-                        child: containe(
-                            onTap: () {
-                              Get.to(() => const LomDeteils(),
-                                  transition: Transition.leftToRight);
-                            },
-                            text: "Lom Activities",
-                            image: const AssetImage('assets/images/pin.png'))),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    Expanded(
-                        child: containe(
-                            text: "Downloads",
-                            image: const AssetImage(
-                                'assets/images/download.png'))),
-                  ],
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: Get.width / 30),
+                  child: Row(
+                    children: [
+                      Expanded(
+                          child: containe(
+                              onTap: () {
+                                Get.to(() => Zonedirectory(),
+                                    transition: Transition.leftToRight);
+                              },
+                              text: "Zone Directory",
+                              image: const AssetImage(
+                                  'assets/images/directory.png'))),
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      Expanded(
+                          child: containe(
+                              onTap: () {
+                                Get.to(() => const Event(),
+                                    transition: Transition.leftToRight);
+                              },
+                              text: "Events",
+                              image:
+                                  const AssetImage('assets/images/done.png'))),
+                    ],
+                  ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: Get.height / 60),
-                child: CarouselSlider(
-                    items: sliderimage
-                        .map((item) => Image.network(
-                              item['image'],
-                              fit: BoxFit.fill,
-                              width: double.infinity,
-                            ))
-                        .toList(),
-                    carouselController: carouselController,
-                    options: CarouselOptions(
-                        scrollPhysics: const BouncingScrollPhysics(),
-                        autoPlay: true,
-                        aspectRatio: 2,
-                        viewportFraction: 1,
-                        onPageChanged: (index, reason) {
-                          setState(() {
-                            currentindex = index;
-                          });
-                        })),
-              )
-            ],
+                const SizedBox(
+                  height: 15,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: Get.width / 30),
+                  child: Row(
+                    children: [
+                      Expanded(
+                          child: containe(
+                              onTap: () {
+                                Get.to(() => const LomDeteils(),
+                                    transition: Transition.leftToRight);
+                              },
+                              text: "Lom Activities",
+                              image:
+                                  const AssetImage('assets/images/pin.png'))),
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      Expanded(
+                          child: containe(
+                              text: "Downloads",
+                              image: const AssetImage(
+                                  'assets/images/download.png'))),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: Get.height / 60),
+                  child: CarouselSlider(
+                      items: sliderimage
+                          .map((item) => Image.network(
+                                item['image'],
+                                fit: BoxFit.fill,
+                                width: double.infinity,
+                              ))
+                          .toList(),
+                      carouselController: carouselController,
+                      options: CarouselOptions(
+                          scrollPhysics: const BouncingScrollPhysics(),
+                          autoPlay: true,
+                          aspectRatio: 2,
+                          viewportFraction: 1,
+                          onPageChanged: (index, reason) {
+                            setState(() {
+                              currentindex = index;
+                            });
+                          })),
+                )
+              ],
+            ),
           ),
         ));
   }
@@ -351,7 +369,6 @@ class _HomeState extends State<Home> {
         val.forEach((e) {
           lomlist.add(e);
         });
-        // print(e);
       } else {
         setState(() {});
         lomlist.clear();
@@ -490,6 +507,106 @@ class _HomeState extends State<Home> {
         // print("----------vvvvvvvvvv---------------");
         setState(() {});
         ApiWrapper.showToastMessage("Something Went Wrong!!");
+      }
+    });
+  }
+
+  Adsapi() async {
+    ApiWrapper.dataGet(AppUrl.Ads).then((val) {
+      if ((val != null) && (val.isNotEmpty)) {
+        val.forEach((e) {
+          print("----------IMAGE   ---------------");
+          adsimage.add(e);
+        });
+        setState(() {});
+      } else {
+        setState(() {});
+        ApiWrapper.showToastMessage("Something Went Wrong!!");
+      }
+    });
+  }
+
+  void _checkLastImageDisplayTime() async {
+    var prefs = await SharedPreferences.getInstance();
+    var lastImageDisplayTime = prefs.getInt('last_image_display_time');
+    var currentTime = DateTime.now().millisecondsSinceEpoch;
+    var difference = currentTime - 1;
+
+    if (difference == null || difference >= Duration(days: 1).inMilliseconds) {
+      prefs.setInt('last_image_display_time', currentTime);
+      Timer(Duration(seconds: 10), () => _navigateToHomePage());
+      return;
+    }
+  }
+
+  void _navigateToHomePage() {
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+      builder: (BuildContext context) => Homepage(),
+    ));
+  }
+}
+
+class Homepage extends StatefulWidget {
+  const Homepage({Key? key}) : super(key: key);
+
+  @override
+  State<Homepage> createState() => _HomepageState();
+}
+
+class _HomepageState extends State<Homepage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: Colors.black,
+        body: Stack(
+          children: [
+            Center(child: Image.network(adsimage[0]['image'])),
+            if (timeLeft > 0)
+              Positioned(
+                  left: Get.width / 1.14,
+                  top: Get.height / 20,
+                  child: Text(
+                    '$timeLeft',
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )),
+            if (timeLeft == 0)
+              Positioned(
+                  left: Get.width / 1.14,
+                  top: Get.height / 20,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.close,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {
+                      setState(() {});
+                      Get.back();
+                    },
+                  )),
+          ],
+        ));
+  }
+
+  Timer? timer;
+  int timeLeft = 10;
+  @override
+  void initState() {
+    _startTimer();
+    super.initState();
+  }
+
+  void _startTimer() {
+    timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        timeLeft--;
+      });
+
+      if (timeLeft == 0) {
+        timer.cancel();
       }
     });
   }
