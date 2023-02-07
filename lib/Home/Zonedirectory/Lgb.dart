@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jci/Home/Zonedirectory/lomtabs.dart';
 import 'package:jci/Home/Zonedirectory/memberdetails.dart';
 
 import '../../splaysh.dart';
-import '../../units/Storage.dart';
-import '../../units/api.dart';
 import '../home.dart';
-import 'Current ZGB/Details.dart';
 import 'Lom.dart';
 
 class Members extends StatefulWidget {
@@ -41,7 +37,7 @@ class _MembersState extends State<Members> {
                         memid = Memberlist[index]['id'];
                         // save('MEM', Memberlist[index]['id']);
                         Get.off(
-                          () => memberdetai(),
+                          () => const memberdetai(),
                           transition: Transition.rightToLeft,
                         );
                       });
@@ -80,7 +76,7 @@ class _MembersState extends State<Members> {
                                     ),
                                   ],
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                                 Column(
@@ -96,7 +92,7 @@ class _MembersState extends State<Members> {
                                     ),
                                   ],
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 Icon(
                                   Icons.navigate_next_outlined,
                                   color: Color(Appbarcolour.hashCode),

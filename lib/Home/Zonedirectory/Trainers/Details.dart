@@ -1,12 +1,12 @@
+// ignore_for_file: prefer_adjacent_string_concatenation
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jci/Home/home.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../splaysh.dart';
 import '../../../units/Storage.dart';
-import '../../../units/colour.dart';
 
 class TrainersDetails extends StatefulWidget {
   const TrainersDetails({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class _TrainersDetailsState extends State<TrainersDetails> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Color(Appbarcolour.hashCode)!,
+        backgroundColor: Color(Appbarcolour.hashCode),
         title: Text(
           'Details',
           style: GoogleFonts.poppins(),
@@ -39,8 +39,8 @@ class _TrainersDetailsState extends State<TrainersDetails> {
                         blurRadius: 3,
                         spreadRadius: 2)
                   ],
-                  color: Color(Appbarcolour.hashCode)!,
-                  borderRadius: BorderRadius.only(
+                  color: Color(Appbarcolour.hashCode),
+                  borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(5),
                       topRight: Radius.circular(5))),
               child: Padding(
@@ -55,7 +55,7 @@ class _TrainersDetailsState extends State<TrainersDetails> {
                           : NetworkImage(backimage),
                       radius: 30,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Column(
@@ -73,7 +73,7 @@ class _TrainersDetailsState extends State<TrainersDetails> {
                         ),
                         getdata.read('TR')['post'] == null ||
                                 getdata.read('TR')['post'] == ""
-                            ? SizedBox()
+                            ? const SizedBox()
                             : SizedBox(
                                 width: Get.width / 1.5,
                                 child: Text(
@@ -101,7 +101,7 @@ class _TrainersDetailsState extends State<TrainersDetails> {
                   ],
                   // border:Border.all(color:Color(Appbarcolour.hashCode)!,width: 1.5),
                   color: Colors.white,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       bottomRight: Radius.circular(5),
                       bottomLeft: Radius.circular(5))),
               child: Padding(
@@ -112,15 +112,15 @@ class _TrainersDetailsState extends State<TrainersDetails> {
                   children: [
                     getdata.read('TR')['lom'] == null ||
                             getdata.read('TR')['lom'] == ""
-                        ? SizedBox()
+                        ? const SizedBox()
                         : Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Icon(
                                 Icons.home_filled,
-                                color: Color(Appbarcolour.hashCode)!,
+                                color: Color(Appbarcolour.hashCode),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               SizedBox(
@@ -135,12 +135,12 @@ class _TrainersDetailsState extends State<TrainersDetails> {
                               ),
                             ],
                           ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     getdata.read('TR')['phone'] == null ||
                             getdata.read('TR')['phone'] == null
-                        ? SizedBox()
+                        ? const SizedBox()
                         : InkWell(
                             onTap: () {
                               _makingPhoneCall();
@@ -150,9 +150,9 @@ class _TrainersDetailsState extends State<TrainersDetails> {
                               children: [
                                 Icon(
                                   Icons.call,
-                                  color: Color(Appbarcolour.hashCode)!,
+                                  color: Color(Appbarcolour.hashCode),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                                 SizedBox(
@@ -167,12 +167,12 @@ class _TrainersDetailsState extends State<TrainersDetails> {
                                 ),
                               ],
                             ),
-                          ),SizedBox(
+                          ),const SizedBox(
                       height: 5,
                     ),
                     getdata.read('TR')['phone'] == null ||
                             getdata.read('TR')['phone'] == null
-                        ? SizedBox()
+                        ? const SizedBox()
                         : InkWell(
                             onTap: () {
                               _wahtt();
@@ -182,9 +182,9 @@ class _TrainersDetailsState extends State<TrainersDetails> {
                               children: [
                                 Icon(
                                   Icons.whatsapp,
-                                  color: Color(Appbarcolour.hashCode)!,
+                                  color: Color(Appbarcolour.hashCode),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                                 SizedBox(
@@ -201,21 +201,21 @@ class _TrainersDetailsState extends State<TrainersDetails> {
                               ],
                             ),
                           ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     getdata.read('TR')['email'] == null ||
                             getdata.read('TR')['email'] == ""
-                        ? SizedBox()
+                        ? const SizedBox()
                         : InkWell(
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Icon(
                                   Icons.email,
-                                  color: Color(Appbarcolour.hashCode)!,
+                                  color: Color(Appbarcolour.hashCode),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                                 SizedBox(
@@ -234,20 +234,20 @@ class _TrainersDetailsState extends State<TrainersDetails> {
                               emaiollaunch();
                             },
                           ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     getdata.read('TR')['address'] == "" ||
                             getdata.read('TR')['address'] == null
-                        ? SizedBox()
+                        ? const SizedBox()
                         : Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Icon(
                                 Icons.location_on,
-                                color: Color(Appbarcolour.hashCode)!,
+                                color: Color(Appbarcolour.hashCode),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               SizedBox(
@@ -296,17 +296,17 @@ class _TrainersDetailsState extends State<TrainersDetails> {
 
     final Uri uri = number.toString().length == 10
         ? Uri.parse("whatsapp://send?phone=" + "91" + number)
-        : Uri.parse("whatsapp://send?phone=" + number);
+        : Uri.parse("whatsapp://send?phone=$number");
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
     } else {
-      print("error");
       throw "ERROR ";
     }
   }
 
   emaiollaunch() async {
     String email = getdata.read('TR')['email'].toString();
+    // ignore: deprecated_member_use
     launch('mailto:$email');
   }
 }

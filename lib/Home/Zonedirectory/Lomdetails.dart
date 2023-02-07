@@ -1,6 +1,7 @@
+// ignore_for_file: deprecated_member_use, non_constant_identifier_names, prefer_adjacent_string_concatenation
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jci/Home/Zonedirectory/Lom.dart';
 import 'package:jci/Home/Zonedirectory/lomtabs.dart';
@@ -9,7 +10,6 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../splaysh.dart';
 import '../../units/Storage.dart';
 import '../../units/api.dart';
-import '../../units/colour.dart';
 
 class Lomdetails extends StatefulWidget {
   const Lomdetails({Key? key}) : super(key: key);
@@ -26,6 +26,7 @@ class _LomdetailsState extends State<Lomdetails> {
     super.initState();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: !Loom
@@ -46,8 +47,8 @@ class _LomdetailsState extends State<Lomdetails> {
                                   blurRadius: 3,
                                   spreadRadius: 2)
                             ],
-                            color: Color(Appbarcolour.hashCode)!!,
-                            borderRadius: BorderRadius.only(
+                            color: Color(Appbarcolour.hashCode),
+                            borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(5),
                                 topRight: Radius.circular(5))),
                         child: Padding(
@@ -75,7 +76,7 @@ class _LomdetailsState extends State<Lomdetails> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               Column(
@@ -93,7 +94,7 @@ class _LomdetailsState extends State<Lomdetails> {
                                   ),
                                   lomlistdetails[index]['post'] == null ||
                                           lomlistdetails[index]['post'] == ""
-                                      ? SizedBox()
+                                      ? const SizedBox()
                                       : SizedBox(
                                           width: Get.width / 1.5,
                                           child: Text(
@@ -121,7 +122,7 @@ class _LomdetailsState extends State<Lomdetails> {
                             ],
                             // border:Border.all(color:Color(Appbarcolour.hashCode)!!,width: 1.5),
                             color: Colors.white,
-                            borderRadius: BorderRadius.only(
+                            borderRadius: const BorderRadius.only(
                                 bottomRight: Radius.circular(5),
                                 bottomLeft: Radius.circular(5))),
                         child: Padding(
@@ -132,16 +133,16 @@ class _LomdetailsState extends State<Lomdetails> {
                             children: [
                               lomlistdetails[index]['LOM'] == null ||
                                       lomlistdetails[index]['LOM'] == ""
-                                  ? SizedBox()
+                                  ? const SizedBox()
                                   : Row(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
                                         Icon(
                                           Icons.home_filled,
-                                          color: Color(Appbarcolour.hashCode)!!,
+                                          color: Color(Appbarcolour.hashCode),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 10,
                                         ),
                                         SizedBox(
@@ -156,13 +157,17 @@ class _LomdetailsState extends State<Lomdetails> {
                                         ),
                                       ],
                                     ),
-                              SizedBox(
-                                height: 5,
-                              ),
+                              lomlistdetails[index]['contact_no'] == "" ||
+                                      lomlistdetails[index]['contact_no'] ==
+                                          null
+                                  ? const SizedBox()
+                                  : const SizedBox(
+                                      height: 5,
+                                    ),
                               lomlistdetails[index]['contact_no'] == null ||
                                       lomlistdetails[index]['contact_no'] ==
                                           null
-                                  ? SizedBox()
+                                  ? const SizedBox()
                                   : InkWell(
                                       child: Row(
                                         crossAxisAlignment:
@@ -170,10 +175,9 @@ class _LomdetailsState extends State<Lomdetails> {
                                         children: [
                                           Icon(
                                             Icons.call,
-                                            color:
-                                                Color(Appbarcolour.hashCode)!!,
+                                            color: Color(Appbarcolour.hashCode),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 10,
                                           ),
                                           SizedBox(
@@ -200,12 +204,16 @@ class _LomdetailsState extends State<Lomdetails> {
                                         });
                                       },
                                     ),
-                              SizedBox(
-                                height: 5,
-                              ),
+                              lomlistdetails[index]['contact_no'] == "" ||
+                                      lomlistdetails[index]['contact_no'] ==
+                                          null
+                                  ? const SizedBox()
+                                  : const SizedBox(
+                                      height: 5,
+                                    ),
                               lomlistdetails[index]['email'] == null ||
                                       lomlistdetails[index]['email'] == ""
-                                  ? SizedBox()
+                                  ? const SizedBox()
                                   : InkWell(
                                       child: Row(
                                         crossAxisAlignment:
@@ -213,10 +221,9 @@ class _LomdetailsState extends State<Lomdetails> {
                                         children: [
                                           Icon(
                                             Icons.email,
-                                            color:
-                                                Color(Appbarcolour.hashCode)!!,
+                                            color: Color(Appbarcolour.hashCode),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 10,
                                           ),
                                           SizedBox(
@@ -243,16 +250,16 @@ class _LomdetailsState extends State<Lomdetails> {
                               lomlistdetails[index]['office_address'] == "" ||
                                       lomlistdetails[index]['office_address'] ==
                                           null
-                                  ? SizedBox()
+                                  ? const SizedBox()
                                   : Row(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
                                         Icon(
                                           Icons.location_on,
-                                          color: Color(Appbarcolour.hashCode)!,
+                                          color: Color(Appbarcolour.hashCode),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 10,
                                         ),
                                         SizedBox(
@@ -271,7 +278,14 @@ class _LomdetailsState extends State<Lomdetails> {
                               lomlistdetails[index]['contact_no'] == "" ||
                                       lomlistdetails[index]['contact_no'] ==
                                           null
-                                  ? SizedBox()
+                                  ? const SizedBox()
+                                  : const SizedBox(
+                                      height: 5,
+                                    ),
+                              lomlistdetails[index]['contact_no'] == "" ||
+                                      lomlistdetails[index]['contact_no'] ==
+                                          null
+                                  ? const SizedBox()
                                   : InkWell(
                                       child: Row(
                                         crossAxisAlignment:
@@ -279,10 +293,9 @@ class _LomdetailsState extends State<Lomdetails> {
                                         children: [
                                           Icon(
                                             Icons.whatsapp,
-                                            color:
-                                                Color(Appbarcolour.hashCode)!!,
+                                            color: Color(Appbarcolour.hashCode),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 10,
                                           ),
                                           SizedBox(
@@ -336,13 +349,11 @@ class _LomdetailsState extends State<Lomdetails> {
         lomlistdetails.clear();
         val.forEach((e) {
           lomlistdetails.add(e);
-          print("Loop__________>>>>>$e");
         });
         lomlistdetails.sort((a, b) =>
             (int.parse(a['priority'])).compareTo(int.parse(b['priority'])));
         // Loding = false;
       } else {
-        print("----------vvvvvvvvvv---------------");
         setState(() {});
         // Loding = false;
         lomlistdetails.clear();
@@ -375,11 +386,10 @@ class _LomdetailsState extends State<Lomdetails> {
 
     final Uri uri = number.toString().length == 10
         ? Uri.parse("whatsapp://send?phone=" + "91" + number)
-        : Uri.parse("whatsapp://send?phone=" + number);
+        : Uri.parse("whatsapp://send?phone=$number");
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
     } else {
-      print("error");
       throw "ERROR ";
     }
   }

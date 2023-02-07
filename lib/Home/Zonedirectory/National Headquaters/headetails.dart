@@ -1,12 +1,11 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jci/Home/home.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../splaysh.dart';
 import '../../../units/Storage.dart';
-import '../../../units/colour.dart';
 
 class HeadDetailes extends StatefulWidget {
   const HeadDetailes({Key? key}) : super(key: key);
@@ -21,7 +20,7 @@ class _HeadDetailesState extends State<HeadDetailes> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Color(Appbarcolour.hashCode)!,
+        backgroundColor: Color(Appbarcolour.hashCode),
         title: Text(
           'Details',
           style: GoogleFonts.poppins(),
@@ -39,8 +38,8 @@ class _HeadDetailesState extends State<HeadDetailes> {
                         blurRadius: 3,
                         spreadRadius: 2)
                   ],
-                  color: Color(Appbarcolour.hashCode)!,
-                  borderRadius: BorderRadius.only(
+                  color: Color(Appbarcolour.hashCode),
+                  borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(5),
                       topRight: Radius.circular(5))),
               child: Padding(
@@ -48,7 +47,7 @@ class _HeadDetailesState extends State<HeadDetailes> {
                     horizontal: Get.width / 30, vertical: 10),
                 child: Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Column(
@@ -66,12 +65,11 @@ class _HeadDetailesState extends State<HeadDetailes> {
                         ),
                         getdata.read('ZGB')['alloted_zone'] == null ||
                                 getdata.read('ZGB')['alloted_zone'] == ""
-                            ? SizedBox()
+                            ? const SizedBox()
                             : SizedBox(
                                 width: Get.width / 1.5,
                                 child: Text(
-                                  "Alloted-zone ${getdata.read('ZGB')['alloted_zone']}" ??
-                                      "",
+                                  "Alloted-zone ${getdata.read('ZGB')['alloted_zone']}",
                                   overflow: TextOverflow.ellipsis,
                                   // maxLines: 2,
                                   style:
@@ -95,7 +93,7 @@ class _HeadDetailesState extends State<HeadDetailes> {
                   ],
                   // border:Border.all(color:Color(Appbarcolour.hashCode)!,width: 1.5),
                   color: Colors.white,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       bottomRight: Radius.circular(5),
                       bottomLeft: Radius.circular(5))),
               child: Padding(
@@ -106,15 +104,15 @@ class _HeadDetailesState extends State<HeadDetailes> {
                   children: [
                     getdata.read('ZGB')['role'] == null ||
                             getdata.read('ZGB')['role'] == ""
-                        ? SizedBox()
+                        ? const SizedBox()
                         : Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Icon(
                                 Icons.home_filled,
-                                color: Color(Appbarcolour.hashCode)!,
+                                color: Color(Appbarcolour.hashCode),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               SizedBox(
@@ -131,22 +129,22 @@ class _HeadDetailesState extends State<HeadDetailes> {
                           ),
                     getdata.read('ZGB')['phone'] == null ||
                             getdata.read('ZGB')['phone'] == null
-                        ? SizedBox()
-                        : SizedBox(
+                        ? const SizedBox()
+                        : const SizedBox(
                             height: 5,
                           ),
                     getdata.read('ZGB')['phone'] == null ||
                             getdata.read('ZGB')['phone'] == null
-                        ? SizedBox()
+                        ? const SizedBox()
                         : InkWell(
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Icon(
                                   Icons.call,
-                                  color: Color(Appbarcolour.hashCode)!,
+                                  color: Color(Appbarcolour.hashCode),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                                 SizedBox(
@@ -167,22 +165,22 @@ class _HeadDetailesState extends State<HeadDetailes> {
                           ),
                     getdata.read('ZGB')['email2'] == null ||
                             getdata.read('ZGB')['email2'] == ""
-                        ? SizedBox()
-                        : SizedBox(
+                        ? const SizedBox()
+                        : const SizedBox(
                             height: 5,
                           ),
                     getdata.read('ZGB')['email2'] == null ||
                             getdata.read('ZGB')['email2'] == ""
-                        ? SizedBox()
+                        ? const SizedBox()
                         : InkWell(
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Icon(
                                   Icons.email,
-                                  color: Color(Appbarcolour.hashCode)!,
+                                  color: Color(Appbarcolour.hashCode),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                                 SizedBox(
@@ -203,22 +201,22 @@ class _HeadDetailesState extends State<HeadDetailes> {
                           ),
                     getdata.read('ZGB')['email'] == null ||
                             getdata.read('ZGB')['email'] == ""
-                        ? SizedBox()
-                        : SizedBox(
+                        ? const SizedBox()
+                        : const SizedBox(
                             height: 5,
                           ),
                     getdata.read('ZGB')['email'] == null ||
                             getdata.read('ZGB')['email'] == ""
-                        ? SizedBox()
+                        ? const SizedBox()
                         : InkWell(
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Icon(
                                   Icons.email,
-                                  color: Color(Appbarcolour.hashCode)!,
+                                  color: Color(Appbarcolour.hashCode),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                                 SizedBox(
@@ -238,16 +236,16 @@ class _HeadDetailesState extends State<HeadDetailes> {
                             },
                           ),
                     getdata.read('ZGB')['phone'] == null
-                        ? SizedBox()
+                        ? const SizedBox()
                         : InkWell(
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Icon(
                                   Icons.call,
-                                  color: Color(Appbarcolour.hashCode)!,
+                                  color: Color(Appbarcolour.hashCode),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                                 SizedBox(
@@ -300,12 +298,12 @@ class _HeadDetailesState extends State<HeadDetailes> {
     String number = getdata.read('ZGB')['phone'].toString();
 
     final Uri uri = number.toString().length == 10
+        // ignore: prefer_adjacent_string_concatenation
         ? Uri.parse("whatsapp://send?phone=" + "91" + number)
-        : Uri.parse("whatsapp://send?phone=" + number);
+        : Uri.parse("whatsapp://send?phone=$number");
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
     } else {
-      print("error");
       throw "ERROR ";
     }
   }

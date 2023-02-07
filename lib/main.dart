@@ -19,7 +19,7 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  runApp(provider());
+  runApp(const provider());
 }
 
 class provider extends StatelessWidget {
@@ -32,7 +32,7 @@ class provider extends StatelessWidget {
           create: (_) => ColorNotifire(),
         ),
       ],
-      child: GetMaterialApp(
+      child: const GetMaterialApp(
         home: SplashScreen(),
         debugShowCheckedModeBanner: false,
       ),

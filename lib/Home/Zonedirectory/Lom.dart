@@ -1,6 +1,8 @@
+
+// ignore_for_file: file_names, prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jci/Home/Zonedirectory/lomtabs.dart';
 import '../home.dart';
@@ -18,8 +20,8 @@ class Lomlist extends StatefulWidget {
 }
 
 class _LomlistState extends State<Lomlist> {
-  @override
   List dailog = [];
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -27,7 +29,7 @@ class _LomlistState extends State<Lomlist> {
           'LOM',
           style: GoogleFonts.poppins(),
         ),
-        backgroundColor: Color(Appbarcolour.hashCode)!!,
+        backgroundColor: Color(Appbarcolour.hashCode),
       ),
       body: ListView.builder(
         itemCount: lomlist.length,
@@ -40,7 +42,7 @@ class _LomlistState extends State<Lomlist> {
                 setState(() {
                   lomid = lomlist[index]['lom_id'].toString();
                   lomname = lomlist[index]['lom_name'].toString();
-                  Get.to(() => lomtabes());
+                  Get.to(() => const lomtabes());
                 });
               },
               child: Container(
@@ -48,7 +50,7 @@ class _LomlistState extends State<Lomlist> {
                 decoration: BoxDecoration(
                     color: Colors.white,
                     border: Border.all(
-                        width: 1, color: Color(Appbarcolour.hashCode)!!),
+                        width: 1, color: Color(Appbarcolour.hashCode)),
                     borderRadius: BorderRadius.circular(10)),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
@@ -69,10 +71,10 @@ class _LomlistState extends State<Lomlist> {
                               ),
                             ],
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Icon(
                             Icons.navigate_next_outlined,
-                            color: Color(Appbarcolour.hashCode)!!,
+                            color: Color(Appbarcolour.hashCode),
                           )
                         ],
                       )

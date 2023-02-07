@@ -1,16 +1,12 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jci/Home/Zonedirectory/Current%20ZGB/Details.dart';
 import 'package:jci/Home/home.dart';
 
 import '../../../splaysh.dart';
 import '../../../units/Storage.dart';
-import '../../../units/colour.dart';
-import '../Details.dart';
 
 class CurrentZGB extends StatefulWidget {
   const CurrentZGB({Key? key}) : super(key: key);
@@ -41,7 +37,7 @@ class _CurrentZGBState extends State<CurrentZGB> {
               onTap: () {
                 setState(() {
                   save('ZGB', currentzgb[index]);
-                  Get.off(() => currentDetails(),transition:Transition.rightToLeft,);
+                  Get.off(() => const currentDetails(),transition:Transition.rightToLeft,);
                 });
               },
               child: Container(
@@ -68,7 +64,7 @@ class _CurrentZGBState extends State<CurrentZGB> {
                                   )
                                 : NetworkImage(backimage),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Column(
@@ -91,7 +87,7 @@ class _CurrentZGBState extends State<CurrentZGB> {
                               ),
                             ],
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Icon(
                             Icons.navigate_next_outlined,
                             color:

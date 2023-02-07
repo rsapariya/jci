@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, empty_catches
 
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -32,18 +32,13 @@ class _SplashScreenState extends State<SplashScreen> {
           .collection('dynamic')
           .doc('Ja8uyFAnOzkVCTUOpbCA')
           .get();
-      print(response['them'].toString());
       setState(() {});
       bgColor = response['them'];
       Appbarcolour = Color(int.parse(bgColor.replaceAll("#", "Oxff")));
       im1 = response['image1'];
       im2 = response['imag2'];
       pdfurl = response['pdf'];
-      print('===========================================================');
-      print(bgColor);
-    } catch (e) {
-      print(e);
-    }
+    } catch (e){}
   }
 
   @override
@@ -52,7 +47,6 @@ class _SplashScreenState extends State<SplashScreen> {
     SLiderapi();
     super.initState();
     getDocs();
-    print('=============1111111=============');
     Timer(
       const Duration(seconds: 4),
       () => Get.offAll(
@@ -74,7 +68,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 'assets/images/VIII_Logo_2023_clipdrop-enhance.jpg',
                 scale: 7,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Text(
@@ -95,8 +89,6 @@ class _SplashScreenState extends State<SplashScreen> {
       if ((val != null) && (val.isNotEmpty)) {
         setState(() {});
         url = val['url'];
-        print("UUUURRRLLL");
-        print(url.toString());
       } else {
         setState(() {});
         currentzgb.clear();
@@ -111,7 +103,6 @@ class _SplashScreenState extends State<SplashScreen> {
         setState(() {});
         val.forEach((e) {
           sliderimage.add(e);
-          print("Slider_______>>>>>$e");
         });
       } else {
         setState(() {});

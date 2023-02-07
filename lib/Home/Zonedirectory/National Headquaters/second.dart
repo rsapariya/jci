@@ -1,15 +1,11 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jci/Home/home.dart';
 import '../../../units/Storage.dart';
-import '../../../units/colour.dart';
-import '../Details.dart';
 import 'headetails.dart';
 import '../../../splaysh.dart';
+
 class Second extends StatefulWidget {
   const Second({Key? key}) : super(key: key);
 
@@ -32,13 +28,15 @@ class _SecondState extends State<Second> {
               onTap: () {
                 setState(() {
                   save('ZGB', area[index]);
-                  Get.to(() => HeadDetailes(),transition:Transition.rightToLeft);
+                  Get.to(() => const HeadDetailes(),
+                      transition: Transition.rightToLeft);
                 });
               },
               child: Container(
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    border: Border.all(width: 1, color: Color(Appbarcolour.hashCode)!),
+                    border: Border.all(
+                        width: 1, color: Color(Appbarcolour.hashCode)),
                     borderRadius: BorderRadius.circular(10)),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
@@ -59,10 +57,10 @@ class _SecondState extends State<Second> {
                               ),
                             ],
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Icon(
                             Icons.navigate_next_outlined,
-                            color: Color(Appbarcolour.hashCode)!,
+                            color: Color(Appbarcolour.hashCode),
                           )
                         ],
                       )

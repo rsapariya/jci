@@ -1,11 +1,9 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jci/Home/home.dart';
-import 'package:jci/units/Storage.dart';
-import 'package:jci/units/colour.dart';
-import 'package:html/parser.dart' show parse;
 
 import '../../splaysh.dart';
 
@@ -43,8 +41,8 @@ class _LomDeteilsState extends State<LomDeteils> {
                               blurRadius: 3,
                               spreadRadius: 2)
                         ],
-                        color: Color(Appbarcolour.hashCode)!,
-                        borderRadius: BorderRadius.only(
+                        color: Color(Appbarcolour.hashCode),
+                        borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(5),
                             topRight: Radius.circular(5))),
                     child: Padding(
@@ -72,7 +70,7 @@ class _LomDeteilsState extends State<LomDeteils> {
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Column(
@@ -113,7 +111,7 @@ class _LomDeteilsState extends State<LomDeteils> {
                               spreadRadius: 2)
                         ],
                         color: Colors.white,
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                             bottomRight: Radius.circular(5),
                             bottomLeft: Radius.circular(5))),
                     child: Padding(
@@ -124,24 +122,24 @@ class _LomDeteilsState extends State<LomDeteils> {
                         children: [
                           lomactlist[index]['project_name'] == null ||
                                   lomactlist[index]['project_name'] == ""
-                              ? SizedBox()
+                              ? const SizedBox()
                               : Text(
                                   "project Name",
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.poppins(
-                                      color: Color(Appbarcolour.hashCode)!,
+                                      color: Color(Appbarcolour.hashCode),
                                       fontSize: 14,
                                       fontWeight: FontWeight.w500),
                                 ),
                           lomactlist[index]['project_name'] == null ||
                                   lomactlist[index]['project_name'] == ""
-                              ? SizedBox()
-                              : SizedBox(
+                              ? const SizedBox()
+                              : const SizedBox(
                                   height: 5,
                                 ),
                           lomactlist[index]['project_name'] == null ||
                                   lomactlist[index]['project_name'] == ""
-                              ? SizedBox()
+                              ? const SizedBox()
                               : SizedBox(
                                   width: Get.width / 1.2,
                                   child: Text(
@@ -152,7 +150,7 @@ class _LomDeteilsState extends State<LomDeteils> {
                                         fontWeight: FontWeight.w500),
                                   ),
                                 ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
 

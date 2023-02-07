@@ -1,17 +1,14 @@
-import 'dart:async';
-import 'dart:io';
-import 'dart:math';
+// ignore_for_file: non_constant_identifier_names, avoid_print, sized_box_for_whitespace, unnecessary_null_comparison
 
-import 'package:carousel_slider/carousel_controller.dart';
+import 'dart:async';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:html/parser.dart';
 import 'package:jci/Home/Aboutapp.dart';
 import 'package:jci/Home/Events/Events.dart';
 import 'package:jci/Home/Lom%20Axctivitey/LOMDetailes.dart';
@@ -22,9 +19,8 @@ import 'package:share/share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import '../units/api.dart';
-import 'package:html/parser.dart' show parse;
-
 import 'Zonedirectory/ZoneDirectory.dart';
+
 
 List currentzgb = [];
 List lomactlist = [];
@@ -36,7 +32,6 @@ List pastnational = [];
 List pastprlist = [];
 List trainers = [];
 List Mdeta = [];
-var cc;
 
 List<dynamic> area = [];
 List<dynamic> adsimage = [];
@@ -44,14 +39,13 @@ List<dynamic> membership = [];
 List<dynamic> finance = [];
 List<dynamic> po = [];
 List<dynamic> substaff = [];
-var Adspic;
 
 String backimage =
     "https://t4.ftcdn.net/jpg/01/06/92/47/360_F_106924759_7qPPu6bZNN2O4al1ExdEWBdHUcpKMwuJ.jpg";
 
 class Home extends StatefulWidget {
   final String? youtybeURL;
-  const Home(this.youtybeURL);
+  const Home(this.youtybeURL, {super.key});
 
   @override
   State<Home> createState() => _HomeState();
@@ -64,7 +58,7 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     Adsapi();
-    Timer(Duration(seconds: 20), () => _checkLastImageDisplayTime());
+    Timer(const Duration(seconds: 20), () => _checkLastImageDisplayTime());
 
     Admob.requestTrackingAuthorization();
     NationalTrainerAPI();
@@ -101,6 +95,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          elevation:0,
           // backgroundColor:Color(int.parse(bgColor.replaceAll('#', '0xff'))),
           backgroundColor: Color(Appbarcolour.hashCode),
           actions: [
@@ -125,7 +120,7 @@ class _HomeState extends State<Home> {
               ],
               onSelected: (String menu) {
                 if (menu == "App info") {
-                  Get.to(() => Aboutinfo(), transition: Transition.leftToRight);
+                  Get.to(() => const Aboutinfo(), transition: Transition.leftToRight);
                 } else if (menu == "Share") {
                   Share.share(
                       'https://play.google.com/store/apps/details?id=com.jciindia.directory');
@@ -141,7 +136,7 @@ class _HomeState extends State<Home> {
           ),
         ),
         body: DoubleBackToCloseApp(
-          snackBar: SnackBar(content: Text("Tap back again to Exit.")),
+          snackBar: const SnackBar(content: Text("Tap back again to Exit.")),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -164,9 +159,8 @@ class _HomeState extends State<Home> {
                       Expanded(
                           child: containe(
                               onTap: () {
-                                _checkLastImageDisplayTime();
-                                // Get.to(() => Zonedirectory(),
-                                //     transition: Transition.leftToRight);
+                                Get.to(() =>const Zonedirectory(),
+                                    transition: Transition.leftToRight);
                               },
                               text: "Zone Directory",
                               image: const AssetImage(
@@ -286,7 +280,9 @@ class _HomeState extends State<Home> {
     ApiWrapper.dataGet(AppUrl.Current).then((val) {
       if ((val != null) && (val.isNotEmpty)) {
         setState(() {});
-        print("----------currentapi---------------");
+        if (kDebugMode) {
+          print("----------currentapi---------------");
+        }
 
         currentzgb.clear();
         val.forEach((e) {
@@ -535,7 +531,7 @@ class _HomeState extends State<Home> {
 
     final prefs = await SharedPreferences.getInstance();
     setState(() {});
-    final lastImageDisplayTime = prefs.getInt('last_image_display_time');
+    var lastImageDisplayTime = prefs.getInt('last_image_display_time');
     print("TT_________________________________________________________TT");
 
     print(lastImageDisplayTime);
@@ -545,15 +541,15 @@ class _HomeState extends State<Home> {
     final difference = currentTime - lastImageDisplayTime!;
     print(difference);
     print("TT_________________________________________________________TT");
-    if (difference == null || difference >= Duration(days: 1).inMilliseconds) {
+    if (difference == null || difference >= const Duration(days: 1).inMilliseconds) {
       prefs.setInt('last_image_display_time', currentTime);
-      Timer(Duration(seconds: 10), () => _navigateToHomePage());
+      Timer(const Duration(seconds: 10), () => _navigateToHomePage());
       return;
     }
   }
 
   void _navigateToHomePage() {
-    Get.to(() => Homepage());
+    Get.to(() => const Homepage());
   }
 }
 
@@ -578,7 +574,7 @@ class _HomepageState extends State<Homepage> {
                   top: Get.height / 20,
                   child: Text(
                     '$timeLeft',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 24.0,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -589,7 +585,7 @@ class _HomepageState extends State<Homepage> {
                   left: Get.width / 1.14,
                   top: Get.height / 20,
                   child: IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.close,
                       color: Colors.white,
                     ),
@@ -612,7 +608,7 @@ class _HomepageState extends State<Homepage> {
   }
 
   void _startTimer() {
-    timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         timeLeft--;
       });

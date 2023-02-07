@@ -1,12 +1,11 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jci/Home/Zonedirectory/Trainers/Details.dart';
 import '../../../../units/Storage.dart';
-import '../../../../units/colour.dart';
 import '../../home.dart';
-import '../Details.dart';
 import '../../../splaysh.dart';
 class Nationaltrainers extends StatefulWidget {
   const Nationaltrainers({Key? key}) : super(key: key);
@@ -24,7 +23,7 @@ class _NationaltrainersState extends State<Nationaltrainers> {
           'National Trainers',
           style: GoogleFonts.poppins(),
         ),
-        backgroundColor: Color(Appbarcolour.hashCode)!,
+        backgroundColor: Color(Appbarcolour.hashCode),
       ),
       body: ListView.builder(
         // controller: controller,
@@ -37,14 +36,14 @@ class _NationaltrainersState extends State<Nationaltrainers> {
               onTap: () {
                 setState(() {
                   save('TR', trainers[index]);
-                  Get.to(() => TrainersDetails());
+                  Get.to(() => const TrainersDetails());
                 });
               },
               child: Container(
                 // height: Get.height / 4,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    border: Border.all(width: 1, color: Color(Appbarcolour.hashCode)!),
+                    border: Border.all(width: 1, color: Color(Appbarcolour.hashCode)),
                     borderRadius: BorderRadius.circular(10)),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
@@ -60,7 +59,7 @@ class _NationaltrainersState extends State<Nationaltrainers> {
                                 trainers[index]['image'])
                                 : NetworkImage(backimage),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Column(
@@ -72,7 +71,7 @@ class _NationaltrainersState extends State<Nationaltrainers> {
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.poppins(fontSize: 16),
                                 ),
-                              ),trainers[index]['post']==null || trainers[index]['post'] == ""?SizedBox():
+                              ),trainers[index]['post']==null || trainers[index]['post'] == ""?const SizedBox():
                               SizedBox(
                                 width: Get.width / 1.8,
                                 child: Text(
@@ -83,10 +82,10 @@ class _NationaltrainersState extends State<Nationaltrainers> {
                               ),
                             ],
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Icon(
                             Icons.navigate_next_outlined,
-                            color: Color(Appbarcolour.hashCode)!,
+                            color: Color(Appbarcolour.hashCode),
                           )
                         ],
                       )

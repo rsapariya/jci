@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -46,7 +46,7 @@ class _EventState extends State<Event> {
                               spreadRadius: 2)
                         ],
                         color: Color(Appbarcolour.hashCode),
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(5),
                             topRight: Radius.circular(5))),
                     child: SizedBox(
@@ -76,7 +76,7 @@ class _EventState extends State<Event> {
                               spreadRadius: 2)
                         ],
                         color: Colors.white,
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                             bottomRight: Radius.circular(5),
                             bottomLeft: Radius.circular(5))),
                     child: Padding(
@@ -85,7 +85,7 @@ class _EventState extends State<Event> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           SizedBox(
@@ -111,7 +111,7 @@ class _EventState extends State<Event> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 8,
                           ),
                           Row(
@@ -121,7 +121,7 @@ class _EventState extends State<Event> {
                                 Icons.location_on,
                                 color: Color(Appbarcolour.hashCode),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 5,
                               ),
                               SizedBox(
@@ -138,7 +138,7 @@ class _EventState extends State<Event> {
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 8,
                           ),
                           Row(
@@ -149,7 +149,7 @@ class _EventState extends State<Event> {
                                 style: TextStyle(
                                     color: Color(Appbarcolour.hashCode), fontSize: 20),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 5,
                               ),
                               SizedBox(
@@ -166,7 +166,7 @@ class _EventState extends State<Event> {
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 8,
                           ),
                           Row(
@@ -176,7 +176,7 @@ class _EventState extends State<Event> {
                                 Icons.calendar_month_sharp,
                                 color: Color(Appbarcolour.hashCode),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 5,
                               ),
                               SizedBox(
@@ -193,7 +193,7 @@ class _EventState extends State<Event> {
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 8,
                           ),
                           Row(
@@ -203,7 +203,7 @@ class _EventState extends State<Event> {
                                 Icons.access_time,
                                 color: Color(Appbarcolour.hashCode),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 5,
                               ),
                               SizedBox(
@@ -220,7 +220,7 @@ class _EventState extends State<Event> {
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 8,
                           ),
                           Row(
@@ -232,12 +232,12 @@ class _EventState extends State<Event> {
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.poppins(
-                                    color: Color(Appbarcolour.hashCode)!,
+                                    color: Color(Appbarcolour.hashCode),
                                     fontSize: 14,
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 5,
                               ),
                               SizedBox(

@@ -1,6 +1,7 @@
+// ignore_for_file: non_constant_identifier_names, camel_case_types, annotate_overrides
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jci/Home/Zonedirectory/Lom.dart';
 import 'package:jci/Home/Zonedirectory/lomtabs.dart';
@@ -34,7 +35,7 @@ class _memberdetaiState extends State<memberdetai> {
         centerTitle: true,
         leading: IconButton(
             onPressed: () {
-              Get.off(() => lomtabes());
+              Get.off(() => const lomtabes());
             },
             icon: const Icon(Icons.arrow_back)),
       ),
@@ -52,7 +53,7 @@ class _memberdetaiState extends State<memberdetai> {
                               blurRadius: 3,
                               spreadRadius: 2)
                         ],
-                        color: Color(Appbarcolour.hashCode)!!,
+                        color: Color(Appbarcolour.hashCode),
                         borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(5),
                             topRight: Radius.circular(5))),
@@ -143,7 +144,7 @@ class _memberdetaiState extends State<memberdetai> {
                                   children: [
                                     Icon(
                                       Icons.business_center_outlined,
-                                      color: Color(Appbarcolour.hashCode)!!,
+                                      color: Color(Appbarcolour.hashCode),
                                     ),
                                     const SizedBox(
                                       width: 10,
@@ -180,8 +181,7 @@ class _memberdetaiState extends State<memberdetai> {
                                         children: [
                                           Icon(
                                             Icons.call,
-                                            color:
-                                                Color(Appbarcolour.hashCode)!!,
+                                            color: Color(Appbarcolour.hashCode),
                                           ),
                                           const SizedBox(
                                             width: 10,
@@ -219,7 +219,7 @@ class _memberdetaiState extends State<memberdetai> {
                                     children: [
                                       Icon(
                                         Icons.email,
-                                        color: Color(Appbarcolour.hashCode)!!,
+                                        color: Color(Appbarcolour.hashCode),
                                       ),
                                       const SizedBox(
                                         width: 10,
@@ -259,7 +259,7 @@ class _memberdetaiState extends State<memberdetai> {
                                     children: [
                                       Icon(
                                         Icons.email,
-                                        color: Color(Appbarcolour.hashCode)!!,
+                                        color: Color(Appbarcolour.hashCode),
                                       ),
                                       const SizedBox(
                                         width: 10,
@@ -302,7 +302,7 @@ class _memberdetaiState extends State<memberdetai> {
                                       children: [
                                         Icon(
                                           Icons.location_on,
-                                          color: Color(Appbarcolour.hashCode)!,
+                                          color: Color(Appbarcolour.hashCode),
                                         ),
                                         const SizedBox(
                                           width: 10,
@@ -333,7 +333,7 @@ class _memberdetaiState extends State<memberdetai> {
                                   children: [
                                     Icon(
                                       Icons.add_business,
-                                      color: Color(Appbarcolour.hashCode)!,
+                                      color: Color(Appbarcolour.hashCode),
                                     ),
                                     const SizedBox(
                                       width: 10,
@@ -370,8 +370,7 @@ class _memberdetaiState extends State<memberdetai> {
                                         children: [
                                           Icon(
                                             Icons.whatsapp,
-                                            color:
-                                                Color(Appbarcolour.hashCode)!!,
+                                            color: Color(Appbarcolour.hashCode),
                                           ),
                                           const SizedBox(
                                             width: 10,
@@ -413,7 +412,7 @@ class _memberdetaiState extends State<memberdetai> {
                                     children: [
                                       Icon(
                                         Icons.category_outlined,
-                                        color: Color(Appbarcolour.hashCode)!!,
+                                        color: Color(Appbarcolour.hashCode),
                                       ),
                                       const SizedBox(
                                         width: 10,
@@ -434,7 +433,7 @@ class _memberdetaiState extends State<memberdetai> {
                                   ),
                                 ),
                           Mdeta[0]['is_private'] == "1"
-                              ? SizedBox()
+                              ? const SizedBox()
                               : Mdeta[0]['birthdate'] == "" &&
                                       Mdeta[0]['birthdate'] == null &&
                                       Mdeta[0]['anniversary'] == "" &&
@@ -446,7 +445,7 @@ class _memberdetaiState extends State<memberdetai> {
                                       height: 10,
                                     ),
                           Mdeta[0]['is_private'] == "1"
-                              ? SizedBox()
+                              ? const SizedBox()
                               : Mdeta[0]['birthdate'] == "" &&
                                       Mdeta[0]['birthdate'] == null &&
                                       Mdeta[0]['anniversary'] == "" &&
@@ -464,7 +463,7 @@ class _memberdetaiState extends State<memberdetai> {
                                             : Column(
                                                 children: [
                                                   SizedBox(
-                                                    width: Get.width / 4,
+                                                    width: Get.width / 3.8,
                                                     child: Text(
                                                       "Birthdate",
                                                       // lomlistdetails[index]['contact_no'] ??
@@ -479,7 +478,7 @@ class _memberdetaiState extends State<memberdetai> {
                                                     ),
                                                   ),
                                                   SizedBox(
-                                                    width: Get.width / 4,
+                                                    width: Get.width / 3.8,
                                                     child: Text(
                                                       Mdeta[0]['birthdate'] ??
                                                           "",
@@ -506,7 +505,7 @@ class _memberdetaiState extends State<memberdetai> {
                                             : Column(
                                                 children: [
                                                   SizedBox(
-                                                    width: Get.width / 4,
+                                                    width: Get.width / 3.8,
                                                     child: Text(
                                                       "Anniversary",
                                                       style: GoogleFonts.poppins(
@@ -519,7 +518,7 @@ class _memberdetaiState extends State<memberdetai> {
                                                     ),
                                                   ),
                                                   SizedBox(
-                                                    width: Get.width / 4,
+                                                    width: Get.width / 3.8,
                                                     child: Text(
                                                       Mdeta[0]['anniversary'] ??
                                                           "",
@@ -542,7 +541,7 @@ class _memberdetaiState extends State<memberdetai> {
                                             : Column(
                                                 children: [
                                                   SizedBox(
-                                                    width: Get.width / 4,
+                                                    width: Get.width / 3.8,
                                                     child: Text(
                                                       "Joining year",
                                                       style: GoogleFonts.poppins(
@@ -555,7 +554,7 @@ class _memberdetaiState extends State<memberdetai> {
                                                     ),
                                                   ),
                                                   SizedBox(
-                                                    width: Get.width / 4,
+                                                    width: Get.width / 3.8,
                                                     child: Text(
                                                       Mdeta[0][
                                                               'joining_year'] ??
@@ -601,15 +600,11 @@ class _memberdetaiState extends State<memberdetai> {
         setState(() {});
         Mdeta.clear();
         val.forEach((e) {
-          print("----------vvvvvvvvvv---------------");
           Mdeta.add(e);
         });
         Loomd = false;
-        setState(() {
-          print(Mdeta[0]);
-        });
+        setState(() {});
       } else {
-        print("----------vvvvvvvvvv---------------");
         setState(() {});
         Loomd = false;
         ApiWrapper.showToastMessage("Something Went Wrong!!");
@@ -640,18 +635,18 @@ class _memberdetaiState extends State<memberdetai> {
     String number = getdata.read('call').toString();
 
     final Uri uri = number.toString().length == 10
-        ? Uri.parse("whatsapp://send?phone=" + "91" + number)
-        : Uri.parse("whatsapp://send?phone=" + number);
+        ? Uri.parse("whatsapp://send?phone=91$number")
+        : Uri.parse("whatsapp://send?phone=$number");
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
     } else {
-      print("error");
       throw "ERROR ";
     }
   }
 
   emaiollaunch() async {
     String email = getdata.read('LOM').toString();
+    // ignore: deprecated_member_use
     launch('mailto:$email');
   }
 }

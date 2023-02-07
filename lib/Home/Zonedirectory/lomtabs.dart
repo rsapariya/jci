@@ -1,8 +1,8 @@
-import 'dart:developer';
+
+// ignore_for_file: annotate_overrides, camel_case_types, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../splaysh.dart';
@@ -24,7 +24,6 @@ class lomtabes extends StatefulWidget {
 
 class _lomtabesState extends State<lomtabes>
     with SingleTickerProviderStateMixin {
-  @override
   late TabController _tabController;
   void initState() {
     _tabController = TabController(vsync: this, length: 2);
@@ -40,7 +39,7 @@ class _lomtabesState extends State<lomtabes>
           lomname,
           style: GoogleFonts.poppins(),
         ),
-        backgroundColor: Color(Appbarcolour.hashCode)!!,
+        backgroundColor: Color(Appbarcolour.hashCode),
       ),
       body: Column(
         children: [
@@ -49,29 +48,29 @@ class _lomtabesState extends State<lomtabes>
             decoration: BoxDecoration(
                 border: Border(
                     bottom: BorderSide(
-                        color: Color(Appbarcolour.hashCode)!!, width: 1.5))),
+                        color: Color(Appbarcolour.hashCode), width: 1.5))),
             child: Padding(
               padding: EdgeInsets.symmetric(
                   vertical: Get.height / 80, horizontal: 10),
               child: TabBar(
-                unselectedLabelColor: Color(Appbarcolour.hashCode)!!,
-                indicatorColor: Color(Appbarcolour.hashCode)!!,
+                unselectedLabelColor: Color(Appbarcolour.hashCode),
+                indicatorColor: Color(Appbarcolour.hashCode),
                 // isScrollable: true,
-                labelPadding: EdgeInsets.all(10),
+                labelPadding: const EdgeInsets.all(10),
                 controller: _tabController,
                 indicator: BoxDecoration(
-                    color: Color(Appbarcolour.hashCode)!!,
+                    color: Color(Appbarcolour.hashCode),
                     borderRadius: BorderRadius.circular(40)),
                 tabs: [
                   Text(
                     'LGB',
                     style: GoogleFonts.poppins(
-                        textStyle: TextStyle(fontWeight: FontWeight.w500)),
+                        textStyle: const TextStyle(fontWeight: FontWeight.w500)),
                   ),
                   Text(
                     'Members',
                     style: GoogleFonts.poppins(
-                        textStyle: TextStyle(fontWeight: FontWeight.w500)),
+                        textStyle: const TextStyle(fontWeight: FontWeight.w500)),
                   ),
                 ],
               ),
@@ -95,14 +94,12 @@ class _lomtabesState extends State<lomtabes>
         Memberlist.clear();
         val.forEach((e) {
           Memberlist.add(e);
-          print("Loop__________>>>>>$e");
         });
         Loom = false;
         // Memberlist.sort((a, b) =>
         //     (int.parse(a['priority'])).compareTo(int.parse(b['priority'])));
         // Loding = false;
       } else {
-        print("----------vvvvvvvvvv---------------");
         setState(() {});
         Loom = false;
         Memberlist.clear();
@@ -118,14 +115,12 @@ class _lomtabesState extends State<lomtabes>
         lomlistdetails.clear();
         val.forEach((e) {
           lomlistdetails.add(e);
-          print("Loop__________>>>>>$e");
         });
         Loom = false;
         lomlistdetails.sort((a, b) =>
             (int.parse(a['priority'])).compareTo(int.parse(b['priority'])));
         // Loding = false;
       } else {
-        print("----------vvvvvvvvvv---------------");
         setState(() {});
         Loom = false;
         lomlistdetails.clear();

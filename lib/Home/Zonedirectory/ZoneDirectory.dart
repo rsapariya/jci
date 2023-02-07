@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter_file_downloader/flutter_file_downloader.dart';
 import 'package:jci/units/api.dart';
 
@@ -15,7 +14,6 @@ import '../../../splaysh.dart';
 import 'Current ZGB/currentzgb.dart';
 import 'National Headquaters/Nationalheadquaters.dart';
 import 'Trainers/Nationaltrainers.dart';
-import 'lomtabs.dart';
 
 class Zonedirectory extends StatefulWidget {
   const Zonedirectory({Key? key}) : super(key: key);
@@ -33,7 +31,7 @@ class _ZonedirectoryState extends State<Zonedirectory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(Appbarcolour.hashCode)!,
+        backgroundColor: Color(Appbarcolour.hashCode),
         title: Text(
           "Zone Directory",
           style: GoogleFonts.poppins(),
@@ -69,7 +67,7 @@ class _ZonedirectoryState extends State<Zonedirectory> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               container(
@@ -113,7 +111,7 @@ class _ZonedirectoryState extends State<Zonedirectory> {
               container(
                   onTap: () {
                     Get.to(
-                      () => Lomlist(),
+                      () => const Lomlist(),
                       transition: Transition.leftToRight,
                     );
                   },
@@ -142,7 +140,6 @@ class _ZonedirectoryState extends State<Zonedirectory> {
                           });
                           ApiWrapper.showToastMessage(
                               "File Stored in Downloads.");
-                          print("path : $value");
                         });
                   }),
             ],
@@ -170,10 +167,10 @@ class _ZonedirectoryState extends State<Zonedirectory> {
           decoration: BoxDecoration(
               color: Colors.white,
               border: Border.all(
-                color: Color(Appbarcolour.hashCode)!,
+                color: Color(Appbarcolour.hashCode),
                 width: 1,
               ),
-              borderRadius: BorderRadius.all(Radius.circular(10))),
+              borderRadius: const BorderRadius.all(Radius.circular(10))),
           child: Center(
             child: Padding(
               padding: EdgeInsets.only(left: Get.width / 30),
@@ -189,7 +186,7 @@ class _ZonedirectoryState extends State<Zonedirectory> {
                   pdfee == false
                       ? Icon(
                           icon,
-                          color: Color(Appbarcolour.hashCode)!,
+                          color: Color(Appbarcolour.hashCode),
                         )
                       : SizedBox(
                           child: child,

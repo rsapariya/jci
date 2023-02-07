@@ -1,14 +1,10 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jci/Home/home.dart';
 
 import '../../../units/Storage.dart';
-import '../../../units/colour.dart';
-import '../Details.dart';
 import 'headetails.dart';
 import '../../../splaysh.dart';
 
@@ -36,13 +32,13 @@ class _FifthState extends State<Fifth> {
               onTap: () {
                 setState(() {
                   save('ZGB', po[index]);
-                  Get.to(() => HeadDetailes(),transition:Transition.rightToLeft);
+                  Get.to(() => const HeadDetailes(),transition:Transition.rightToLeft);
                 });
               },
               child: Container(
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    border: Border.all(width: 1, color: Color(Appbarcolour.hashCode)!!),
+                    border: Border.all(width: 1, color: Color(Appbarcolour.hashCode)),
                     borderRadius: BorderRadius.circular(10)),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
@@ -71,10 +67,10 @@ class _FifthState extends State<Fifth> {
                               // ),
                             ],
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Icon(
                             Icons.navigate_next_outlined,
-                            color: Color(Appbarcolour.hashCode)!!,
+                            color: Color(Appbarcolour.hashCode),
                           )
                         ],
                       )

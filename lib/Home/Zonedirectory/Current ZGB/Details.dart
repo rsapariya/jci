@@ -1,6 +1,7 @@
+// ignore_for_file: unused_import, deprecated_member_use, camel_case_types, prefer_adjacent_string_concatenation
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jci/Home/home.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -24,13 +25,13 @@ class _currentDetailsState extends State<currentDetails> {
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
-              Get.off(() => CurrentZGB(),
+              Get.off(() => const CurrentZGB(),
                   transition: Transition.leftToRight,
-                  duration: Duration(milliseconds: 500));
+                  duration: const Duration(milliseconds: 500));
             },
-            icon: Icon(Icons.arrow_back)),
+            icon: const Icon(Icons.arrow_back)),
         centerTitle: true,
-        backgroundColor: Color(Appbarcolour.hashCode)!!,
+        backgroundColor: Color(Appbarcolour.hashCode),
         title: Text(
           'Details',
           style: GoogleFonts.poppins(),
@@ -48,8 +49,8 @@ class _currentDetailsState extends State<currentDetails> {
                         blurRadius: 3,
                         spreadRadius: 2)
                   ],
-                  color: Color(Appbarcolour.hashCode)!,
-                  borderRadius: BorderRadius.only(
+                  color: Color(Appbarcolour.hashCode),
+                  borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(5),
                       topRight: Radius.circular(5))),
               child: Padding(
@@ -65,7 +66,7 @@ class _currentDetailsState extends State<currentDetails> {
                           : NetworkImage(backimage),
                       radius: 30,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Column(
@@ -83,7 +84,7 @@ class _currentDetailsState extends State<currentDetails> {
                         ),
                         getdata.read('ZGB')['post'] == null ||
                                 getdata.read('ZGB')['post'] == ""
-                            ? SizedBox()
+                            ? const SizedBox()
                             : SizedBox(
                                 width: Get.width / 1.5,
                                 child: Text(
@@ -111,7 +112,7 @@ class _currentDetailsState extends State<currentDetails> {
                   ],
                   // border:Border.all(color:Color(Appbarcolour.hashCode)!!,width: 1.5),
                   color: Colors.white,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       bottomRight: Radius.circular(5),
                       bottomLeft: Radius.circular(5))),
               child: Padding(
@@ -127,9 +128,9 @@ class _currentDetailsState extends State<currentDetails> {
                             children: [
                               Icon(
                                 Icons.home_filled,
-                                color: Color(Appbarcolour.hashCode)!!,
+                                color: Color(Appbarcolour.hashCode),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               SizedBox(
@@ -144,8 +145,8 @@ class _currentDetailsState extends State<currentDetails> {
                               ),
                             ],
                           )
-                        : SizedBox(),
-                    SizedBox(
+                        : const SizedBox(),
+                    const SizedBox(
                       height: 5,
                     ),
                     getdata.read('ZGB')['mobile'] != null ||
@@ -159,9 +160,9 @@ class _currentDetailsState extends State<currentDetails> {
                               children: [
                                 Icon(
                                   Icons.call,
-                                  color: Color(Appbarcolour.hashCode)!!,
+                                  color: Color(Appbarcolour.hashCode),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                                 SizedBox(
@@ -177,8 +178,8 @@ class _currentDetailsState extends State<currentDetails> {
                               ],
                             ),
                           )
-                        : SizedBox(),
-                    SizedBox(
+                        : const SizedBox(),
+                    const SizedBox(
                       height: 5,
                     ),
                     getdata.read('ZGB')['email'] != null ||
@@ -192,9 +193,9 @@ class _currentDetailsState extends State<currentDetails> {
                               children: [
                                 Icon(
                                   Icons.email,
-                                  color: Color(Appbarcolour.hashCode)!!,
+                                  color: Color(Appbarcolour.hashCode),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                                 SizedBox(
@@ -210,21 +211,21 @@ class _currentDetailsState extends State<currentDetails> {
                               ],
                             ),
                           )
-                        : SizedBox(),
-                    SizedBox(
+                        : const SizedBox(),
+                    const SizedBox(
                       height: 5,
                     ),
                     getdata.read('ZGB')['address_office'] == "" ||
                             getdata.read('ZGB')['address_office'] == null
-                        ? SizedBox()
+                        ? const SizedBox()
                         : Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Icon(
                                 Icons.location_on,
-                                color: Color(Appbarcolour.hashCode)!,
+                                color: Color(Appbarcolour.hashCode),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               SizedBox(
@@ -239,12 +240,12 @@ class _currentDetailsState extends State<currentDetails> {
                               ),
                             ],
                           ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     getdata.read('ZGB')['mobile'] == null ||
                             getdata.read('ZGB')['mobile'] == ""
-                        ? SizedBox()
+                        ? const SizedBox()
                         : InkWell(
                             onTap: () {
                               _wahtt();
@@ -256,7 +257,7 @@ class _currentDetailsState extends State<currentDetails> {
                                   Icons.whatsapp,
                                   color: Color(Appbarcolour.hashCode),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                                 SizedBox(
@@ -307,11 +308,10 @@ class _currentDetailsState extends State<currentDetails> {
 
     final Uri uri = number.toString().length == 10
         ? Uri.parse("whatsapp://send?phone=" + "91" + number)
-        : Uri.parse("whatsapp://send?phone=" + number);
+        : Uri.parse("whatsapp://send?phone=$number");
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
     } else {
-      print("error");
       throw "ERROR ";
     }
   }

@@ -1,3 +1,5 @@
+// ignore_for_file: empty_catches
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
@@ -7,7 +9,7 @@ import 'package:path_provider/path_provider.dart';
 const fileName = '/pspdfkit-flutter-quickstart-guide.pdf';
 
 // URL of the PDF file you'll download.
-const imageUrl = 'https://pspdfkit.com/downloads' + fileName;
+const imageUrl = 'https://pspdfkit.com/downloads$fileName';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -66,7 +68,6 @@ class _MyHomePageState extends State<MyHomePage> {
       // apps, you should display the warning to the user and give them a
       // way to restart the download.
     } catch (e) {
-      print(e);
     }
   }
 
@@ -80,9 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
             '✅ File has finished downloading. Try opening the file.';
         didDownloadPDF = true;
       } else {
-        progressString = 'Download progress: ' +
-            (progress * 100).toStringAsFixed(0) +
-            '% done.';
+        progressString = 'Download progress: ${(progress * 100).toStringAsFixed(0)}% done.';
       }
     });
   }
@@ -109,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       var tempDir = await getTemporaryDirectory();
                       download(Dio(), imageUrl, tempDir.path + fileName);
                     },
-              child: Text('Download a PDF file'),
+              child: const Text('Download a PDF file'),
             ),
             Text(
               progressString,

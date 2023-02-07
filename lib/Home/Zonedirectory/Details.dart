@@ -1,6 +1,7 @@
+// ignore_for_file: deprecated_member_use, prefer_adjacent_string_concatenation
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jci/Home/home.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -21,7 +22,7 @@ class _DetailesState extends State<Detailes> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Color(Appbarcolour.hashCode)!!,
+        backgroundColor: Color(Appbarcolour.hashCode),
         title: Text(
           'Details',
           style: GoogleFonts.poppins(),
@@ -39,8 +40,8 @@ class _DetailesState extends State<Detailes> {
                         blurRadius: 3,
                         spreadRadius: 2)
                   ],
-                  color: Color(Appbarcolour.hashCode)!!,
-                  borderRadius: BorderRadius.only(
+                  color: Color(Appbarcolour.hashCode),
+                  borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(5),
                       topRight: Radius.circular(5))),
               child: Padding(
@@ -56,7 +57,7 @@ class _DetailesState extends State<Detailes> {
                           : NetworkImage(backimage),
                       radius: 30,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Column(
@@ -74,7 +75,7 @@ class _DetailesState extends State<Detailes> {
                         ),
                         getdata.read('ZGB')['post'] == null ||
                                 getdata.read('ZGB')['post'] == ""
-                            ? SizedBox()
+                            ? const SizedBox()
                             : SizedBox(
                                 width: Get.width / 1.5,
                                 child: Text(
@@ -102,7 +103,7 @@ class _DetailesState extends State<Detailes> {
                   ],
                   // border:Border.all(color:Color(Appbarcolour.hashCode)!,width: 1.5),
                   color: Colors.white,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       bottomRight: Radius.circular(5),
                       bottomLeft: Radius.circular(5))),
               child: Padding(
@@ -113,15 +114,15 @@ class _DetailesState extends State<Detailes> {
                   children: [
                     getdata.read('ZGB')['LOM'] == null ||
                             getdata.read('ZGB')['LOM'] == ""
-                        ? SizedBox()
+                        ? const SizedBox()
                         : Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Icon(
                                 Icons.home_filled,
-                                color: Color(Appbarcolour.hashCode)!!,
+                                color: Color(Appbarcolour.hashCode),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               SizedBox(
@@ -136,12 +137,12 @@ class _DetailesState extends State<Detailes> {
                               ),
                             ],
                           ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     getdata.read('ZGB')['mobile'] == null ||
                             getdata.read('ZGB')['mobile'] == null
-                        ? SizedBox()
+                        ? const SizedBox()
                         : InkWell(
                             onTap: () {
                               _makingPhoneCall();
@@ -150,9 +151,9 @@ class _DetailesState extends State<Detailes> {
                       children: [
                         Icon(
                           Icons.call,
-                          color: Color(Appbarcolour.hashCode)!!,
+                          color: Color(Appbarcolour.hashCode),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         SizedBox(
@@ -167,12 +168,12 @@ class _DetailesState extends State<Detailes> {
                         ),
                       ],
                     ),
-                          ),SizedBox(
+                          ),const SizedBox(
                       height: 5,
                     ),
                     getdata.read('ZGB')['mobile'] == null ||
                             getdata.read('ZGB')['mobile'] == null
-                        ? SizedBox()
+                        ? const SizedBox()
                         : InkWell(
                             onTap: () {
                               _wahtt();
@@ -181,9 +182,9 @@ class _DetailesState extends State<Detailes> {
                       children: [
                         Icon(
                           Icons.whatsapp,
-                          color: Color(Appbarcolour.hashCode)!!,
+                          color: Color(Appbarcolour.hashCode),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         SizedBox(
@@ -199,21 +200,21 @@ class _DetailesState extends State<Detailes> {
                       ],
                     ),
                           ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     getdata.read('ZGB')['email'] == null ||
                             getdata.read('ZGB')['email'] == ""
-                        ? SizedBox()
+                        ? const SizedBox()
                         : InkWell(
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Icon(
                                   Icons.email,
-                                  color: Color(Appbarcolour.hashCode)!!,
+                                  color: Color(Appbarcolour.hashCode),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                                 SizedBox(
@@ -232,20 +233,20 @@ class _DetailesState extends State<Detailes> {
                               emaiollaunch();
                             },
                           ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     getdata.read('ZGB')['address_office'] == "" ||
                             getdata.read('ZGB')['address_office'] == null
-                        ? SizedBox()
+                        ? const SizedBox()
                         : Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Icon(
                                 Icons.location_on,
-                                color: Color(Appbarcolour.hashCode)!!,
+                                color: Color(Appbarcolour.hashCode),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               SizedBox(
@@ -294,11 +295,10 @@ class _DetailesState extends State<Detailes> {
 
     final Uri uri = number.toString().length == 10
         ? Uri.parse("whatsapp://send?phone=" + "91" + number)
-        : Uri.parse("whatsapp://send?phone=" + number);
+        : Uri.parse("whatsapp://send?phone=$number");
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
     } else {
-      print("error");
       throw "ERROR ";
     }
   }

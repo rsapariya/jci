@@ -1,12 +1,11 @@
-import 'dart:developer';
+
+// ignore_for_file: annotate_overrides
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../splaysh.dart';
 import '../../../units/Storage.dart';
-import '../../../units/colour.dart';
 import '../home.dart';
 import 'Details.dart';
 
@@ -18,7 +17,6 @@ class PastPresident extends StatefulWidget {
 }
 
 class _PastPresidentState extends State<PastPresident> {
-  @override
   List dailog = [];
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +25,7 @@ class _PastPresidentState extends State<PastPresident> {
           'Past Zone President',
           style: GoogleFonts.poppins(),
         ),
-        backgroundColor: Color(Appbarcolour.hashCode)!,
+        backgroundColor: Color(Appbarcolour.hashCode),
       ),
       body: ListView.builder(
         // controller: controller,
@@ -40,14 +38,14 @@ class _PastPresidentState extends State<PastPresident> {
               onTap: () {
                 setState(() {
                   save('ZGB', pastprlist[index]);
-                  Get.to(() => Detailes());
+                  Get.to(() => const Detailes());
                 });
               },
               child: Container(
                 // height: Get.height / 4,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    border: Border.all(width: 1, color: Color(Appbarcolour.hashCode)!),
+                    border: Border.all(width: 1, color: Color(Appbarcolour.hashCode)),
                     borderRadius: BorderRadius.circular(10)),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
@@ -64,7 +62,7 @@ class _PastPresidentState extends State<PastPresident> {
                                   )
                                 : NetworkImage(backimage),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Column(
@@ -87,13 +85,13 @@ class _PastPresidentState extends State<PastPresident> {
                                             GoogleFonts.poppins(fontSize: 16),
                                       ),
                                     )
-                                  : SizedBox(),
+                                  : const SizedBox(),
                             ],
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Icon(
                             Icons.navigate_next_outlined,
-                            color: Color(Appbarcolour.hashCode)!,
+                            color: Color(Appbarcolour.hashCode),
                           )
                         ],
                       )

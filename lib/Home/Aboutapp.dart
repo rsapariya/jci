@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jci/units/colour.dart';
 import '../../../splaysh.dart';
 
 class Aboutinfo extends StatefulWidget {
@@ -28,7 +27,7 @@ class _AboutinfoState extends State<Aboutinfo> {
               'assets/images/VIII_Logo_2023_clipdrop-enhance.jpg',
               scale: 7,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Text(
