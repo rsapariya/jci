@@ -7,10 +7,13 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../splaysh.dart';
 
+import '../../units/api.dart';
 import '../home.dart';
 import 'Lgb.dart';
 import 'Lom.dart';
 import 'Lomdetails.dart';
+
+bool Loom = true;
 
 class lomtabes extends StatefulWidget {
   const lomtabes({Key? key}) : super(key: key);
@@ -26,6 +29,8 @@ class _lomtabesState extends State<lomtabes>
   void initState() {
     _tabController = TabController(vsync: this, length: 2);
     super.initState();
+    Memberapi();
+    LomdetailApi();
   }
 
   Widget build(BuildContext context) {
@@ -59,12 +64,12 @@ class _lomtabesState extends State<lomtabes>
                     borderRadius: BorderRadius.circular(40)),
                 tabs: [
                   Text(
-                    'Members',
+                    'LGB',
                     style: GoogleFonts.poppins(
                         textStyle: TextStyle(fontWeight: FontWeight.w500)),
                   ),
                   Text(
-                    'LGB',
+                    'Members',
                     style: GoogleFonts.poppins(
                         textStyle: TextStyle(fontWeight: FontWeight.w500)),
                   ),
@@ -75,11 +80,57 @@ class _lomtabesState extends State<lomtabes>
           Expanded(
             child: TabBarView(
               controller: _tabController,
-              children: const [Lomdetails(), Lgbinfo()],
+              children: const [Lomdetails(), Members()],
             ),
           ),
         ],
       ),
     );
+  }
+
+  Memberapi() {
+    ApiWrapper.dataGet(AppUrl.Member + lomid.toString()).then((val) {
+      if ((val != null) && (val.isNotEmpty)) {
+        setState(() {});
+        Memberlist.clear();
+        val.forEach((e) {
+          Memberlist.add(e);
+          print("Loop__________>>>>>$e");
+        });
+        Loom = false;
+        // Memberlist.sort((a, b) =>
+        //     (int.parse(a['priority'])).compareTo(int.parse(b['priority'])));
+        // Loding = false;
+      } else {
+        print("----------vvvvvvvvvv---------------");
+        setState(() {});
+        Loom = false;
+        Memberlist.clear();
+        ApiWrapper.showToastMessage("Something Went Wrong!!");
+      }
+    });
+  }
+
+  LomdetailApi() {
+    ApiWrapper.dataGet(AppUrl.Lomdetail + lomid.toString()).then((val) {
+      if ((val != null) && (val.isNotEmpty)) {
+        setState(() {});
+        lomlistdetails.clear();
+        val.forEach((e) {
+          lomlistdetails.add(e);
+          print("Loop__________>>>>>$e");
+        });
+        Loom = false;
+        lomlistdetails.sort((a, b) =>
+            (int.parse(a['priority'])).compareTo(int.parse(b['priority'])));
+        // Loding = false;
+      } else {
+        print("----------vvvvvvvvvv---------------");
+        setState(() {});
+        Loom = false;
+        lomlistdetails.clear();
+        ApiWrapper.showToastMessage("Something Went Wrong!!");
+      }
+    });
   }
 }

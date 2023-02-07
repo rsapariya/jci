@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'dart:math';
 
 import 'package:carousel_slider/carousel_controller.dart';
@@ -29,10 +30,12 @@ List currentzgb = [];
 List lomactlist = [];
 List lomlist = [];
 List lomlistdetails = [];
+List Memberlist = [];
 List eventlist = [];
 List pastnational = [];
 List pastprlist = [];
 List trainers = [];
+List Mdeta = [];
 var cc;
 
 List<dynamic> area = [];
@@ -161,8 +164,9 @@ class _HomeState extends State<Home> {
                       Expanded(
                           child: containe(
                               onTap: () {
-                                Get.to(() => Zonedirectory(),
-                                    transition: Transition.leftToRight);
+                                _checkLastImageDisplayTime();
+                                // Get.to(() => Zonedirectory(),
+                                //     transition: Transition.leftToRight);
                               },
                               text: "Zone Directory",
                               image: const AssetImage(
@@ -527,11 +531,20 @@ class _HomeState extends State<Home> {
   }
 
   void _checkLastImageDisplayTime() async {
-    var prefs = await SharedPreferences.getInstance();
-    var lastImageDisplayTime = prefs.getInt('last_image_display_time');
-    var currentTime = DateTime.now().millisecondsSinceEpoch;
-    var difference = currentTime - 1;
+    print("TT_________________________________________________________TT");
 
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {});
+    final lastImageDisplayTime = prefs.getInt('last_image_display_time');
+    print("TT_________________________________________________________TT");
+
+    print(lastImageDisplayTime);
+
+    final currentTime = DateTime.now().millisecondsSinceEpoch;
+    print(currentTime);
+    final difference = currentTime - lastImageDisplayTime!;
+    print(difference);
+    print("TT_________________________________________________________TT");
     if (difference == null || difference >= Duration(days: 1).inMilliseconds) {
       prefs.setInt('last_image_display_time', currentTime);
       Timer(Duration(seconds: 10), () => _navigateToHomePage());
@@ -540,9 +553,7 @@ class _HomeState extends State<Home> {
   }
 
   void _navigateToHomePage() {
-    Navigator.of(context).pushReplacement(MaterialPageRoute(
-      builder: (BuildContext context) => Homepage(),
-    ));
+    Get.to(() => Homepage());
   }
 }
 
@@ -584,7 +595,8 @@ class _HomepageState extends State<Homepage> {
                     ),
                     onPressed: () {
                       setState(() {});
-                      Get.back();
+                      Navigator.of(context).pop();
+                      // Get.off(()=>Home());
                     },
                   )),
           ],

@@ -140,7 +140,8 @@ class _ZonedirectoryState extends State<Zonedirectory> {
                             pdfee = false;
                             progress = null;
                           });
-                          ApiWrapper.showToastMessage("✅ Download Complete.");
+                          ApiWrapper.showToastMessage(
+                              "File Stored in Downloads.");
                           print("path : $value");
                         });
                   }),

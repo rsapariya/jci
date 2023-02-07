@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jci/Home/Zonedirectory/Lom.dart';
+import 'package:jci/Home/Zonedirectory/lomtabs.dart';
 import 'package:jci/Home/home.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../splaysh.dart';
@@ -19,15 +20,15 @@ class Lomdetails extends StatefulWidget {
 
 class _LomdetailsState extends State<Lomdetails> {
   @override
-  bool Loding = true;
+  // bool Loding = true;
   void initState() {
-    LomdetailApi();
+    // LomdetailApi();
     super.initState();
   }
 
   Widget build(BuildContext context) {
     return Scaffold(
-      body: !Loding
+      body: !Loom
           ? ListView.builder(
               // controller: controller,
               itemCount: lomlistdetails.length,
@@ -339,11 +340,11 @@ class _LomdetailsState extends State<Lomdetails> {
         });
         lomlistdetails.sort((a, b) =>
             (int.parse(a['priority'])).compareTo(int.parse(b['priority'])));
-        Loding = false;
+        // Loding = false;
       } else {
         print("----------vvvvvvvvvv---------------");
         setState(() {});
-        Loding = false;
+        // Loding = false;
         lomlistdetails.clear();
         ApiWrapper.showToastMessage("Something Went Wrong!!");
       }

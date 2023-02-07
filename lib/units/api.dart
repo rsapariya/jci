@@ -91,10 +91,12 @@ class AppUrl {
   static const String Trainers = baseurl + 'trainers/8';
   static const String Lom = baseurl + 'lom/8';
   static const String Lomdetail = baseurl + 'lgb/';
+  static const String Member = baseurl + 'members/';
   static const String Events = baseurl + 'events/8';
   static const String Lomactivity = baseurl + 'lom_activity';
   static const String Headquaters = baseurl + 'headquarter';
   static const String Youtube = baseurl + 'videos';
   static const String slider = baseurl + 'slider';
   static const String Ads = baseurl + 'ads';
+  static const String Memberdeta = baseurl + 'membersdetails/';
 }
