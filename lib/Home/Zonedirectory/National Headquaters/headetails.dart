@@ -251,8 +251,7 @@ class _HeadDetailesState extends State<HeadDetailes> {
                                 SizedBox(
                                   width: Get.width / 1.5,
                                   child: Text(
-                                    "Whatsapp Contact",
-                                    // getdata.read('ZGB')['phone'] ?? "",
+                                    getdata.read('ZGB')['phone'] ?? "",
                                     style: GoogleFonts.poppins(
                                         color: Colors.black,
                                         fontSize: 14,

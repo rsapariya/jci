@@ -263,8 +263,7 @@ class _currentDetailsState extends State<currentDetails> {
                                 SizedBox(
                                   width: Get.width / 1.5,
                                   child: Text(
-                                    "Whatsapp Contact",
-                                    // getdata.read('ZGB')['mobile'] ?? "",
+                                    getdata.read('ZGB')['mobile'] ?? "",
                                     style: GoogleFonts.poppins(
                                         color: Colors.black,
                                         fontSize: 14,

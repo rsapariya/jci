@@ -146,29 +146,31 @@ class _DetailesState extends State<Detailes> {
                         : InkWell(
                             onTap: () {
                               _makingPhoneCall();
-                            },child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.call,
-                          color: Color(Appbarcolour.hashCode),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        SizedBox(
-                          width: Get.width / 1.5,
-                          child: Text(
-                            getdata.read('ZGB')['mobile'] ?? "",
-                            style: GoogleFonts.poppins(
-                                color: Colors.black,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500),
+                            },
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Icon(
+                                  Icons.call,
+                                  color: Color(Appbarcolour.hashCode),
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                SizedBox(
+                                  width: Get.width / 1.5,
+                                  child: Text(
+                                    getdata.read('ZGB')['mobile'] ?? "",
+                                    style: GoogleFonts.poppins(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                          ),const SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     getdata.read('ZGB')['mobile'] == null ||
@@ -177,28 +179,29 @@ class _DetailesState extends State<Detailes> {
                         : InkWell(
                             onTap: () {
                               _wahtt();
-                            },child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.whatsapp,
-                          color: Color(Appbarcolour.hashCode),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        SizedBox(
-                          width: Get.width / 1.5,
-                          child: Text("Whatsapp Contact",
-                            // getdata.read('ZGB')['mobile'] ?? "",
-                            style: GoogleFonts.poppins(
-                                color: Colors.black,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ),
-                      ],
-                    ),
+                            },
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Icon(
+                                  Icons.whatsapp,
+                                  color: Color(Appbarcolour.hashCode),
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                SizedBox(
+                                  width: Get.width / 1.5,
+                                  child: Text(
+                                    getdata.read('ZGB')['mobile'] ?? "",
+                                    style: GoogleFonts.poppins(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                     const SizedBox(
                       height: 5,

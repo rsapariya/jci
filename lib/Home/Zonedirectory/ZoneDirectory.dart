@@ -1,6 +1,3 @@
-import 'package:flutter_file_downloader/flutter_file_downloader.dart';
-import 'package:jci/units/api.dart';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -9,6 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:jci/Home/Zonedirectory/Lom.dart';
 import 'package:jci/Home/Zonedirectory/Past%20Zone%20President.dart';
 import 'package:jci/Home/Zonedirectory/PastnationalPresident.dart';
+import 'package:open_filex/open_filex.dart';
+import 'package:path_provider/path_provider.dart';
 
 import '../../../splaysh.dart';
 import 'Current ZGB/currentzgb.dart';
@@ -26,7 +25,7 @@ class _ZonedirectoryState extends State<Zonedirectory> {
   var dio = Dio();
   double? progress;
   bool pdfee = false;
-
+  // static Dio dio = Dio();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -126,21 +125,10 @@ class _ZonedirectoryState extends State<Zonedirectory> {
                     setState(() {
                       pdfee = true;
                     });
-                    FileDownloader.downloadFile(
-                        url: pdfurl.toString().trim(),
-                        onProgress: (name, progress) {
-                          setState(() {
-                            progress = progress;
-                          });
-                        },
-                        onDownloadCompleted: (value) {
-                          setState(() {
-                            pdfee = false;
-                            progress = null;
-                          });
-                          ApiWrapper.showToastMessage(
-                              "File Stored in Downloads.");
-                        });
+                    downloadAndOpenFile(pdfurl!, "ZoneDirectory.pdf")
+                        .then((value) {
+                    }).catchError((error) {
+                    });
                   }),
             ],
           ),
@@ -201,5 +189,20 @@ class _ZonedirectoryState extends State<Zonedirectory> {
         ),
       ),
     );
+  }
+
+  Future<void> downloadAndOpenFile(String url, String fileName) async {
+    Dio dio = Dio();
+    var directory = await getTemporaryDirectory();
+    var filePath = '${directory.path}/$fileName';
+
+    try {
+      await dio.download(url, filePath);
+      OpenFilex.open(filePath);
+      setState(() {
+        pdfee = false;
+      });
+    } catch (e) {
+    }
   }
 }

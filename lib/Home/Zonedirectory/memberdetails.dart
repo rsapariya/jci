@@ -3,13 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jci/Home/Zonedirectory/Lom.dart';
-import 'package:jci/Home/Zonedirectory/lomtabs.dart';
 import 'package:jci/Home/home.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../splaysh.dart';
 import '../../units/Storage.dart';
-import '../../units/api.dart';
 
 bool Loomd = true;
 
@@ -23,7 +20,7 @@ class memberdetai extends StatefulWidget {
 class _memberdetaiState extends State<memberdetai> {
   @override
   void initState() {
-    Memdetaapi();
+    Mdeta.clear();
     super.initState();
   }
 
@@ -33,11 +30,6 @@ class _memberdetaiState extends State<memberdetai> {
         backgroundColor: Appbarcolour,
         title: const Text("Details"),
         centerTitle: true,
-        leading: IconButton(
-            onPressed: () {
-              Get.off(() => const lomtabes());
-            },
-            icon: const Icon(Icons.arrow_back)),
       ),
       body: !Loomd
           ? Padding(
@@ -71,12 +63,15 @@ class _memberdetaiState extends State<memberdetai> {
                               ),
                               CircleAvatar(
                                 backgroundColor: Colors.transparent,
-                                backgroundImage: Mdeta[0]['profile_image'] ==
+                                backgroundImage: getdata.read(
+                                                'Mdeta')['profile_image'] ==
                                             null ||
-                                        Mdeta[0]['profile_image'] == ""
+                                        getdata.read(
+                                                'Mdeta')['profile_image'] ==
+                                            ""
                                     ? NetworkImage(backimage)
                                     : NetworkImage(
-                                        "https://jciindiazone8.in/portal/${Mdeta[0]['profile_image']}"),
+                                        "https://jciindiazone8.in/portal/${getdata.read('Mdeta')['profile_image']}"),
                                 radius: 30,
                               ),
                             ],
@@ -89,7 +84,7 @@ class _memberdetaiState extends State<memberdetai> {
                               SizedBox(
                                 width: Get.width / 1.5,
                                 child: Text(
-                                  Mdeta[0]['name'] ?? "",
+                                  getdata.read('Mdeta')['name'] ?? "",
                                   overflow: TextOverflow.clip,
                                   style: GoogleFonts.poppins(
                                       color: Colors.white,
@@ -97,13 +92,18 @@ class _memberdetaiState extends State<memberdetai> {
                                       fontWeight: FontWeight.w500),
                                 ),
                               ),
-                              Mdeta[0]['business_category'] == null ||
-                                      Mdeta[0]['business_category'] == ""
+                              getdata.read('Mdeta')['business_category'] ==
+                                          null ||
+                                      getdata.read(
+                                              'Mdeta')['business_category'] ==
+                                          ""
                                   ? const SizedBox()
                                   : SizedBox(
                                       width: Get.width / 1.5,
                                       child: Text(
-                                        Mdeta[0]['business_category'] ?? "",
+                                        getdata.read(
+                                                'Mdeta')['business_category'] ??
+                                            "",
                                         overflow: TextOverflow.ellipsis,
                                         // maxLines: 2,
                                         style: GoogleFonts.poppins(
@@ -136,8 +136,8 @@ class _memberdetaiState extends State<memberdetai> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Mdeta[0]['occupation'] == null ||
-                                  Mdeta[0]['occupation'] == ""
+                          getdata.read('Mdeta')['occupation'] == null ||
+                                  getdata.read('Mdeta')['occupation'] == ""
                               ? const SizedBox()
                               : Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -152,7 +152,8 @@ class _memberdetaiState extends State<memberdetai> {
                                     SizedBox(
                                       width: Get.width / 1.3,
                                       child: Text(
-                                        Mdeta[0]['occupation'] ?? "",
+                                        getdata.read('Mdeta')['occupation'] ??
+                                            "",
                                         style: GoogleFonts.poppins(
                                             color: Colors.black,
                                             fontSize: 14,
@@ -161,18 +162,20 @@ class _memberdetaiState extends State<memberdetai> {
                                     ),
                                   ],
                                 ),
-                          Mdeta[0]['is_private'] == "1"
+                          getdata.read('Mdeta')['is_private'] == "1"
                               ? const SizedBox()
-                              : Mdeta[0]['contact_no'] == null ||
-                                      Mdeta[0]['contact_no'] == null
+                              : getdata.read('Mdeta')['contact_no'] == null ||
+                                      getdata.read('Mdeta')['contact_no'] ==
+                                          null
                                   ? const SizedBox()
                                   : const SizedBox(
                                       height: 10,
                                     ),
-                          Mdeta[0]['is_private'] == "1"
+                          getdata.read('Mdeta')['is_private'] == "1"
                               ? const SizedBox()
-                              : Mdeta[0]['contact_no'] == null ||
-                                      Mdeta[0]['contact_no'] == null
+                              : getdata.read('Mdeta')['contact_no'] == null ||
+                                      getdata.read('Mdeta')['contact_no'] ==
+                                          null
                                   ? const SizedBox()
                                   : InkWell(
                                       child: Row(
@@ -189,7 +192,9 @@ class _memberdetaiState extends State<memberdetai> {
                                           SizedBox(
                                             width: Get.width / 1.3,
                                             child: Text(
-                                              Mdeta[0]['contact_no'] ?? "",
+                                              getdata.read(
+                                                      'Mdeta')['contact_no'] ??
+                                                  "",
                                               style: GoogleFonts.poppins(
                                                   color: Colors.black,
                                                   fontSize: 14,
@@ -200,17 +205,22 @@ class _memberdetaiState extends State<memberdetai> {
                                       ),
                                       onTap: () {
                                         setState(() {
-                                          save("call", Mdeta[0]['contact_no']);
+                                          save(
+                                              "call",
+                                              getdata
+                                                  .read('Mdeta')['contact_no']);
                                           _makingPhoneCall();
                                         });
                                       },
                                     ),
-                          Mdeta[0]['email'] == null || Mdeta[0]['email'] == ""
+                          getdata.read('Mdeta')['email'] == null ||
+                                  getdata.read('Mdeta')['email'] == ""
                               ? const SizedBox()
                               : const SizedBox(
                                   height: 10,
                                 ),
-                          Mdeta[0]['email'] == null || Mdeta[0]['email'] == ""
+                          getdata.read('Mdeta')['email'] == null ||
+                                  getdata.read('Mdeta')['email'] == ""
                               ? const SizedBox()
                               : InkWell(
                                   child: Row(
@@ -227,7 +237,7 @@ class _memberdetaiState extends State<memberdetai> {
                                       SizedBox(
                                         width: Get.width / 1.5,
                                         child: Text(
-                                          Mdeta[0]['email'] ?? "",
+                                          getdata.read('Mdeta')['email'] ?? "",
                                           style: GoogleFonts.poppins(
                                               color: Colors.black,
                                               fontSize: 14,
@@ -238,19 +248,20 @@ class _memberdetaiState extends State<memberdetai> {
                                   ),
                                   onTap: () {
                                     setState(() {
-                                      save('LOM', Mdeta[0]['email']);
+                                      save('LOM',
+                                          getdata.read('Mdeta')['email']);
                                     });
                                     emaiollaunch();
                                   },
                                 ),
-                          Mdeta[0]['office_email'] == null ||
-                                  Mdeta[0]['office_email'] == ""
+                          getdata.read('Mdeta')['office_email'] == null ||
+                                  getdata.read('Mdeta')['office_email'] == ""
                               ? const SizedBox()
                               : const SizedBox(
                                   height: 10,
                                 ),
-                          Mdeta[0]['office_email'] == null ||
-                                  Mdeta[0]['office_email'] == ""
+                          getdata.read('Mdeta')['office_email'] == null ||
+                                  getdata.read('Mdeta')['office_email'] == ""
                               ? const SizedBox()
                               : InkWell(
                                   child: Row(
@@ -267,7 +278,9 @@ class _memberdetaiState extends State<memberdetai> {
                                       SizedBox(
                                         width: Get.width / 1.5,
                                         child: Text(
-                                          Mdeta[0]['office_email'] ?? "",
+                                          getdata.read(
+                                                  'Mdeta')['office_email'] ??
+                                              "",
                                           style: GoogleFonts.poppins(
                                               color: Colors.black,
                                               fontSize: 14,
@@ -278,23 +291,28 @@ class _memberdetaiState extends State<memberdetai> {
                                   ),
                                   onTap: () {
                                     setState(() {
-                                      save('LOM', Mdeta[0]['office_email']);
+                                      save(
+                                          'LOM',
+                                          getdata
+                                              .read('Mdeta')['office_email']);
                                     });
                                     emaiollaunch();
                                   },
                                 ),
-                          Mdeta[0]['is_private'] == "1"
+                          getdata.read('Mdeta')['is_private'] == "1"
                               ? const SizedBox()
-                              : Mdeta[0]['home_address'] == "" ||
-                                      Mdeta[0]['home_address'] == null
+                              : getdata.read('Mdeta')['home_address'] == "" ||
+                                      getdata.read('Mdeta')['home_address'] ==
+                                          null
                                   ? const SizedBox()
                                   : const SizedBox(
                                       height: 10,
                                     ),
-                          Mdeta[0]['is_private'] == "1"
+                          getdata.read('Mdeta')['is_private'] == "1"
                               ? const SizedBox()
-                              : Mdeta[0]['home_address'] == "" ||
-                                      Mdeta[0]['home_address'] == null
+                              : getdata.read('Mdeta')['home_address'] == "" ||
+                                      getdata.read('Mdeta')['home_address'] ==
+                                          null
                                   ? const SizedBox()
                                   : Row(
                                       crossAxisAlignment:
@@ -310,7 +328,8 @@ class _memberdetaiState extends State<memberdetai> {
                                         SizedBox(
                                           width: Get.width / 1.3,
                                           child: Text(
-                                            Mdeta[0]['home_address'],
+                                            getdata
+                                                .read('Mdeta')['home_address'],
                                             style: GoogleFonts.poppins(
                                                 color: Colors.black,
                                                 fontSize: 14,
@@ -319,14 +338,16 @@ class _memberdetaiState extends State<memberdetai> {
                                         ),
                                       ],
                                     ),
-                          Mdeta[0]['office_address'] == "" ||
-                                  Mdeta[0]['office_address'] == null
+                          getdata.read('Mdeta')['office_address'] == "" ||
+                                  getdata.read('Mdeta')['office_address'] ==
+                                      null
                               ? const SizedBox()
                               : const SizedBox(
                                   height: 10,
                                 ),
-                          Mdeta[0]['office_address'] == "" ||
-                                  Mdeta[0]['office_address'] == null
+                          getdata.read('Mdeta')['office_address'] == "" ||
+                                  getdata.read('Mdeta')['office_address'] ==
+                                      null
                               ? const SizedBox()
                               : Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -341,7 +362,7 @@ class _memberdetaiState extends State<memberdetai> {
                                     SizedBox(
                                       width: Get.width / 1.3,
                                       child: Text(
-                                        Mdeta[0]['office_address'],
+                                        getdata.read('Mdeta')['office_address'],
                                         style: GoogleFonts.poppins(
                                             color: Colors.black,
                                             fontSize: 14,
@@ -350,18 +371,20 @@ class _memberdetaiState extends State<memberdetai> {
                                     ),
                                   ],
                                 ),
-                          Mdeta[0]['is_private'] == "1"
+                          getdata.read('Mdeta')['is_private'] == "1"
                               ? const SizedBox()
-                              : Mdeta[0]['contact_no'] == "" ||
-                                      Mdeta[0]['contact_no'] == null
+                              : getdata.read('Mdeta')['contact_no'] == "" ||
+                                      getdata.read('Mdeta')['contact_no'] ==
+                                          null
                                   ? const SizedBox()
                                   : const SizedBox(
                                       height: 10,
                                     ),
-                          Mdeta[0]['is_private'] == "1"
+                          getdata.read('Mdeta')['is_private'] == "1"
                               ? const SizedBox()
-                              : Mdeta[0]['contact_no'] == "" ||
-                                      Mdeta[0]['contact_no'] == null
+                              : getdata.read('Mdeta')['contact_no'] == "" ||
+                                      getdata.read('Mdeta')['contact_no'] ==
+                                          null
                                   ? const SizedBox()
                                   : InkWell(
                                       child: Row(
@@ -378,9 +401,8 @@ class _memberdetaiState extends State<memberdetai> {
                                           SizedBox(
                                             width: Get.width / 1.5,
                                             child: Text(
-                                              "Whatsapp Contact",
-                                              // lomlistdetails[index]['contact_no'] ??
-                                              //     "",
+                                              getdata
+                                                  .read('Mdeta')['contact_no'],
                                               style: GoogleFonts.poppins(
                                                   color: Colors.black,
                                                   fontSize: 14,
@@ -391,19 +413,22 @@ class _memberdetaiState extends State<memberdetai> {
                                       ),
                                       onTap: () {
                                         setState(() {
-                                          save("call", Mdeta[0]['contact_no']);
+                                          save(
+                                              "call",
+                                              getdata
+                                                  .read('Mdeta')['contact_no']);
                                           _wahtt();
                                         });
                                       },
                                     ),
-                          Mdeta[0]['business_name'] == "" ||
-                                  Mdeta[0]['business_name'] == null
+                          getdata.read('Mdeta')['business_name'] == "" ||
+                                  getdata.read('Mdeta')['business_name'] == null
                               ? const SizedBox()
                               : const SizedBox(
                                   height: 10,
                                 ),
-                          Mdeta[0]['business_name'] == "" ||
-                                  Mdeta[0]['business_name'] == null
+                          getdata.read('Mdeta')['business_name'] == "" ||
+                                  getdata.read('Mdeta')['business_name'] == null
                               ? const SizedBox()
                               : InkWell(
                                   child: Row(
@@ -420,7 +445,9 @@ class _memberdetaiState extends State<memberdetai> {
                                       SizedBox(
                                         width: Get.width / 1.5,
                                         child: Text(
-                                          Mdeta[0]['business_name'] ?? "",
+                                          getdata.read(
+                                                  'Mdeta')['business_name'] ??
+                                              "",
                                           // lomlistdetails[index]['contact_no'] ??
                                           //     "",
                                           style: GoogleFonts.poppins(
@@ -432,32 +459,48 @@ class _memberdetaiState extends State<memberdetai> {
                                     ],
                                   ),
                                 ),
-                          Mdeta[0]['is_private'] == "1"
+                          getdata.read('Mdeta')['is_private'] == "1"
                               ? const SizedBox()
-                              : Mdeta[0]['birthdate'] == "" &&
-                                      Mdeta[0]['birthdate'] == null &&
-                                      Mdeta[0]['anniversary'] == "" &&
-                                      Mdeta[0]['anniversary'] == null &&
-                                      Mdeta[0]['joining_year'] == "" &&
-                                      Mdeta[0]['joining_year'] == null
+                              : getdata.read('Mdeta')['birthdate'] == "" &&
+                                      getdata.read('Mdeta')['birthdate'] ==
+                                          null &&
+                                      getdata.read('Mdeta')['anniversary'] ==
+                                          "" &&
+                                      getdata.read('Mdeta')['anniversary'] ==
+                                          null &&
+                                      getdata.read('Mdeta')['joining_year'] ==
+                                          "" &&
+                                      getdata.read('Mdeta')['joining_year'] ==
+                                          null
                                   ? const SizedBox()
                                   : const SizedBox(
                                       height: 10,
                                     ),
-                          Mdeta[0]['is_private'] == "1"
+                          getdata.read('Mdeta')['is_private'] == "1"
                               ? const SizedBox()
-                              : Mdeta[0]['birthdate'] == "" &&
-                                      Mdeta[0]['birthdate'] == null &&
-                                      Mdeta[0]['anniversary'] == "" &&
-                                      Mdeta[0]['anniversary'] == null &&
-                                      Mdeta[0]['joining_year'] == "" &&
-                                      Mdeta[0]['joining_year'] == null
+                              : getdata.read('Mdeta')['birthdate'] == "" &&
+                                      getdata.read('Mdeta')['birthdate'] ==
+                                          null &&
+                                      getdata.read('Mdeta')['anniversary'] ==
+                                          "" &&
+                                      getdata.read('Mdeta')['anniversary'] ==
+                                          null &&
+                                      getdata.read('Mdeta')['joining_year'] ==
+                                          "" &&
+                                      getdata.read('Mdeta')['joining_year'] ==
+                                          null
                                   ? const SizedBox()
                                   : Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       children: [
-                                        Mdeta[0]['birthdate'] == "" ||
-                                                Mdeta[0]['birthdate'] == null ||
-                                                Mdeta[0]['birthdate'] ==
+                                        getdata.read('Mdeta')['birthdate'] ==
+                                                    "" ||
+                                                getdata.read(
+                                                        'Mdeta')['birthdate'] ==
+                                                    null ||
+                                                getdata.read(
+                                                        'Mdeta')['birthdate'] ==
                                                     "0000-00-00"
                                             ? const SizedBox()
                                             : Column(
@@ -480,7 +523,8 @@ class _memberdetaiState extends State<memberdetai> {
                                                   SizedBox(
                                                     width: Get.width / 3.8,
                                                     child: Text(
-                                                      Mdeta[0]['birthdate'] ??
+                                                      getdata.read('Mdeta')[
+                                                              'birthdate'] ??
                                                           "",
                                                       // lomlistdetails[index]['contact_no'] ??
                                                       //     "",
@@ -496,11 +540,14 @@ class _memberdetaiState extends State<memberdetai> {
                                                   )
                                                 ],
                                               ),
-                                        const Spacer(),
-                                        Mdeta[0]['anniversary'] == "" ||
-                                                Mdeta[0]['anniversary'] ==
+                                        getdata.read('Mdeta')['anniversary'] ==
+                                                    "" ||
+                                                getdata.read('Mdeta')[
+                                                        'anniversary'] ==
                                                     "0000-00-00" ||
-                                                Mdeta[0]['anniversary'] == null
+                                                getdata.read('Mdeta')[
+                                                        'anniversary'] ==
+                                                    null
                                             ? const SizedBox()
                                             : Column(
                                                 children: [
@@ -520,7 +567,8 @@ class _memberdetaiState extends State<memberdetai> {
                                                   SizedBox(
                                                     width: Get.width / 3.8,
                                                     child: Text(
-                                                      Mdeta[0]['anniversary'] ??
+                                                      getdata.read('Mdeta')[
+                                                              'anniversary'] ??
                                                           "",
                                                       style:
                                                           GoogleFonts.poppins(
@@ -534,9 +582,11 @@ class _memberdetaiState extends State<memberdetai> {
                                                   )
                                                 ],
                                               ),
-                                        const Spacer(),
-                                        Mdeta[0]['joining_year'] == "" ||
-                                                Mdeta[0]['joining_year'] == null
+                                        getdata.read('Mdeta')['joining_year'] ==
+                                                    "" ||
+                                                getdata.read('Mdeta')[
+                                                        'joining_year'] ==
+                                                    null
                                             ? const SizedBox()
                                             : Column(
                                                 children: [
@@ -556,7 +606,7 @@ class _memberdetaiState extends State<memberdetai> {
                                                   SizedBox(
                                                     width: Get.width / 3.8,
                                                     child: Text(
-                                                      Mdeta[0][
+                                                      getdata.read('Mdeta')[
                                                               'joining_year'] ??
                                                           "",
                                                       style:
@@ -589,27 +639,6 @@ class _memberdetaiState extends State<memberdetai> {
               ),
             ),
     );
-  }
-
-  Memdetaapi() {
-    ApiWrapper.dataGet(AppUrl.Memberdeta + memid.toString()).then((val) {
-      setState(() {
-        Loomd = true;
-      });
-      if ((val != null) && (val.isNotEmpty)) {
-        setState(() {});
-        Mdeta.clear();
-        val.forEach((e) {
-          Mdeta.add(e);
-        });
-        Loomd = false;
-        setState(() {});
-      } else {
-        setState(() {});
-        Loomd = false;
-        ApiWrapper.showToastMessage("Something Went Wrong!!");
-      }
-    });
   }
 
   _makingPhoneCall() async {

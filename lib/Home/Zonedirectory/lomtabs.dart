@@ -1,4 +1,3 @@
-
 // ignore_for_file: annotate_overrides, camel_case_types, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
@@ -13,7 +12,7 @@ import 'Lgb.dart';
 import 'Lom.dart';
 import 'Lomdetails.dart';
 
-bool Loom = true;
+bool? Loom;
 
 class lomtabes extends StatefulWidget {
   const lomtabes({Key? key}) : super(key: key);
@@ -26,9 +25,10 @@ class _lomtabesState extends State<lomtabes>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   void initState() {
+    Loom = true;
     _tabController = TabController(vsync: this, length: 2);
     super.initState();
-    Memberapi();
+
     LomdetailApi();
   }
 
@@ -65,12 +65,14 @@ class _lomtabesState extends State<lomtabes>
                   Text(
                     'LGB',
                     style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(fontWeight: FontWeight.w500)),
+                        textStyle:
+                            const TextStyle(fontWeight: FontWeight.w500)),
                   ),
                   Text(
                     'Members',
                     style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(fontWeight: FontWeight.w500)),
+                        textStyle:
+                            const TextStyle(fontWeight: FontWeight.w500)),
                   ),
                 ],
               ),
@@ -92,13 +94,13 @@ class _lomtabesState extends State<lomtabes>
       if ((val != null) && (val.isNotEmpty)) {
         setState(() {});
         Memberlist.clear();
+        Loom = true;
+        setState(() {});
         val.forEach((e) {
           Memberlist.add(e);
         });
+        setState(() {});
         Loom = false;
-        // Memberlist.sort((a, b) =>
-        //     (int.parse(a['priority'])).compareTo(int.parse(b['priority'])));
-        // Loding = false;
       } else {
         setState(() {});
         Loom = false;
@@ -113,10 +115,14 @@ class _lomtabesState extends State<lomtabes>
       if ((val != null) && (val.isNotEmpty)) {
         setState(() {});
         lomlistdetails.clear();
+        Loom = true;
+        lomlistdetails.clear();
         val.forEach((e) {
           lomlistdetails.add(e);
         });
+        setState(() {});
         Loom = false;
+        Memberapi();
         lomlistdetails.sort((a, b) =>
             (int.parse(a['priority'])).compareTo(int.parse(b['priority'])));
         // Loding = false;

@@ -44,7 +44,8 @@ class _PastnationalPresidentState extends State<PastnationalPresident> {
                 // height: Get.height / 4,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    border: Border.all(width: 1, color: Color(Appbarcolour.hashCode)),
+                    border: Border.all(
+                        width: 1, color: Color(Appbarcolour.hashCode)),
                     borderRadius: BorderRadius.circular(10)),
                 child: Padding(
                   padding: EdgeInsets.symmetric(

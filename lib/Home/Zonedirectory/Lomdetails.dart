@@ -1,35 +1,30 @@
-// ignore_for_file: deprecated_member_use, non_constant_identifier_names, prefer_adjacent_string_concatenation
+// ignore_for_file: deprecated_member_use, non_constant_identifier_names, prefer_adjacent_string_concatenation, file_names
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jci/Home/Zonedirectory/Lom.dart';
 import 'package:jci/Home/Zonedirectory/lomtabs.dart';
 import 'package:jci/Home/home.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../splaysh.dart';
 import '../../units/Storage.dart';
-import '../../units/api.dart';
 
 class Lomdetails extends StatefulWidget {
   const Lomdetails({Key? key}) : super(key: key);
-
   @override
   State<Lomdetails> createState() => _LomdetailsState();
 }
 
 class _LomdetailsState extends State<Lomdetails> {
   @override
-  // bool Loding = true;
   void initState() {
-    // LomdetailApi();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: !Loom
+      body: Loom == false
           ? ListView.builder(
               // controller: controller,
               itemCount: lomlistdetails.length,
@@ -301,9 +296,10 @@ class _LomdetailsState extends State<Lomdetails> {
                                           SizedBox(
                                             width: Get.width / 1.5,
                                             child: Text(
-                                              "Whatsapp Contact",
-                                              // lomlistdetails[index]['contact_no'] ??
-                                              //     "",
+                                              // "Whatsapp Contact",
+                                              lomlistdetails[index]
+                                                      ['contact_no'] ??
+                                                  "",
                                               style: GoogleFonts.poppins(
                                                   color: Colors.black,
                                                   fontSize: 14,
@@ -340,26 +336,6 @@ class _LomdetailsState extends State<Lomdetails> {
               ),
             ),
     );
-  }
-
-  LomdetailApi() {
-    ApiWrapper.dataGet(AppUrl.Lomdetail + lomid.toString()).then((val) {
-      if ((val != null) && (val.isNotEmpty)) {
-        setState(() {});
-        lomlistdetails.clear();
-        val.forEach((e) {
-          lomlistdetails.add(e);
-        });
-        lomlistdetails.sort((a, b) =>
-            (int.parse(a['priority'])).compareTo(int.parse(b['priority'])));
-        // Loding = false;
-      } else {
-        setState(() {});
-        // Loding = false;
-        lomlistdetails.clear();
-        ApiWrapper.showToastMessage("Something Went Wrong!!");
-      }
-    });
   }
 
   _makingPhoneCall() async {

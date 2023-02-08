@@ -190,8 +190,7 @@ class _TrainersDetailsState extends State<TrainersDetails> {
                                 SizedBox(
                                   width: Get.width / 1.5,
                                   child: Text(
-                                    "Whatsapp Contact",
-                                    // getdata.read('TR')['phone'] ?? "",
+                                    getdata.read('TR')['phone'] ?? "",
                                     style: GoogleFonts.poppins(
                                         color: Colors.black,
                                         fontSize: 14,

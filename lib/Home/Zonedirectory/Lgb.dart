@@ -5,8 +5,8 @@ import 'package:jci/Home/Zonedirectory/lomtabs.dart';
 import 'package:jci/Home/Zonedirectory/memberdetails.dart';
 
 import '../../splaysh.dart';
+import '../../units/Storage.dart';
 import '../home.dart';
-import 'Lom.dart';
 
 class Members extends StatefulWidget {
   const Members({Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class _MembersState extends State<Members> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: !Loom
+      body: Loom == false
           ? ListView.builder(
               itemCount: Memberlist.length,
               itemBuilder: (_, index) {
@@ -34,9 +34,8 @@ class _MembersState extends State<Members> {
                   child: InkWell(
                     onTap: () {
                       setState(() {
-                        memid = Memberlist[index]['id'];
-                        // save('MEM', Memberlist[index]['id']);
-                        Get.off(
+                        save('Mdeta', Memberlist[index]);
+                        Get.to(
                           () => const memberdetai(),
                           transition: Transition.rightToLeft,
                         );

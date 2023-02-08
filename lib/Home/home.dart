@@ -4,14 +4,17 @@ import 'dart:async';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:admob_flutter/admob_flutter.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jci/Home/Aboutapp.dart';
 import 'package:jci/Home/Events/Events.dart';
 import 'package:jci/Home/Lom%20Axctivitey/LOMDetailes.dart';
+import 'package:jci/main.dart';
 import 'package:jci/splaysh.dart';
 import 'package:jci/units/Storage.dart';
 import 'package:launch_review/launch_review.dart';
@@ -19,8 +22,6 @@ import 'package:share/share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import '../units/api.dart';
-import 'Zonedirectory/ZoneDirectory.dart';
-
 
 List currentzgb = [];
 List lomactlist = [];
@@ -39,7 +40,8 @@ List<dynamic> membership = [];
 List<dynamic> finance = [];
 List<dynamic> po = [];
 List<dynamic> substaff = [];
-
+// ignore: unused_element
+bool _isImageVisible = false;
 String backimage =
     "https://t4.ftcdn.net/jpg/01/06/92/47/360_F_106924759_7qPPu6bZNN2O4al1ExdEWBdHUcpKMwuJ.jpg";
 
@@ -55,10 +57,50 @@ class _HomeState extends State<Home> {
   late YoutubePlayerController _controller;
   final CarouselController carouselController = CarouselController();
   int currentindex = 0;
+
   @override
   void initState() {
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      RemoteNotification? notification = message.notification;
+      AndroidNotification? android = message.notification?.android;
+
+      if (notification != null && android != null) {
+        flutterLocalNotificationsPlugin.show(
+            notification.hashCode,
+            notification.title,
+            notification.body,
+            NotificationDetails(
+                android: AndroidNotificationDetails(channel.id, channel.name,
+                    color: Color(Appbarcolour.hashCode),
+                    playSound: true,
+                    icon: "@mipmap/ic_launcher")));
+      }
+    });
+
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      print("A _________NOTITITITIIITITITI");
+      RemoteNotification? notification = message.notification;
+      AndroidNotification? android = message.notification?.android;
+      if (notification != null && android != null) {
+        showDialog(
+            context: context,
+            builder: (_) {
+              return AlertDialog(
+                title: Text(notification.title!),
+                content: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [Text(notification.body!)],
+                  ),
+                ),
+              );
+            });
+      }
+    });
+
     Adsapi();
-    Timer(const Duration(seconds: 20), () => _checkLastImageDisplayTime());
+    _showImage();
+    // Timer(const Duration(seconds: 20), () => _checkLastImageDisplayTime());
 
     Admob.requestTrackingAuthorization();
     NationalTrainerAPI();
@@ -95,7 +137,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          elevation:0,
+          elevation: 0,
           // backgroundColor:Color(int.parse(bgColor.replaceAll('#', '0xff'))),
           backgroundColor: Color(Appbarcolour.hashCode),
           actions: [
@@ -120,7 +162,8 @@ class _HomeState extends State<Home> {
               ],
               onSelected: (String menu) {
                 if (menu == "App info") {
-                  Get.to(() => const Aboutinfo(), transition: Transition.leftToRight);
+                  Get.to(() => const Aboutinfo(),
+                      transition: Transition.leftToRight);
                 } else if (menu == "Share") {
                   Share.share(
                       'https://play.google.com/store/apps/details?id=com.jciindia.directory');
@@ -159,8 +202,9 @@ class _HomeState extends State<Home> {
                       Expanded(
                           child: containe(
                               onTap: () {
-                                Get.to(() =>const Zonedirectory(),
-                                    transition: Transition.leftToRight);
+                                shownotification();
+                                // Get.to(() => const Zonedirectory(),
+                                //     transition: Transition.leftToRight);
                               },
                               text: "Zone Directory",
                               image: const AssetImage(
@@ -526,30 +570,45 @@ class _HomeState extends State<Home> {
     });
   }
 
-  void _checkLastImageDisplayTime() async {
-    print("TT_________________________________________________________TT");
+  void _navigateToHomePage() {
+    Get.to(() => const Homepage());
+  }
 
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {});
-    var lastImageDisplayTime = prefs.getInt('last_image_display_time');
-    print("TT_________________________________________________________TT");
+  Future<void> _showImage() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    DateTime lastDisplayDate = prefs.getString('last_display_date') != null
+        ? DateTime.parse(prefs.getString('last_display_date')!)
+        : DateTime(0);
 
-    print(lastImageDisplayTime);
+    DateTime today = DateTime.now();
 
-    final currentTime = DateTime.now().millisecondsSinceEpoch;
-    print(currentTime);
-    final difference = currentTime - lastImageDisplayTime!;
-    print(difference);
-    print("TT_________________________________________________________TT");
-    if (difference == null || difference >= const Duration(days: 1).inMilliseconds) {
-      prefs.setInt('last_image_display_time', currentTime);
-      Timer(const Duration(seconds: 10), () => _navigateToHomePage());
-      return;
+    if (lastDisplayDate.day != today.day) {
+      Timer(const Duration(seconds: 10), () {
+        setState(() {
+          _navigateToHomePage();
+        });
+        Timer(const Duration(seconds: 10), () {
+          setState(() {
+            _isImageVisible = false;
+          });
+          prefs.setString('last_display_date', today.toString());
+        });
+      });
     }
   }
 
-  void _navigateToHomePage() {
-    Get.to(() => const Homepage());
+  void shownotification() {
+    setState(() {});
+    flutterLocalNotificationsPlugin.show(
+        0,
+        "Testing",
+        "How are you",
+        NotificationDetails(
+            android: AndroidNotificationDetails(channel.id, channel.name,
+                importance: Importance.high,
+                color: Colors.pink,
+                playSound: true,
+                icon: "@mipmap/ic_launcher")));
   }
 }
 
