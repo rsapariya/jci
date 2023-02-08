@@ -184,15 +184,17 @@ class _HomeState extends State<Home> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Container(
-                  height: Get.height / 3.5,
-                  child: YoutubePlayerControllerProvider(
-                    controller: _controller,
-                    child: YoutubePlayerIFrame(
-                      controller: _controller,
-                    ),
-                  ),
-                ),
+                widget.youtybeURL != null
+                    ? Container(
+                        height: Get.height / 3.5,
+                        child: YoutubePlayerControllerProvider(
+                          controller: _controller,
+                          child: YoutubePlayerIFrame(
+                            controller: _controller,
+                          ),
+                        ),
+                      )
+                    : const SizedBox(),
                 const SizedBox(
                   height: 15,
                 ),
