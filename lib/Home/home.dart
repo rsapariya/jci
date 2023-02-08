@@ -22,6 +22,7 @@ import 'package:share/share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import '../units/api.dart';
+import 'Zonedirectory/ZoneDirectory.dart';
 
 List currentzgb = [];
 List lomactlist = [];
@@ -203,8 +204,8 @@ class _HomeState extends State<Home> {
                           child: containe(
                               onTap: () {
                                 shownotification();
-                                // Get.to(() => const Zonedirectory(),
-                                //     transition: Transition.leftToRight);
+                                Get.to(() => const Zonedirectory(),
+                                    transition: Transition.leftToRight);
                               },
                               text: "Zone Directory",
                               image: const AssetImage(
