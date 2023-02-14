@@ -5,9 +5,11 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jci/Home/Zonedirectory/lomtabs.dart';
 import 'package:jci/Home/home.dart';
+import 'package:jci/units/api.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../splaysh.dart';
 import '../../units/Storage.dart';
+import 'Lom.dart';
 
 class Lomdetails extends StatefulWidget {
   const Lomdetails({Key? key}) : super(key: key);
@@ -18,13 +20,14 @@ class Lomdetails extends StatefulWidget {
 class _LomdetailsState extends State<Lomdetails> {
   @override
   void initState() {
+    LomdetailApi();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Loom == false
+      body: Loom1 == false
           ? ListView.builder(
               // controller: controller,
               itemCount: lomlistdetails.length,
@@ -373,5 +376,29 @@ class _LomdetailsState extends State<Lomdetails> {
   emaiollaunch() async {
     String email = getdata.read('LOM').toString();
     launch('mailto:$email');
+  }
+
+  LomdetailApi() {
+    ApiWrapper.dataGet(AppUrl.Lomdetail + lomid.toString()).then((val) {
+      if ((val != null) && (val.isNotEmpty)) {
+        setState(() {});
+        lomlistdetails.clear();
+        val.forEach((e) {
+          lomlistdetails.add(e);
+        });
+        setState(() {});
+
+        Loom1 = false;
+
+        lomlistdetails.sort((a, b) =>
+            (int.parse(a['priority'])).compareTo(int.parse(b['priority'])));
+        // Loding = false;
+      } else {
+        setState(() {});
+        Loom1 = false;
+        lomlistdetails.clear();
+        ApiWrapper.showToastMessage("Something Went Wrong!!");
+      }
+    });
   }
 }

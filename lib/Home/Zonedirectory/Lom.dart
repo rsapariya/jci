@@ -40,6 +40,8 @@ class _LomlistState extends State<Lomlist> {
             child: InkWell(
               onTap: () {
                 setState(() {
+                  Loom1 = true;
+                  Loom2 = true;
                   lomid = lomlist[index]['lom_id'].toString();
                   lomname = lomlist[index]['lom_name'].toString();
                   Get.to(() => const lomtabes());

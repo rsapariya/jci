@@ -31,8 +31,8 @@ class _memberdetaiState extends State<memberdetai> {
         title: const Text("Details"),
         centerTitle: true,
       ),
-      body: !Loomd
-          ? Padding(
+      body:
+          Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: Get.width / 30, vertical: 10),
               child: Column(
@@ -630,14 +630,14 @@ class _memberdetaiState extends State<memberdetai> {
                 ],
               ),
             )
-          : Center(
-              child: CircularProgressIndicator(
-                backgroundColor: Colors.transparent,
-                color: Color(Appbarcolour.hashCode),
-                value: null,
-                strokeWidth: 3.0,
-              ),
-            ),
+          // : Center(
+          //     child: CircularProgressIndicator(
+          //       backgroundColor: Colors.transparent,
+          //       color: Color(Appbarcolour.hashCode),
+          //       value: null,
+          //       strokeWidth: 3.0,
+          //     ),
+          //   ),
     );
   }
 

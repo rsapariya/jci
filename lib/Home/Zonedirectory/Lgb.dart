@@ -6,7 +6,9 @@ import 'package:jci/Home/Zonedirectory/memberdetails.dart';
 
 import '../../splaysh.dart';
 import '../../units/Storage.dart';
+import '../../units/api.dart';
 import '../home.dart';
+import 'Lom.dart';
 
 class Members extends StatefulWidget {
   const Members({Key? key}) : super(key: key);
@@ -18,19 +20,20 @@ class Members extends StatefulWidget {
 class _MembersState extends State<Members> {
   @override
   void initState() {
+    Memberapi();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Loom == false
+      body: Loom2 == false
           ? ListView.builder(
               itemCount: Memberlist.length,
               itemBuilder: (_, index) {
                 return Padding(
                   padding: EdgeInsets.symmetric(
-                      horizontal: Get.width / 20, vertical: 10),
+                      horizontal: Get.width/20, vertical:10),
                   child: InkWell(
                     onTap: () {
                       setState(() {
@@ -112,5 +115,25 @@ class _MembersState extends State<Members> {
               ),
             ),
     );
+  }
+
+  Memberapi() {
+    ApiWrapper.dataGet(AppUrl.Member + lomid.toString()).then((val) {
+      if ((val != null) && (val.isNotEmpty)) {
+        setState(() {});
+        Memberlist.clear();
+        setState(() {});
+        val.forEach((e) {
+          Memberlist.add(e);
+        });
+        setState(() {});
+        Loom2 = false;
+      } else {
+        setState(() {});
+        Loom2 = false;
+        Memberlist.clear();
+        ApiWrapper.showToastMessage("Something Went Wrong!!");
+      }
+    });
   }
 }

@@ -12,11 +12,8 @@ import 'Lgb.dart';
 import 'Lom.dart';
 import 'Lomdetails.dart';
 
-bool? Loom;
-
 class lomtabes extends StatefulWidget {
   const lomtabes({Key? key}) : super(key: key);
-
   @override
   State<lomtabes> createState() => _lomtabesState();
 }
@@ -25,11 +22,8 @@ class _lomtabesState extends State<lomtabes>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   void initState() {
-    Loom = true;
     _tabController = TabController(vsync: this, length: 2);
     super.initState();
-
-    LomdetailApi();
   }
 
   Widget build(BuildContext context) {
@@ -89,49 +83,7 @@ class _lomtabesState extends State<lomtabes>
     );
   }
 
-  Memberapi() {
-    ApiWrapper.dataGet(AppUrl.Member + lomid.toString()).then((val) {
-      if ((val != null) && (val.isNotEmpty)) {
-        setState(() {});
-        Memberlist.clear();
-        Loom = true;
-        setState(() {});
-        val.forEach((e) {
-          Memberlist.add(e);
-        });
-        setState(() {});
-        Loom = false;
-      } else {
-        setState(() {});
-        Loom = false;
-        Memberlist.clear();
-        ApiWrapper.showToastMessage("Something Went Wrong!!");
-      }
-    });
-  }
 
-  LomdetailApi() {
-    ApiWrapper.dataGet(AppUrl.Lomdetail + lomid.toString()).then((val) {
-      if ((val != null) && (val.isNotEmpty)) {
-        setState(() {});
-        lomlistdetails.clear();
-        Loom = true;
-        lomlistdetails.clear();
-        val.forEach((e) {
-          lomlistdetails.add(e);
-        });
-        setState(() {});
-        Loom = false;
-        Memberapi();
-        lomlistdetails.sort((a, b) =>
-            (int.parse(a['priority'])).compareTo(int.parse(b['priority'])));
-        // Loding = false;
-      } else {
-        setState(() {});
-        Loom = false;
-        lomlistdetails.clear();
-        ApiWrapper.showToastMessage("Something Went Wrong!!");
-      }
-    });
-  }
+
+
 }

@@ -18,6 +18,7 @@ import 'package:jci/main.dart';
 import 'package:jci/splaysh.dart';
 import 'package:jci/units/Storage.dart';
 import 'package:launch_review/launch_review.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:share/share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
@@ -41,6 +42,9 @@ List<dynamic> membership = [];
 List<dynamic> finance = [];
 List<dynamic> po = [];
 List<dynamic> substaff = [];
+
+bool Loom1 = true;
+bool Loom2 = true;
 // ignore: unused_element
 bool _isImageVisible = false;
 String backimage =
@@ -61,6 +65,7 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
+    getInfo();
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification?.android;
@@ -133,6 +138,53 @@ class _HomeState extends State<Home> {
     super.initState();
   }
 
+  void getInfo() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    String packageName = packageInfo.version;
+    setState(() {});
+
+    if (packageName != getdata.read('varsion')) {
+      _showMyDialogg();
+    }
+  }
+
+  Future<void> _showMyDialogg() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            'JCI Zone VIII New version 0.0.${getdata.read('varsion')} is available',
+            style: GoogleFonts.poppins(),
+          ),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  setState(() {});
+                  Get.back();
+                },
+                child: Text(
+                  'Later',
+                  style: GoogleFonts.poppins(color: Colors.black),
+                )),
+            TextButton(
+                onPressed: () {
+                  setState(() {
+                    LaunchReview.launch(androidAppId: "com.jciindiazone8.app");
+                    Get.back();
+                  });
+                },
+                child: const Text(
+                  'Update Now',
+                  style: TextStyle(color: Colors.blue, fontFamily: "popins"),
+                )),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -189,9 +241,7 @@ class _HomeState extends State<Home> {
                         height: Get.height / 3.5,
                         child: YoutubePlayerControllerProvider(
                           controller: _controller,
-                          child: YoutubePlayerIFrame(
-                            controller: _controller,
-                          ),
+                          child: YoutubePlayerIFrame(controller: _controller),
                         ),
                       )
                     : const SizedBox(),

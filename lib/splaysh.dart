@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jci/units/Storage.dart';
 import 'package:jci/units/api.dart';
 import 'Home/home.dart';
 
@@ -33,12 +34,13 @@ class _SplashScreenState extends State<SplashScreen> {
           .doc('Ja8uyFAnOzkVCTUOpbCA')
           .get();
       setState(() {});
+      save('varsion', response['version']);
       bgColor = response['them'];
       Appbarcolour = Color(int.parse(bgColor.replaceAll("#", "Oxff")));
       im1 = response['image1'];
       im2 = response['imag2'];
       pdfurl = response['pdf'];
-    } catch (e){}
+    } catch (e) {}
   }
 
   @override
