@@ -113,17 +113,6 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               progressString,
             ),
-            // TextButton(
-            //   // Disable the button if no PDF is downloaded yet. Once the
-            //   // PDF file is downloaded, you can then open it using PSPDFKit.
-            //   onPressed: !didDownloadPDF
-            //       ? null
-            //       : () async {
-            //           var tempDir = await getTemporaryDirectory();
-            //           await Pspdfkit.present(tempDir.path + fileName);
-            //         },
-            //   child: Text('Open the downloaded file using PSPDFKit'),
-            // ),
           ],
         ),
       ),

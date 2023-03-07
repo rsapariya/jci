@@ -106,7 +106,7 @@ class _ZonedirectoryState extends State<Zonedirectory> {
                       transition: Transition.leftToRight,
                     );
                   },
-                  text: "NATIONAL TRAINERS"),
+                  text: "NATIONAL/ZONE TRAINERS"),
               container(
                   onTap: () {
                     Get.to(
@@ -126,9 +126,8 @@ class _ZonedirectoryState extends State<Zonedirectory> {
                       pdfee = true;
                     });
                     downloadAndOpenFile(pdfurl!, "ZoneDirectory.pdf")
-                        .then((value) {
-                    }).catchError((error) {
-                    });
+                        .then((value) {})
+                        .catchError((error) {});
                   }),
             ],
           ),
@@ -202,7 +201,6 @@ class _ZonedirectoryState extends State<Zonedirectory> {
       setState(() {
         pdfee = false;
       });
-    } catch (e) {
-    }
+    } catch (e) {}
   }
 }

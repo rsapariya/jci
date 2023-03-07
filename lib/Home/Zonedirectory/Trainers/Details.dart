@@ -167,7 +167,8 @@ class _TrainersDetailsState extends State<TrainersDetails> {
                                 ),
                               ],
                             ),
-                          ),const SizedBox(
+                          ),
+                    const SizedBox(
                       height: 5,
                     ),
                     getdata.read('TR')['phone'] == null ||
@@ -252,7 +253,7 @@ class _TrainersDetailsState extends State<TrainersDetails> {
                               SizedBox(
                                 width: Get.width / 1.5,
                                 child: Text(
-                                  getdata.read('TR')['address'],
+                                  getdata.read('TR')['address'] ?? "",
                                   style: GoogleFonts.poppins(
                                       color: Colors.black,
                                       fontSize: 14,

@@ -39,6 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Appbarcolour = Color(int.parse(bgColor.replaceAll("#", "Oxff")));
       im1 = response['image1'];
       im2 = response['imag2'];
+      save('Downloads', response['downloads']);
       pdfurl = response['pdf'];
     } catch (e) {}
   }
@@ -98,6 +99,8 @@ class _SplashScreenState extends State<SplashScreen> {
       }
     });
   }
+
+
 
   SLiderapi() {
     ApiWrapper.dataGet(AppUrl.slider).then((val) {

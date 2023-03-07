@@ -8,6 +8,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:admob_flutter/admob_flutter.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,8 +22,10 @@ import 'package:launch_review/launch_review.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:share/share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import '../units/api.dart';
+import 'Dowloads.dart';
 import 'Zonedirectory/ZoneDirectory.dart';
 
 List currentzgb = [];
@@ -84,7 +87,6 @@ class _HomeState extends State<Home> {
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      print("A _________NOTITITITIIITITITI");
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification?.android;
       if (notification != null && android != null) {
@@ -219,7 +221,7 @@ class _HomeState extends State<Home> {
                       transition: Transition.leftToRight);
                 } else if (menu == "Share") {
                   Share.share(
-                      'https://play.google.com/store/apps/details?id=com.jciindia.directory');
+                      'https://play.google.com/store/apps/details?id=com.jciindiazone8.app');
                 } else if (menu == "Rate Us") {
                   LaunchReview.launch(androidAppId: "com.jciindiazone8.app");
                 }
@@ -255,7 +257,6 @@ class _HomeState extends State<Home> {
                       Expanded(
                           child: containe(
                               onTap: () {
-                                shownotification();
                                 Get.to(() => const Zonedirectory(),
                                     transition: Transition.leftToRight);
                               },
@@ -298,6 +299,10 @@ class _HomeState extends State<Home> {
                       ),
                       Expanded(
                           child: containe(
+                              onTap: () {
+                                Get.to(() => InAppbrowser(),
+                                    transition: Transition.leftToRight);
+                              },
                               text: "Downloads",
                               image: const AssetImage(
                                   'assets/images/download.png'))),
@@ -377,9 +382,7 @@ class _HomeState extends State<Home> {
     ApiWrapper.dataGet(AppUrl.Current).then((val) {
       if ((val != null) && (val.isNotEmpty)) {
         setState(() {});
-        if (kDebugMode) {
-          print("----------currentapi---------------");
-        }
+        if (kDebugMode) {}
 
         currentzgb.clear();
         val.forEach((e) {
@@ -396,17 +399,12 @@ class _HomeState extends State<Home> {
   Pastprapi() {
     ApiWrapper.dataGet(AppUrl.PasrPR).then((val) {
       if ((val != null) && (val.isNotEmpty)) {
-        print("----------Pastprapi---------------");
-
         setState(() {});
         pastprlist.clear();
 
         val.forEach((e) {
           pastprlist.add(e);
-          print("----------Pastprapi---------------$e");
         });
-        // pastprlist.sort((a, b) => (int.parse(a['priority'])).compareTo(int.parse(b['priority'])));
-        // print(e);
       } else {
         setState(() {});
         pastprlist.clear();
@@ -418,15 +416,12 @@ class _HomeState extends State<Home> {
   Pastnationalapi() {
     ApiWrapper.dataGet(AppUrl.PasrNational).then((val) {
       if ((val != null) && (val.isNotEmpty)) {
-        print("----------Pastnationalapi---------------");
-
         setState(() {});
         pastnational.clear();
 
         val.forEach((e) {
           pastnational.add(e);
         });
-        // print(e);
       } else {
         setState(() {});
         pastnational.clear();
@@ -438,15 +433,12 @@ class _HomeState extends State<Home> {
   NationalTrainerAPI() {
     ApiWrapper.dataGet(AppUrl.Trainers).then((val) {
       if ((val != null) && (val.isNotEmpty)) {
-        print("----------NationalTrainerAPI---------------");
-
         setState(() {});
         trainers.clear();
 
         val.forEach((e) {
           trainers.add(e);
         });
-        // print(e);
       } else {
         setState(() {});
         trainers.clear();
@@ -458,8 +450,6 @@ class _HomeState extends State<Home> {
   LomAPI() {
     ApiWrapper.dataGet(AppUrl.Lom).then((val) {
       if ((val != null) && (val.isNotEmpty)) {
-        print("----------LomAPI---------------");
-
         setState(() {});
         lomlist.clear();
 
@@ -477,15 +467,12 @@ class _HomeState extends State<Home> {
   EventApi() {
     ApiWrapper.dataGet(AppUrl.Events).then((val) {
       if ((val != null) && (val.isNotEmpty)) {
-        print("----------EventApi---------------");
-
         setState(() {});
         eventlist.clear();
 
         val.forEach((e) {
           eventlist.add(e);
         });
-        // print(e);
       } else {
         setState(() {});
         eventlist.clear();
@@ -497,17 +484,13 @@ class _HomeState extends State<Home> {
   ActiAPI() {
     ApiWrapper.dataGet(AppUrl.Lomactivity).then((val) {
       if ((val != null) && (val.isNotEmpty)) {
-        print("----------ActiAPI---------------");
-
         setState(() {});
         lomactlist.clear();
 
         val.forEach((e) {
           lomactlist.add(e);
         });
-        // print(e);
       } else {
-        print("----------vvvvvvvvvv---------------");
         setState(() {});
         lomactlist.clear();
         ApiWrapper.showToastMessage("Something Went Wrong!!");
@@ -518,13 +501,10 @@ class _HomeState extends State<Home> {
   HeadAPI() async {
     ApiWrapper.dataGet(AppUrl.Headquaters).then((val) {
       if ((val != null) && (val.isNotEmpty)) {
-        print("----------HeadAPI---------------");
-
         val['finance'].forEach((e) {
           finance.add(e);
         });
       } else {
-        print("----------vvvvvvvvvv---------------");
         setState(() {});
         ApiWrapper.showToastMessage("Something Went Wrong!!");
       }
@@ -534,13 +514,10 @@ class _HomeState extends State<Home> {
   HeadAPI1() async {
     ApiWrapper.dataGet(AppUrl.Headquaters).then((val) {
       if ((val != null) && (val.isNotEmpty)) {
-        print("----------HeadAPI1---------------");
-
         val['membership'].forEach((e) {
           membership.add(e);
         });
       } else {
-        print("----------vvvvvvvvvv---------------");
         setState(() {});
         ApiWrapper.showToastMessage("Something Went Wrong!!");
       }
@@ -550,8 +527,6 @@ class _HomeState extends State<Home> {
   HeadAPI2() async {
     ApiWrapper.dataGet(AppUrl.Headquaters).then((val) {
       if ((val != null) && (val.isNotEmpty)) {
-        print("----------HeadAPI2---------------");
-
         save('secretory', val['secretary']);
         setState(() {});
       } else {
@@ -564,13 +539,10 @@ class _HomeState extends State<Home> {
   HeadAPI3() async {
     ApiWrapper.dataGet(AppUrl.Headquaters).then((val) {
       if ((val != null) && (val.isNotEmpty)) {
-        print("----------HeadAPI3---------------");
-
         val['area_wise'].forEach((e) {
           area.add(e);
         });
       } else {
-        print("----------vvvvvvvvvv---------------");
         setState(() {});
         ApiWrapper.showToastMessage("Something Went Wrong!!");
       }
@@ -580,28 +552,34 @@ class _HomeState extends State<Home> {
   HeadAPI4() async {
     ApiWrapper.dataGet(AppUrl.Headquaters).then((val) {
       if ((val != null) && (val.isNotEmpty)) {
-        print("----------HeadAPI4---------------");
-
         val['substaff'].forEach((e) {
           substaff.add(e);
         });
       } else {
-        print("----------vvvvvvvvvv---------------");
         setState(() {});
         ApiWrapper.showToastMessage("Something Went Wrong!!");
       }
     });
   }
 
+  _wahtt() async {
+    String num = getdata.read('Downloads').toString();
+
+    var url = Uri.parse("$num");
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   HeadAPI5() async {
     ApiWrapper.dataGet(AppUrl.Headquaters).then((val) {
       if ((val != null) && (val.isNotEmpty)) {
         val['po'].forEach((e) {
-          print("----------HeadAPI5---------------");
           po.add(e);
         });
       } else {
-        // print("----------vvvvvvvvvv---------------");
         setState(() {});
         ApiWrapper.showToastMessage("Something Went Wrong!!");
       }
@@ -612,7 +590,6 @@ class _HomeState extends State<Home> {
     ApiWrapper.dataGet(AppUrl.Ads).then((val) {
       if ((val != null) && (val.isNotEmpty)) {
         val.forEach((e) {
-          print("----------IMAGE   ---------------");
           adsimage.add(e);
         });
         setState(() {});

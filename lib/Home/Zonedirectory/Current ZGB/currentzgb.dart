@@ -72,7 +72,7 @@ class _CurrentZGBState extends State<CurrentZGB> {
                               SizedBox(
                                 width: Get.width / 1.8,
                                 child: Text(
-                                  currentzgb[index]['name'].toString(),
+                                  currentzgb[index]['name'].toString()??"",
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.poppins(fontSize: 16),
                                 ),
@@ -80,7 +80,7 @@ class _CurrentZGBState extends State<CurrentZGB> {
                               SizedBox(
                                 width: Get.width / 1.8,
                                 child: Text(
-                                  currentzgb[index]['post'].toString(),
+                                  currentzgb[index]['post'].toString()??"",
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.poppins(fontSize: 16),
                                 ),

@@ -55,7 +55,7 @@ class _EventState extends State<Event> {
                         padding: EdgeInsets.symmetric(
                             vertical: 10, horizontal: Get.width / 30),
                         child: Text(
-                          eventlist[index]['name'],
+                          eventlist[index]['name']??"",
                           textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,
                           style: GoogleFonts.poppins(
@@ -91,7 +91,7 @@ class _EventState extends State<Event> {
                           SizedBox(
                             // width: Get.width / 1.5,
                             child: Text(
-                              eventlist[index]['description'],
+                              eventlist[index]['description']??"",
                               maxLines: 2,
                               style: GoogleFonts.poppins(
                                   color: Colors.black,
@@ -102,7 +102,7 @@ class _EventState extends State<Event> {
                           SizedBox(
                             // width: Get.width / 1.5,
                             child: Text(
-                              eventlist[index]['trainer'],
+                              eventlist[index]['trainer']??"",
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: GoogleFonts.poppins(
@@ -127,7 +127,7 @@ class _EventState extends State<Event> {
                               SizedBox(
                                 width: Get.width / 1.3,
                                 child: Text(
-                                  eventlist[index]['location'],
+                                  eventlist[index]['location']??"",
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.poppins(
@@ -155,7 +155,7 @@ class _EventState extends State<Event> {
                               SizedBox(
                                 width: Get.width / 1.3,
                                 child: Text(
-                                  eventlist[index]['fees'],
+                                  eventlist[index]['fees']??"",
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.poppins(

@@ -50,7 +50,7 @@ class _SecondState extends State<Second> {
                               SizedBox(
                                 width: Get.width / 1.5,
                                 child: Text(
-                                  area[index]['name'].toString(),
+                                  area[index]['name'].toString() ?? "",
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.poppins(fontSize: 16),
                                 ),

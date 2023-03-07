@@ -7,6 +7,7 @@ import 'package:jci/Home/Zonedirectory/Trainers/Details.dart';
 import '../../../../units/Storage.dart';
 import '../../home.dart';
 import '../../../splaysh.dart';
+
 class Nationaltrainers extends StatefulWidget {
   const Nationaltrainers({Key? key}) : super(key: key);
 
@@ -43,7 +44,8 @@ class _NationaltrainersState extends State<Nationaltrainers> {
                 // height: Get.height / 4,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    border: Border.all(width: 1, color: Color(Appbarcolour.hashCode)),
+                    border: Border.all(
+                        width: 1, color: Color(Appbarcolour.hashCode)),
                     borderRadius: BorderRadius.circular(10)),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
@@ -54,9 +56,8 @@ class _NationaltrainersState extends State<Nationaltrainers> {
                         children: [
                           CircleAvatar(
                             backgroundColor: Colors.white,
-                            backgroundImage: trainers[index]['image']!= null
-                                ? NetworkImage(
-                                trainers[index]['image'])
+                            backgroundImage: trainers[index]['image'] != null
+                                ? NetworkImage(trainers[index]['image'])
                                 : NetworkImage(backimage),
                           ),
                           const SizedBox(
@@ -71,15 +72,19 @@ class _NationaltrainersState extends State<Nationaltrainers> {
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.poppins(fontSize: 16),
                                 ),
-                              ),trainers[index]['post']==null || trainers[index]['post'] == ""?const SizedBox():
-                              SizedBox(
-                                width: Get.width / 1.8,
-                                child: Text(
-                                  trainers[index]['post'].toString(),
-                                  overflow: TextOverflow.ellipsis,
-                                  style: GoogleFonts.poppins(fontSize: 16),
-                                ),
                               ),
+                              trainers[index]['post'] == null ||
+                                      trainers[index]['post'] == ""
+                                  ? const SizedBox()
+                                  : SizedBox(
+                                      width: Get.width / 1.8,
+                                      child: Text(
+                                        trainers[index]['post'].toString(),
+                                        overflow: TextOverflow.ellipsis,
+                                        style:
+                                            GoogleFonts.poppins(fontSize: 16),
+                                      ),
+                                    ),
                             ],
                           ),
                           const Spacer(),

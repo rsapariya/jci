@@ -509,8 +509,6 @@ class _memberdetaiState extends State<memberdetai> {
                                                     width: Get.width / 3.8,
                                                     child: Text(
                                                       "Birthdate",
-                                                      // lomlistdetails[index]['contact_no'] ??
-                                                      //     "",
                                                       style: GoogleFonts.poppins(
                                                           color: Color(
                                                               Appbarcolour
@@ -630,14 +628,6 @@ class _memberdetaiState extends State<memberdetai> {
                 ],
               ),
             )
-          // : Center(
-          //     child: CircularProgressIndicator(
-          //       backgroundColor: Colors.transparent,
-          //       color: Color(Appbarcolour.hashCode),
-          //       value: null,
-          //       strokeWidth: 3.0,
-          //     ),
-          //   ),
     );
   }
 

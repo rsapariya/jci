@@ -51,19 +51,11 @@ class _ThirdState extends State<Third> {
                               SizedBox(
                                 width: Get.width / 1.5,
                                 child: Text(
-                                  membership[index]['name'].toString(),
+                                  membership[index]['name'].toString()??"",
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.poppins(fontSize: 16),
                                 ),
                               ),
-                              // SizedBox(
-                              //   width: Get.width / 1.5,
-                              //   child: Text(
-                              //     "${membership[index]['role']}",
-                              //     overflow: TextOverflow.ellipsis,
-                              //     style: GoogleFonts.poppins(fontSize: 16),
-                              //   ),
-                              // ),
                             ],
                           ),
                           const Spacer(),

@@ -50,19 +50,11 @@ class _SixthState extends State<Sixth> {
                               SizedBox(
                                 width: Get.width / 1.5,
                                 child: Text(
-                                  substaff[index]['name'].toString(),
+                                  substaff[index]['name'].toString()??"",
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.poppins(fontSize: 16),
                                 ),
                               ),
-                              // SizedBox(
-                              //   width: Get.width / 1.5,
-                              //   child: Text(
-                              //     "${substaff[index]['role']}",
-                              //     overflow: TextOverflow.ellipsis,
-                              //     style: GoogleFonts.poppins(fontSize: 16),
-                              //   ),
-                              // ),
                             ],
                           ),
                          const Spacer(),

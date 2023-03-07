@@ -33,7 +33,7 @@ class _MembersState extends State<Members> {
               itemBuilder: (_, index) {
                 return Padding(
                   padding: EdgeInsets.symmetric(
-                      horizontal: Get.width/20, vertical:10),
+                      horizontal: Get.width / 20, vertical: 10),
                   child: InkWell(
                     onTap: () {
                       setState(() {
@@ -71,8 +71,7 @@ class _MembersState extends State<Members> {
                                       backgroundImage:
                                           Memberlist[index]['image'] != null
                                               ? NetworkImage(
-                                                  Memberlist[index]['image']
-                                                      .toString(),
+                                                  Memberlist[index]['image'].toString(),
                                                 )
                                               : NetworkImage(backimage),
                                     ),

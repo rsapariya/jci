@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,10 +16,8 @@ class Fifth extends StatefulWidget {
 
 class _FifthState extends State<Fifth> {
   @override
-
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: ListView.builder(
         // controller: controller,
         itemCount: po.length,
@@ -32,13 +29,15 @@ class _FifthState extends State<Fifth> {
               onTap: () {
                 setState(() {
                   save('ZGB', po[index]);
-                  Get.to(() => const HeadDetailes(),transition:Transition.rightToLeft);
+                  Get.to(() => const HeadDetailes(),
+                      transition: Transition.rightToLeft);
                 });
               },
               child: Container(
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    border: Border.all(width: 1, color: Color(Appbarcolour.hashCode)),
+                    border: Border.all(
+                        width: 1, color: Color(Appbarcolour.hashCode)),
                     borderRadius: BorderRadius.circular(10)),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
@@ -57,14 +56,6 @@ class _FifthState extends State<Fifth> {
                                   style: GoogleFonts.poppins(fontSize: 16),
                                 ),
                               ),
-                              // SizedBox(
-                              //   width: Get.width / 1.5,
-                              //   child: Text(
-                              //     "${po[index]['role']}",
-                              //     overflow: TextOverflow.ellipsis,
-                              //     style: GoogleFonts.poppins(fontSize: 16),
-                              //   ),
-                              // ),
                             ],
                           ),
                           const Spacer(),

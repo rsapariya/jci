@@ -51,7 +51,7 @@ class _ForthState extends State<Forth> {
                               SizedBox(
                                 width: Get.width / 1.5,
                                 child: Text(
-                                  finance[index]['name'].toString(),
+                                  finance[index]['name'].toString()??"",
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.poppins(fontSize: 16),
                                 ),

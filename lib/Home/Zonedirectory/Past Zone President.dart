@@ -1,4 +1,3 @@
-
 // ignore_for_file: annotate_overrides
 
 import 'package:flutter/material.dart';
@@ -45,7 +44,8 @@ class _PastPresidentState extends State<PastPresident> {
                 // height: Get.height / 4,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    border: Border.all(width: 1, color: Color(Appbarcolour.hashCode)),
+                    border: Border.all(
+                        width: 1, color: Color(Appbarcolour.hashCode)),
                     borderRadius: BorderRadius.circular(10)),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
@@ -67,13 +67,25 @@ class _PastPresidentState extends State<PastPresident> {
                           ),
                           Column(
                             children: [
-                              SizedBox(
-                                width: Get.width / 1.8,
-                                child: Text(
-                                  pastprlist[index]['name'].toString(),
-                                  overflow: TextOverflow.ellipsis,
-                                  style: GoogleFonts.poppins(fontSize: 16),
-                                ),
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    width: Get.width / 1.9,
+                                    child: Text(
+                                      pastprlist[index]['name'].toString(),
+                                      overflow: TextOverflow.ellipsis,
+                                      style: GoogleFonts.poppins(fontSize: 16),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: Get.width / 9,
+                                    child: Text(
+                                      pastprlist[index]['year'].toString(),
+                                      overflow: TextOverflow.ellipsis,
+                                      style: GoogleFonts.poppins(fontSize: 16),
+                                    ),
+                                  ),
+                                ],
                               ),
                               pastprlist[index]['post'] != null
                                   ? SizedBox(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jci/units/Storage.dart';
 import '../../../splaysh.dart';
 
 class Aboutinfo extends StatefulWidget {
@@ -37,6 +38,11 @@ class _AboutinfoState extends State<Aboutinfo> {
                   textStyle: TextStyle(
                     color: Color(Appbarcolour.hashCode),
                   )),
+            ),
+            Text(
+              'Version 0.0.${getdata.read('varsion')}',
+              style: GoogleFonts.poppins(
+                  fontSize: 16, textStyle: TextStyle(color: Colors.black)),
             ),
           ],
         ),

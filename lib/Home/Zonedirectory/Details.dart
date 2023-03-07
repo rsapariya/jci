@@ -81,7 +81,6 @@ class _DetailesState extends State<Detailes> {
                                 child: Text(
                                   getdata.read('ZGB')['post'] ?? "",
                                   overflow: TextOverflow.ellipsis,
-                                  // maxLines: 2,
                                   style:
                                       GoogleFonts.poppins(color: Colors.white),
                                 ),
@@ -255,7 +254,7 @@ class _DetailesState extends State<Detailes> {
                               SizedBox(
                                 width: Get.width / 1.5,
                                 child: Text(
-                                  getdata.read('ZGB')['address_office'],
+                                  getdata.read('ZGB')['address_office']??"",
                                   style: GoogleFonts.poppins(
                                       color: Colors.black,
                                       fontSize: 14,

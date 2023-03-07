@@ -29,7 +29,6 @@ class _LomdetailsState extends State<Lomdetails> {
     return Scaffold(
       body: Loom1 == false
           ? ListView.builder(
-              // controller: controller,
               itemCount: lomlistdetails.length,
               itemBuilder: (_, index) {
                 return Padding(
@@ -98,7 +97,6 @@ class _LomdetailsState extends State<Lomdetails> {
                                           child: Text(
                                             lomlistdetails[index]['post'] ?? "",
                                             overflow: TextOverflow.ellipsis,
-                                            // maxLines: 2,
                                             style: GoogleFonts.poppins(
                                                 color: Colors.white),
                                           ),
@@ -264,7 +262,7 @@ class _LomdetailsState extends State<Lomdetails> {
                                           width: Get.width / 1.3,
                                           child: Text(
                                             lomlistdetails[index]
-                                                ['office_address'],
+                                                ['office_address']??"",
                                             style: GoogleFonts.poppins(
                                                 color: Colors.black,
                                                 fontSize: 14,
