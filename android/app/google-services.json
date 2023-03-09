@@ -33,6 +33,43 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:724817375771:android:0885c86fe5b493cccbfebe",
+        "android_client_info": {
+          "package_name": "com.jciindiazone8.in"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "724817375771-ddr4eif8gm7qt53mtes307ic06v6d320.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jciindiazone8.in",
+            "certificate_hash": "014aeee396dec321855b89f0e820fd86f807ee94"
+          }
+        },
+        {
+          "client_id": "724817375771-j2gr1tbkuj581q16si2nbk42tferlehi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlCIgfmr4YErsMu--mmrZ7osaw_8MjT2w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "724817375771-j2gr1tbkuj581q16si2nbk42tferlehi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

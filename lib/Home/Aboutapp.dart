@@ -42,7 +42,11 @@ class _AboutinfoState extends State<Aboutinfo> {
             Text(
               'Version 0.0.${getdata.read('varsion')}',
               style: GoogleFonts.poppins(
-                  fontSize: 16, textStyle: TextStyle(color: Colors.black)),
+                fontSize: 16,
+                textStyle: TextStyle(
+                  color: Color(Appbarcolour.hashCode),
+                ),
+              ),
             ),
           ],
         ),

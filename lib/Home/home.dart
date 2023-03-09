@@ -8,7 +8,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:admob_flutter/admob_flutter.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -221,9 +220,9 @@ class _HomeState extends State<Home> {
                       transition: Transition.leftToRight);
                 } else if (menu == "Share") {
                   Share.share(
-                      'https://play.google.com/store/apps/details?id=com.jciindiazone8.app');
+                      'https://play.google.com/store/apps/details?id=com.jciindiazone8.in');
                 } else if (menu == "Rate Us") {
-                  LaunchReview.launch(androidAppId: "com.jciindiazone8.app");
+                  LaunchReview.launch(androidAppId: "com.jciindiazone8.in");
                 }
               },
             )
