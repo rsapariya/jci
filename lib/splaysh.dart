@@ -100,12 +100,13 @@ class _SplashScreenState extends State<SplashScreen> {
     });
   }
 
-
-
   SLiderapi() {
     ApiWrapper.dataGet(AppUrl.slider).then((val) {
       if ((val != null) && (val.isNotEmpty)) {
         setState(() {});
+        print(
+            '---------------------------------------------------------ccccccccccccccccccccccccccccccc');
+        print(val);
         val.forEach((e) {
           sliderimage.add(e);
         });

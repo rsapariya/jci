@@ -14,6 +14,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:jci/Home/Aboutapp.dart';
 import 'package:jci/Home/Events/Events.dart';
 import 'package:jci/Home/Lom%20Axctivitey/LOMDetailes.dart';
+import 'package:jci/Home/login.dart';
+import 'package:jci/Home/profilepage.dart';
+import 'package:jci/Home/projects.dart';
 import 'package:jci/main.dart';
 import 'package:jci/splaysh.dart';
 import 'package:jci/units/Storage.dart';
@@ -37,6 +40,7 @@ List pastnational = [];
 List pastprlist = [];
 List trainers = [];
 List Mdeta = [];
+List<Map> Areas = [];
 
 List<dynamic> area = [];
 List<dynamic> adsimage = [];
@@ -116,6 +120,7 @@ class _HomeState extends State<Home> {
     HeadAPI2();
     HeadAPI3();
     HeadAPI4();
+    Areaapi();
     HeadAPI5();
     currentapi();
     ActiAPI();
@@ -192,9 +197,19 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           elevation: 0,
-          // backgroundColor:Color(int.parse(bgColor.replaceAll('#', '0xff'))),
           backgroundColor: Color(Appbarcolour.hashCode),
           actions: [
+            IconButton(
+                onPressed: () {
+                  Get.to(() => Editpro(), transition: Transition.leftToRight);
+                },
+                icon: Icon(Icons.manage_accounts)),
+            InkWell(
+              child: Icon(Icons.file_copy_outlined),
+              onTap: () {
+                Get.to(() => Projects(), transition: Transition.leftToRight);
+              },
+            ),
             PopupMenuButton(
               padding: EdgeInsets.zero,
               itemBuilder: (context) => [
@@ -213,6 +228,10 @@ class _HomeState extends State<Home> {
                   value: "Rate Us",
                   child: Text('Rate Us', style: GoogleFonts.poppins()),
                 ),
+                PopupMenuItem(
+                  value: "Login",
+                  child: Text('Login', style: GoogleFonts.poppins()),
+                ),
               ],
               onSelected: (String menu) {
                 if (menu == "App info") {
@@ -223,6 +242,9 @@ class _HomeState extends State<Home> {
                       'https://play.google.com/store/apps/details?id=com.jciindiazone8.in');
                 } else if (menu == "Rate Us") {
                   LaunchReview.launch(androidAppId: "com.jciindiazone8.in");
+                } else if (menu == "Login") {
+                  Get.to(() => const Login(),
+                      transition: Transition.leftToRight);
                 }
               },
             )
@@ -593,6 +615,29 @@ class _HomeState extends State<Home> {
         });
         setState(() {});
       } else {
+        setState(() {});
+        ApiWrapper.showToastMessage("Something Went Wrong!!");
+      }
+    });
+  }
+
+  Areaapi() async {
+    print("-------SSSSSSSSSSSSSSSSSSSSSSSS--------------------------");
+
+    ApiWrapper.dataGet(AppUrl.Area).then((val) {
+      if ((val != null) && (val.isNotEmpty)) {
+        myJson.clear();
+        setState(() {});
+        val.forEach((e) {
+          myJson.add(e);
+        });
+        print("-------CCCCCCCCCCCCCCCCCCC_______--------------------------");
+        print(val);
+        setState(() {});
+      } else {
+        print("-------EEEEEEEEEEEEEEEEEEEEEEEE--------------------------");
+        print(val);
+
         setState(() {});
         ApiWrapper.showToastMessage("Something Went Wrong!!");
       }

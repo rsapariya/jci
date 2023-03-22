@@ -10,19 +10,6 @@ class ApiWrapper {
     'x-api-key':
         'MjYyYjJiNDc4YzQ5ODA5ZTEyYjM2ZjI1ZTgxMzZlZWJjMDlkYmVmYzFhZTJjNGIzMWJiMTIyNGJkYmRjMjEwOA=='
   };
-  // static doImageUpload(
-  //     String endpoint, Map<String, String> params, List imgs) async {
-  //   var request = http.MultipartRequest('POST', Uri.parse(AppUrl.atandence));
-  //   request.fields.addAll(params);
-  //   for (int i = 0; i < imgs.length; i++) {
-  //     log(imgs[i].toString(), name: "Image name $i");
-  //     request.files.add(await http.MultipartFile.fromPath('image$i', imgs[i]));
-  //   }
-  //   request.headers.addAll(headers);
-  //   http.StreamedResponse response = await request.send();
-  //   var model = await response.stream.bytesToString();
-  //   return jsonDecode(model);
-  // }
 
   static showToastMessage(message) {
     Fluttertoast.showToast(
@@ -41,7 +28,9 @@ class ApiWrapper {
       print(method);
       var request =
           await http.post(url, headers: headers, body: jsonEncode(method));
-      var response = jsonDecode(request.body);
+      var response = jsonDecode(
+          request.body.replaceAll('&amp;', '').replaceAll('&ndash;', ''));
+
       print("response----- $response");
       if (request.statusCode == 200) {
         return response;
@@ -56,8 +45,11 @@ class ApiWrapper {
   static dataGet(appUrl) async {
     try {
       var url = Uri.parse(appUrl);
+
       var request = await http.get(url, headers: headers);
-      var response = jsonDecode(request.body);
+      var response = jsonDecode(
+          request.body.replaceAll('&amp;', '').replaceAll('&ndash;', ''));
+
       if (request.statusCode == 200) {
         return response;
       } else {
@@ -99,4 +91,7 @@ class AppUrl {
   static const String slider = baseurl + 'slider';
   static const String Ads = baseurl + 'ads';
   static const String Memberdeta = baseurl + 'membersdetails/';
+  static const String login = baseurl + 'login';
+  static const String Area = baseurl + '/area';
+  static const String Addproject = baseurl + '/add_project';
 }

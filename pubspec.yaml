@@ -78,6 +78,7 @@ dependencies:
   firebase_crashlytics: ^3.0.12
   firebase_performance: ^0.9.0+11
   package_info_plus: ^3.0.3
+  dropdown_button2: ^2.0.0
 
 
 dev_dependencies:
