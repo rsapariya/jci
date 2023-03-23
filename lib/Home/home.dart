@@ -26,6 +26,7 @@ import 'package:share/share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
+import '../months.dart';
 import '../units/api.dart';
 import 'Dowloads.dart';
 import 'Zonedirectory/ZoneDirectory.dart';
@@ -120,7 +121,7 @@ class _HomeState extends State<Home> {
     HeadAPI2();
     HeadAPI3();
     HeadAPI4();
-    Areaapi();
+    // Areaapi();
     HeadAPI5();
     currentapi();
     ActiAPI();
@@ -621,28 +622,28 @@ class _HomeState extends State<Home> {
     });
   }
 
-  Areaapi() async {
-    print("-------SSSSSSSSSSSSSSSSSSSSSSSS--------------------------");
-
-    ApiWrapper.dataGet(AppUrl.Area).then((val) {
-      if ((val != null) && (val.isNotEmpty)) {
-        myJson.clear();
-        setState(() {});
-        val.forEach((e) {
-          myJson.add(e);
-        });
-        print("-------CCCCCCCCCCCCCCCCCCC_______--------------------------");
-        print(val);
-        setState(() {});
-      } else {
-        print("-------EEEEEEEEEEEEEEEEEEEEEEEE--------------------------");
-        print(val);
-
-        setState(() {});
-        ApiWrapper.showToastMessage("Something Went Wrong!!");
-      }
-    });
-  }
+  // Areaapi() async {
+  //   print("-------SSSSSSSSSSSSSSSSSSSSSSSS--------------------------");
+  //
+  //   ApiWrapper.dataGet(AppUrl.Area).then((val) {
+  //     if ((val != null) && (val.isNotEmpty)) {
+  //       myJson.clear();
+  //       setState(() {});
+  //       val.forEach((e) {
+  //         myJson.add(e);
+  //       });
+  //       print("-------CCCCCCCCCCCCCCCCCCC_______--------------------------");
+  //       print(val);
+  //       setState(() {});
+  //     } else {
+  //       print("-------EEEEEEEEEEEEEEEEEEEEEEEE--------------------------");
+  //       print(val);
+  //
+  //       setState(() {});
+  //       ApiWrapper.showToastMessage("Something Went Wrong!!");
+  //     }
+  //   });
+  // }
 
   void _navigateToHomePage() {
     Get.to(() => const Homepage());

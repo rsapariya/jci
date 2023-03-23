@@ -5,6 +5,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:jci/splaysh.dart';
+import 'dart:io';
 
 List<Map> myJson = [];
 List<Map> Type = [
@@ -24,19 +25,7 @@ class Projects extends StatefulWidget {
 class _ProjectsState extends State<Projects> {
   String? _selected;
   String? _selected2;
-  PickedFile? imageFile;
-  final ImagePicker _picker = ImagePicker();
-
-  void takePhoto(ImageSource source) async {
-    final pickedFile = await _picker.getImage(
-      source: source,
-    );
-    setState(() {
-      imageFile = pickedFile as PickedFile?;
-      image = imageFile!.path;
-      print("---->>>${imageFile!.path}");
-    });
-  }
+  File? imageFile;
 
   TextEditingController startdate = new TextEditingController();
   @override
@@ -59,13 +48,17 @@ class _ProjectsState extends State<Projects> {
             ),
             Stack(
               children: [
-                // CircleAvatar(
-                //   backgroundColor: Colors.grey.withOpacity(0.1),
-                //   radius: 50,
-                //   backgroundImage: Image.file(
-                //     imageFile,
-                //   ),
-                // ),
+                imageFile == null
+                    ? CircleAvatar(
+                        backgroundColor: Colors.grey.withOpacity(0.1),
+                        radius: 50,
+                        backgroundImage: NetworkImage(image),
+                      )
+                    : CircleAvatar(
+                        backgroundColor: Colors.grey.withOpacity(0.1),
+                        radius: 50,
+                        backgroundImage: FileImage(imageFile!),
+                      ),
                 const Positioned(
                     top: 68,
                     left: 68,
@@ -82,14 +75,14 @@ class _ProjectsState extends State<Projects> {
                       radius: 15,
                       child: Center(
                         child: Icon(
-                          Icons.edit,
+                          Icons.add,
                           size: 20,
                           color: Colors.white,
                         ),
                       ),
                     ),
                     onTap: () {
-                      takePhoto(ImageSource.gallery);
+                      _getFromGallery();
                     },
                   ),
                 ),
@@ -407,5 +400,19 @@ class _ProjectsState extends State<Projects> {
       filled: true,
       fillColor: Colors.grey.withOpacity(0.1),
     );
+  }
+
+  _getFromGallery() async {
+    PickedFile? pickedFile = await ImagePicker().getImage(
+      source: ImageSource.gallery,
+      maxWidth: 1800,
+      maxHeight: 1800,
+    );
+    if (pickedFile != null) {
+      setState(() {
+        imageFile = File(pickedFile.path);
+        print(imageFile?.path.toString());
+      });
+    }
   }
 }
