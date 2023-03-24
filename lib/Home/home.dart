@@ -117,7 +117,6 @@ class _HomeState extends State<Home> {
     });
 
     Admob.requestTrackingAuthorization();
-    print("--------------->>>>>>>>>>>>>>>>>>>>>>${getdata.read('YOU')}");
 
     super.initState();
   }
@@ -158,7 +157,6 @@ class _HomeState extends State<Home> {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     String packageName = packageInfo.version;
     setState(() {});
-
     if (packageName != getdata.read('varsion')) {
       _showMyDialogg();
     }
