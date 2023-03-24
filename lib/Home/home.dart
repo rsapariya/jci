@@ -1,7 +1,6 @@
 // ignore_for_file: non_constant_identifier_names, avoid_print, sized_box_for_whitespace, unnecessary_null_comparison
 
 import 'dart:async';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -41,6 +40,7 @@ List pastnational = [];
 List pastprlist = [];
 List trainers = [];
 List Mdeta = [];
+List Monthlkist = [];
 List<Map> Areas = [];
 
 List<dynamic> area = [];
@@ -58,9 +58,6 @@ String backimage =
     "https://t4.ftcdn.net/jpg/01/06/92/47/360_F_106924759_7qPPu6bZNN2O4al1ExdEWBdHUcpKMwuJ.jpg";
 
 class Home extends StatefulWidget {
-  final String? youtybeURL;
-  const Home(this.youtybeURL, {super.key});
-
   @override
   State<Home> createState() => _HomeState();
 }
@@ -72,7 +69,16 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    getInfo();
+    if (getdata.read('islogin') == true) {
+      Monthlkist.clear();
+      getdata.read('Mon').forEach((e) {
+        Monthlkist.add(e);
+      });
+    }
+    if (isconnection == true) {
+      AllAPI();
+    }
+
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification?.android;
@@ -110,18 +116,21 @@ class _HomeState extends State<Home> {
       }
     });
 
-    Adsapi();
-    _showImage();
-    // Timer(const Duration(seconds: 20), () => _checkLastImageDisplayTime());
-
     Admob.requestTrackingAuthorization();
+    print("--------------->>>>>>>>>>>>>>>>>>>>>>${getdata.read('YOU')}");
+
+    super.initState();
+  }
+
+  AllAPI() {
+    getInfo();
     NationalTrainerAPI();
     HeadAPI();
     HeadAPI1();
     HeadAPI2();
     HeadAPI3();
     HeadAPI4();
-    // Areaapi();
+    Areaapi();
     HeadAPI5();
     currentapi();
     ActiAPI();
@@ -129,9 +138,11 @@ class _HomeState extends State<Home> {
     EventApi();
     Pastnationalapi();
     Pastprapi();
+    _showImage();
+    Adsapi();
     _controller = YoutubePlayerController(
       initialVideoId:
-          YoutubePlayerController.convertUrlToId(widget.youtybeURL!)!,
+          YoutubePlayerController.convertUrlToId(getdata.read('YOU'))!,
       params: const YoutubePlayerParams(
         loop: true,
         autoPlay: true,
@@ -141,8 +152,6 @@ class _HomeState extends State<Home> {
         showFullscreenButton: !kIsWeb,
       ),
     );
-
-    super.initState();
   }
 
   void getInfo() async {
@@ -200,55 +209,103 @@ class _HomeState extends State<Home> {
           elevation: 0,
           backgroundColor: Color(Appbarcolour.hashCode),
           actions: [
-            IconButton(
-                onPressed: () {
-                  Get.to(() => Editpro(), transition: Transition.leftToRight);
-                },
-                icon: Icon(Icons.manage_accounts)),
-            InkWell(
-              child: Icon(Icons.file_copy_outlined),
-              onTap: () {
-                Get.to(() => Projects(), transition: Transition.leftToRight);
-              },
-            ),
-            PopupMenuButton(
-              padding: EdgeInsets.zero,
-              itemBuilder: (context) => [
-                PopupMenuItem(
-                  value: "Share",
-                  child: Text(
-                    'Share',
-                    style: GoogleFonts.poppins(),
+            getdata.read('islogin') != true
+                ? SizedBox()
+                : IconButton(
+                    onPressed: () {
+                      Get.to(() => Editpro(),
+                          transition: Transition.leftToRight);
+                    },
+                    icon: Icon(Icons.manage_accounts)),
+            getdata.read('islogin') != true
+                ? SizedBox()
+                : InkWell(
+                    child: Icon(Icons.file_copy_outlined),
+                    onTap: () {
+                      Get.to(() => const Months(),
+                          transition: Transition.leftToRight);
+                    },
                   ),
-                ),
-                PopupMenuItem(
-                  value: "App info",
-                  child: Text('App info', style: GoogleFonts.poppins()),
-                ),
-                PopupMenuItem(
-                  value: "Rate Us",
-                  child: Text('Rate Us', style: GoogleFonts.poppins()),
-                ),
-                PopupMenuItem(
-                  value: "Login",
-                  child: Text('Login', style: GoogleFonts.poppins()),
-                ),
-              ],
-              onSelected: (String menu) {
-                if (menu == "App info") {
-                  Get.to(() => const Aboutinfo(),
-                      transition: Transition.leftToRight);
-                } else if (menu == "Share") {
-                  Share.share(
-                      'https://play.google.com/store/apps/details?id=com.jciindiazone8.in');
-                } else if (menu == "Rate Us") {
-                  LaunchReview.launch(androidAppId: "com.jciindiazone8.in");
-                } else if (menu == "Login") {
-                  Get.to(() => const Login(),
-                      transition: Transition.leftToRight);
-                }
-              },
-            )
+            getdata.read('islogin') != true
+                ? PopupMenuButton(
+                    padding: EdgeInsets.zero,
+                    itemBuilder: (context) => [
+                      PopupMenuItem(
+                        value: "Share",
+                        child: Text(
+                          'Share',
+                          style: GoogleFonts.poppins(),
+                        ),
+                      ),
+                      PopupMenuItem(
+                        value: "App info",
+                        child: Text('App info', style: GoogleFonts.poppins()),
+                      ),
+                      PopupMenuItem(
+                        value: "Rate Us",
+                        child: Text('Rate Us', style: GoogleFonts.poppins()),
+                      ),
+                      PopupMenuItem(
+                        value: "Login",
+                        child: Text('Login', style: GoogleFonts.poppins()),
+                      ),
+                    ],
+                    onSelected: (String menu) {
+                      if (menu == "App info") {
+                        Get.to(() => const Aboutinfo(),
+                            transition: Transition.leftToRight);
+                      } else if (menu == "Share") {
+                        Share.share(
+                            'https://play.google.com/store/apps/details?id=com.jciindiazone8.in');
+                      } else if (menu == "Rate Us") {
+                        LaunchReview.launch(
+                            androidAppId: "com.jciindiazone8.in");
+                      } else if (menu == "Login") {
+                        Get.to(() => const Login(),
+                            transition: Transition.leftToRight);
+                      }
+                    },
+                  )
+                : PopupMenuButton(
+                    padding: EdgeInsets.zero,
+                    itemBuilder: (context) => [
+                      PopupMenuItem(
+                        value: "Share",
+                        child: Text(
+                          'Share',
+                          style: GoogleFonts.poppins(),
+                        ),
+                      ),
+                      PopupMenuItem(
+                        value: "App info",
+                        child: Text('App info', style: GoogleFonts.poppins()),
+                      ),
+                      PopupMenuItem(
+                        value: "Rate Us",
+                        child: Text('Rate Us', style: GoogleFonts.poppins()),
+                      ),
+                      PopupMenuItem(
+                        value: "Logout",
+                        child: Text('Logout', style: GoogleFonts.poppins()),
+                      ),
+                    ],
+                    onSelected: (String menu) {
+                      if (menu == "App info") {
+                        Get.to(() => const Aboutinfo(),
+                            transition: Transition.leftToRight);
+                      } else if (menu == "Share") {
+                        Share.share(
+                            'https://play.google.com/store/apps/details?id=com.jciindiazone8.in');
+                      } else if (menu == "Rate Us") {
+                        LaunchReview.launch(
+                            androidAppId: "com.jciindiazone8.in");
+                      } else if (menu == "Logout") {
+                        save('islogin', false);
+                        setState(() {});
+                        ApiWrapper.showToastMessage('You Logout');
+                      }
+                    },
+                  )
           ],
           title: Text(
             'JCI India Zone VIII',
@@ -260,15 +317,18 @@ class _HomeState extends State<Home> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                widget.youtybeURL != null
-                    ? Container(
-                        height: Get.height / 3.5,
-                        child: YoutubePlayerControllerProvider(
-                          controller: _controller,
-                          child: YoutubePlayerIFrame(controller: _controller),
-                        ),
-                      )
-                    : const SizedBox(),
+                isconnection == true
+                    ? getdata.read('YOU') != null
+                        ? Container(
+                            height: Get.height / 3.5,
+                            child: YoutubePlayerControllerProvider(
+                              controller: _controller,
+                              child:
+                                  YoutubePlayerIFrame(controller: _controller),
+                            ),
+                          )
+                        : const SizedBox()
+                    : SizedBox(),
                 const SizedBox(
                   height: 15,
                 ),
@@ -622,28 +682,28 @@ class _HomeState extends State<Home> {
     });
   }
 
-  // Areaapi() async {
-  //   print("-------SSSSSSSSSSSSSSSSSSSSSSSS--------------------------");
-  //
-  //   ApiWrapper.dataGet(AppUrl.Area).then((val) {
-  //     if ((val != null) && (val.isNotEmpty)) {
-  //       myJson.clear();
-  //       setState(() {});
-  //       val.forEach((e) {
-  //         myJson.add(e);
-  //       });
-  //       print("-------CCCCCCCCCCCCCCCCCCC_______--------------------------");
-  //       print(val);
-  //       setState(() {});
-  //     } else {
-  //       print("-------EEEEEEEEEEEEEEEEEEEEEEEE--------------------------");
-  //       print(val);
-  //
-  //       setState(() {});
-  //       ApiWrapper.showToastMessage("Something Went Wrong!!");
-  //     }
-  //   });
-  // }
+  Areaapi() async {
+    print("-------SSSSSSSSSSSSSSSSSSSSSSSS--------------------------");
+
+    ApiWrapper.dataGet(AppUrl.Area).then((val) {
+      if ((val != null) && (val.isNotEmpty)) {
+        myJson.clear();
+        setState(() {});
+        val.forEach((e) {
+          myJson.add(e);
+        });
+        print("-------CCCCCCCCCCCCCCCCCCC_______----------------");
+        print(val);
+        setState(() {});
+      } else {
+        print("-------EEEEEEEEEEEEEEEEEEEEEEEE--------------------------");
+        print(val);
+
+        setState(() {});
+        ApiWrapper.showToastMessage("Something Went Wrong!!");
+      }
+    });
+  }
 
   void _navigateToHomePage() {
     Get.to(() => const Homepage());

@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:jci/units/colour.dart';
 import '../splaysh.dart';
 import '../units/api.dart';
 import '../units/storage.dart';
+import 'home.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -88,12 +88,11 @@ class _LoginState extends State<Login> {
                   style: const TextStyle(
                     fontFamily: "popins",
                   ),
-                  controller: phone,
                   autofocus: false,
-                  keyboardType: TextInputType.phone,
+                  controller: phone,
                   decoration: buildInputDecoration(
-                    hintText: "Enter Phone number",
-                    lbltext: "Enter Phone number",
+                    hintText: "Enter Username",
+                    lbltext: "Enter Username",
                   ),
                 ),
                 const SizedBox(
@@ -243,17 +242,16 @@ class _LoginState extends State<Login> {
     final response = await request.send();
     final respStr = await response.stream.bytesToString();
     var val = jsonDecode(respStr);
-
     if (response.statusCode == 200) {
       if (val['success'] == true) {
         setState(() {
           save('islogin', true);
-          loding = false;
         });
         setState(() {
           save('logindata', val);
         });
         ApiWrapper.showToastMessage('Login Successfully');
+        GetMonths();
       } else {
         setState(() {
           loding = false;
@@ -265,6 +263,36 @@ class _LoginState extends State<Login> {
         loding = false;
       });
       ApiWrapper.showToastMessage('Login failed');
+    }
+  }
+
+  GetMonths() async {
+    print("------- MONTHS ------------");
+
+    var request = http.MultipartRequest('GET', Uri.parse(AppUrl.Months));
+    var headers = {'x-api-key': getdata.read('logindata')['token'].toString()};
+    request.headers.addAll(headers);
+    final response = await request.send();
+    final respStr = await response.stream.bytesToString();
+    var val = jsonDecode(respStr);
+    if (response.statusCode == 200) {
+      setState(() {
+        Monthlkist.clear();
+      });
+      setState(() {
+        save('Mon', val);
+        getdata.read('Mon').forEach((e) {
+          Monthlkist.add(e);
+        });
+        loding = false;
+      });
+      Get.back();
+      print("------- MONTHS ---------SS---$val");
+    } else {
+      setState(() {
+        loding = false;
+      });
+      print("------- MONTHS ---------EE---$val");
     }
   }
 }

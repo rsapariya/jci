@@ -94,4 +94,6 @@ class AppUrl {
   static const String login = baseurl + 'login';
   static const String Area = baseurl + '/area';
   static const String Addproject = baseurl + '/add_project';
+  static const String Months = baseurl + '/months';
+  static const String Activities = baseurl + '/activities/';
 }

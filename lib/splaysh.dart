@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names, empty_catches
-
 import 'dart:async';
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +9,8 @@ import 'package:jci/units/Storage.dart';
 import 'package:jci/units/api.dart';
 import 'Home/home.dart';
 
+bool hasInternetConnection = false;
+bool isconnection = false;
 String? im1;
 String? im2;
 Color? Appbarcolour;
@@ -37,6 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
       save('varsion', response['version']);
       bgColor = response['them'];
       Appbarcolour = Color(int.parse(bgColor.replaceAll("#", "Oxff")));
+      save('c', Appbarcolour);
       im1 = response['image1'];
       im2 = response['imag2'];
       save('Downloads', response['downloads']);
@@ -44,17 +47,24 @@ class _SplashScreenState extends State<SplashScreen> {
     } catch (e) {}
   }
 
+  colora() {
+    Appbarcolour = getdata.read('c');
+  }
+
+  late StreamSubscription subscription;
   @override
   void initState() {
+    checkInternetConnection();
+
     youtubeapi();
     SLiderapi();
     super.initState();
     getDocs();
+    colora();
     Timer(
       const Duration(seconds: 4),
-      () => Get.offAll(
-        () => Home(url),
-      ),
+      () => Get.offAll(() => Home(),
+          transition: Transition.fade),
     );
   }
 
@@ -90,8 +100,9 @@ class _SplashScreenState extends State<SplashScreen> {
   youtubeapi() {
     ApiWrapper.dataGet(AppUrl.Youtube).then((val) {
       if ((val != null) && (val.isNotEmpty)) {
+        save('YOU', val['url'].toString());
         setState(() {});
-        url = val['url'];
+        print("+++++++++++++++>>>>>>>>>..${getdata.read('YOU')}");
       } else {
         setState(() {});
         currentzgb.clear();
@@ -116,5 +127,23 @@ class _SplashScreenState extends State<SplashScreen> {
         ApiWrapper.showToastMessage("Something Went Wrong!!");
       }
     });
+  }
+
+  Future<bool> checkInternetConnection() async {
+    print("------      1111111      ------");
+    try {
+      final result = await InternetAddress.lookup('google.com');
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        setState(() {
+          isconnection = true;
+        });
+      }
+    } on SocketException catch (_) {
+      setState(() {
+        isconnection = false;
+      });
+      ApiWrapper.showToastMessage('Please turn on the Internet');
+    }
+    return false;
   }
 }

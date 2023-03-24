@@ -398,6 +398,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.0.0"
+  flutter_network_connectivity:
+    dependency: "direct main"
+    description:
+      name: flutter_network_connectivity
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.6"
   flutter_phone_direct_caller:
     dependency: "direct main"
     description:
