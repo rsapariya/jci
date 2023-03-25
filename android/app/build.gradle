@@ -33,20 +33,16 @@ if (keystorePropertiesFile.exists()) {
 android {
     compileSdkVersion 33
     ndkVersion flutter.ndkVersion
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
     kotlinOptions {
         jvmTarget = '1.8'
     }
-
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
-
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.jciindiazone8.in"
@@ -55,10 +51,9 @@ android {
         minSdkVersion 21
         multiDexEnabled true
         targetSdkVersion flutter.targetSdkVersion
-        versionCode 04
-        versionName "04"
+        versionCode 05
+        versionName "05"
     }
-
     signingConfigs {
         release {
             keyAlias keystoreProperties['keyAlias']
@@ -67,7 +62,6 @@ android {
             storePassword keystoreProperties['storePassword']
         }
     }
-
     buildTypes {
         release {
             signingConfig signingConfigs.release

@@ -281,6 +281,7 @@ class _LoginState extends State<Login> {
       });
       setState(() {
         save('Mon', val);
+
         getdata.read('Mon').forEach((e) {
           Monthlkist.add(e);
         });

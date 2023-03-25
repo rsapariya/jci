@@ -18,7 +18,6 @@ List<Map> Type = [
   {"name": "JCI"}
 ];
 
-String image = "https://cdn-icons-png.flaticon.com/512/3135/3135715.png";
 
 class Projects extends StatefulWidget {
   const Projects({Key? key}) : super(key: key);
@@ -29,7 +28,7 @@ class Projects extends StatefulWidget {
 
 class _ProjectsState extends State<Projects> {
   String? _selected = myJson[0]['id'];
-  String? _selected2 = Type[0]['name'];
+  String? _selected2 = Type[1]['name'];
   File? imageFile;
   bool loding = false;
   TextEditingController projectname = new TextEditingController();
@@ -38,6 +37,7 @@ class _ProjectsState extends State<Projects> {
   TextEditingController area = new TextEditingController();
   TextEditingController type = new TextEditingController();
   TextEditingController stardate = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
@@ -66,7 +66,7 @@ class _ProjectsState extends State<Projects> {
                           ? CircleAvatar(
                               backgroundColor: Colors.grey.withOpacity(0.1),
                               radius: 50,
-                              backgroundImage: NetworkImage(image),
+                              backgroundImage: AssetImage('assets/images/picher.jpg'),
                             )
                           : CircleAvatar(
                               backgroundColor: Colors.grey.withOpacity(0.1),
@@ -139,11 +139,16 @@ class _ProjectsState extends State<Projects> {
                     autofocus: false,
                     readOnly: true,
                     onTap: () async {
+                      DateTime now = DateTime.now();
+                      DateTime firstDayOfMonth =
+                          DateTime(now.year, now.month, 1);
+                      DateTime lastDayOfMonth =
+                          DateTime(now.year, now.month + 1, 0);
                       DateTime? pickedDate = await showDatePicker(
                           context: context,
                           initialDate: DateTime.now(),
-                          firstDate: DateTime(2000),
-                          lastDate: DateTime(2101));
+                          firstDate: firstDayOfMonth,
+                          lastDate: lastDayOfMonth);
                       if (pickedDate != null) {
                         String formattedDate =
                             DateFormat('yyyy-MM-dd').format(pickedDate);
@@ -467,7 +472,7 @@ class _ProjectsState extends State<Projects> {
           loding = false;
         });
         ApiWrapper.showToastMessage('Add Successfully.');
-        Get.off(() => MonthaActi(), transition: Transition.fade);
+        Get.back();
       } else {
         setState(() {
           loding = false;

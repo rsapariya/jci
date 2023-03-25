@@ -207,14 +207,14 @@ class _HomeState extends State<Home> {
           elevation: 0,
           backgroundColor: Color(Appbarcolour.hashCode),
           actions: [
-            getdata.read('islogin') != true
-                ? SizedBox()
-                : IconButton(
+            getdata.read('islogin') == true
+                ? IconButton(
                     onPressed: () {
                       Get.to(() => Editpro(),
                           transition: Transition.leftToRight);
                     },
-                    icon: Icon(Icons.manage_accounts)),
+                    icon: Icon(Icons.manage_accounts))
+                : SizedBox(),
             getdata.read('islogin') != true
                 ? SizedBox()
                 : InkWell(
@@ -229,24 +229,18 @@ class _HomeState extends State<Home> {
                     padding: EdgeInsets.zero,
                     itemBuilder: (context) => [
                       PopupMenuItem(
-                        value: "Share",
-                        child: Text(
-                          'Share',
-                          style: GoogleFonts.poppins(),
-                        ),
-                      ),
+                          value: "Share",
+                          child: Text('Share', style: GoogleFonts.poppins())),
                       PopupMenuItem(
-                        value: "App info",
-                        child: Text('App info', style: GoogleFonts.poppins()),
-                      ),
+                          value: "App info",
+                          child:
+                              Text('App info', style: GoogleFonts.poppins())),
                       PopupMenuItem(
-                        value: "Rate Us",
-                        child: Text('Rate Us', style: GoogleFonts.poppins()),
-                      ),
+                          value: "Rate Us",
+                          child: Text('Rate Us', style: GoogleFonts.poppins())),
                       PopupMenuItem(
-                        value: "Login",
-                        child: Text('Login', style: GoogleFonts.poppins()),
-                      ),
+                          value: "Login",
+                          child: Text('Login', style: GoogleFonts.poppins())),
                     ],
                     onSelected: (String menu) {
                       if (menu == "App info") {
@@ -644,7 +638,6 @@ class _HomeState extends State<Home> {
 
   _wahtt() async {
     String num = getdata.read('Downloads').toString();
-
     var url = Uri.parse("$num");
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
